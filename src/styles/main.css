@@ -1,0 +1,23 @@
+.banner {
+    margin-bottom: 2rem;
+}
+
+.banner__logo {
+    margin: 2rem 0;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+
+.banner .list {
+    padding: 1rem;
+
+    background-color: #000000;
+    color: #74D1EA;
+    font-size: 0.875rem;
+}
+
+.banner .list__item {
+    padding: 0.5rem 0;
+}
