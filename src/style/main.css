@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 1.5rem;
+    box-sizing: border-box;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+    .banner__logo {
+        font-size: 1rem;
+        font-weight: 900;
+    }
+
+    .banner__menu-list {
+        display: flex;
+        list-style: none;
+    }
+    
+    .banner__menu-item {
+        margin-left: 1rem;
+    }
+
+    .banner__link {
+        padding: 0.25rem 0.5rem;
+
+        color: inherit;
+        font-weight: 700;
+        text-decoration: none;
+
+        transition: all 0.2s ease-in-out;
+    }
+
+    .banner__link:hover {
+       
+        background-color: #8eecb6;
+        border-radius: 5px;
+    }
+
+    .banner__link:focus {
+        outline: none;
+        background-color: #8eecb6;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        border-style: dashed;
+    }
+
+    .banner__link:visited {
+        color: inherit;
+    }
+
+button {
+    background-color: #8eecb6;
+    padding: 10px;
+    margin: 5px;
+    
+    color: #000000;
+    font-size: 1rem;
+    font-weight: 700;
+    
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    transition: all 0.2s ease-in-out;
+
+}
+
+button:hover {
+    background-color: #43f38c;
+}
+
