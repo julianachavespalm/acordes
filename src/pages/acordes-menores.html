@@ -9,216 +9,258 @@
     <title>Acordes básicos: Acordes Menores</title>
 </head>
 <body>
-    <header class="banner">      
+    <header class="banner" >      
         <div class="banner__content">
-            <h1 class="banner__logo">ACORDES BÁSICOS: ACORDES MENORES</h1>
+            <h1 class="banner__logo"><a href="../../index.html" class="banner__logo banner__link">ACORDES BÁSICOS</a>: ACORDES MAIORES</h1>
         </div>
 
         <nav class="banner__menu">
             <ul class="banner__menu-list">
-                <li class="banner__menu-item"><a href="../pages/acordes-maiores.html" class="banner__menu-link">Acorde Maiores</a></li>
-                <li class="banner__menu-item"><a href="../pages/acordes-menores.html" class="banner__menu-link">Acordes Menores</a></li>
-                <li class="banner__menu-item"><a href="../pages/acordes-dimutos.html" class="banner__menu-link">Acordes Diminutos</a></li>
-                <li class="banner__menu-item"><a href="../pages/acordes-aumentados.html" class="banner__menu-link">Acordes Aumentados</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-maiores.html" class="banner__link">Acorde Maiores</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-menores.html" class="banner__link">Acordes Menores</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-dimutos.html" class="banner__link">Acordes Diminutos</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-aumentados.html" class="banner__link">Acordes Aumentados</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section>
-            <h2>Introdução</h2>
+        <section class="content">
+            <h2 class="content__title">Introdução</h2>
             <p>Bem-vindo ao guia básico de acordes, um recurso para explorar e compreender os acordes de três sons, também conhecidos como tríades. Neste espaço, oferecemos informações sobre a formação dos acordes menores.</p>
         </section>
         <section>
-             <h2 id="AcordesMenores">Acordes Menores</h2>
-
-            <p><strong>Nome do acorde:</strong> Dó Menor</p>
-            <p><strong>Cifra:</strong> Cm</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1c')">Dó</button>,
-                <button onclick="tocarNota('1dis')">Mi♭</button>,
-                <button onclick="tocarNota('1g')">Sol</button>.
-            </p>
-            <button onclick="gerarAcorde('doMenor')">Ouvir Dó Menor</button>
-
-            <p><strong>Nome do acorde:</strong>Dó Sustenido Menor</p>
-            <p><strong>Cifra:</strong> C♯m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1cis')">Dó♯</button>,
-                <button onclick="tocarNota('1e')">Mi</button>,
-                <button onclick="tocarNota('1gis')">Sol♯</button>.
-            </p>
-            <button onclick="gerarAcorde('doSustenidoMenor')">Ouvir Dó Sustenido Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Ré Bemol Menor</p>
-            <p><strong>Cifra:</strong> D♭m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1cis')">Ré♭</button>,
-                <button onclick="tocarNota('1f')">Fá</button>,
-                <button onclick="tocarNota('1gis')">Lá♭</button>.
-            </p>
-            <button onclick="gerarAcorde('reBemolMenor')">Ouvir Ré Bemol Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Ré Menor</p>
-            <p><strong>Cifra:</strong> Dm</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1d')">Ré</button>,
-                <button onclick="tocarNota('1f')">Fá</button>,
-                <button onclick="tocarNota('2a')">Lá</button>.
-            </p>
-            <button onclick="gerarAcorde('reMenor')">Ouvir Ré Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Ré Sustenido Menor</p>
-            <p><strong>Cifra:</strong> D♯m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1dis')">Ré♯</button>,
-                <button onclick="tocarNota('2fis')">Fá♯</button>,
-                <button onclick="tocarNota('2ais')">Lá♯</button>.
-            </p>
-            <button onclick="gerarAcorde('reSustenidoMenor')">Ouvir Ré Sustenido Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Mi Bemol Menor</p>
-            <p><strong>Cifra:</strong> E♭m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1dis')">Mi♭</button>,
-                <button onclick="tocarNota('1fis')">Sol♭</button>,
-                <button onclick="tocarNota('2ais')">Si♭</button>.
-            </p>
-            <button onclick="gerarAcorde('miBemolMenor')">Ouvir Mi Bemol Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Mi Menor</p>
-            <p><strong>Cifra:</strong> Em</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1e')">Mi</button>,
-                <button onclick="tocarNota('1g')">Sol</button>,
-                <button onclick="tocarNota('2b')">Si</button>.
-            </p>
-            <button onclick="gerarAcorde('miMenor')">Ouvir Mi Menor</button>
+             <h2 class="content__title">Acordes Menores</h2>
+           
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Dó Menor</p>
+                <p><strong>Cifra:</strong> Cm</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1c')">Dó</button>
+                    <button onclick="tocarNota('1dis')">Mi♭</button>
+                    <button onclick="tocarNota('1g')">Sol</button>
+                </p>
+                <button onclick="gerarAcorde('doMenor')">Ouvir Dó Menor</button>
+            </div>
             
-            <p><strong>Nome do acorde:</strong> Mi Sustenido Menor</p>
-            <p><strong>Cifra:</strong> E♯m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('2f')">Mi♯</button>,
-                <button onclick="tocarNota('3a')">Sol♯♯</button>,
-                <button onclick="tocarNota('3c')">Si♯</button>.
-            </p>
-            <button onclick="gerarAcorde('miSustenidoMenor')">Ouvir Mi Sustenido Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Fá Bemol Menor</p>
-            <p><strong>Cifra:</strong> F♭m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1e')">Fá♭</button>,
-                <button onclick="tocarNota('1gis')">Lá♭</button>,
-                <button onclick="tocarNota('2b')">Dó♭</button>.
-            </p>
-            <button onclick="gerarAcorde('faBemolMenor')">Ouvir Fá Bemol Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Fá Menor</p>
-            <p><strong>Cifra:</strong> Fm</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1f')">Fá</button>,
-                <button onclick="tocarNota('1gis')">Lá♭</button>,
-                <button onclick="tocarNota('2c')">Dó</button>.
-            </p>
-            <button onclick="gerarAcorde('faMenor')">Ouvir Fá Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Fá Sustenido Menor</p>
-            <p><strong>Cifra:</strong> F♯m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1fis')">Fá♯</button>,
-                <button onclick="tocarNota('2a')">Lá</button>,
-                <button onclick="tocarNota('2cis')">Dó♯</button>.
-            </p>
-            <button onclick="gerarAcorde('faSustenidoMenor')">Ouvir Fá Sustenido Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Sol Bemol Menor</p>
-            <p><strong>Cifra:</strong> G♭m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1fis')">Sol♭</button>,
-                <button onclick="tocarNota('2a')">Si♭♭</button>,
-                <button onclick="tocarNota('2cis')">Ré♭</button>.
-            </p>
-            <button onclick="gerarAcorde('solBemolMenor')">Ouvir Sol Bemol Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Sol Menor</p>
-            <p><strong>Cifra:</strong> Gm</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1g')">Sol</button>,
-                <button onclick="tocarNota('2ais')">Si♭</button>,
-                <button onclick="tocarNota('2d')">Ré</button>.
-            </p>
-            <button onclick="gerarAcorde('solMenor')">Ouvir Sol Menor</button>
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong>Dó Sustenido Menor</p>
+                <p><strong>Cifra:</strong> C♯m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1cis')">Dó♯</button>
+                    <button onclick="tocarNota('1e')">Mi</button>
+                    <button onclick="tocarNota('1gis')">Sol♯</button>
+                </p>
+                <button onclick="gerarAcorde('doSustenidoMenor')">Ouvir Dó Sustenido Menor</button>
+            </div>
             
-            <p><strong>Nome do acorde:</strong> Sol Sustenido Menor</p>
-            <p><strong>Cifra:</strong> G♯m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1gis')">Sol♯</button>,
-                <button onclick="tocarNota('2b')">Si</button>,
-                <button onclick="tocarNota('2dis')">Ré♯</button>.
-            </p>
-            <button onclick="gerarAcorde('solSustenidoMenor')">Ouvir Sol Sustenido Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Lá Bemol Menor</p>
-            <p><strong>Cifra:</strong> A♭m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('1gis')">Lá♭</button>,
-                <button onclick="tocarNota('2b')">Dó♭</button>,
-                <button onclick="tocarNota('2dis')">Mi♭</button>.
-            </p>
-            <button onclick="gerarAcorde('laBemolMenor')">Ouvir Lá Bemol Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Lá Menor</p>
-            <p><strong>Cifra:</strong> Am</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('2a')">Lá</button>,
-                <button onclick="tocarNota('2c')">Dó</button>,
-                <button onclick="tocarNota('2e')">Mi</button>.
-            </p>
-            <button onclick="gerarAcorde('laMenor')">Ouvir Lá Menor</button>
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Ré Bemol Menor</p>
+                <p><strong>Cifra:</strong> D♭m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1cis')">Ré♭</button>
+                    <button onclick="tocarNota('1f')">Fá</button>
+                    <button onclick="tocarNota('1gis')">Lá♭</button>
+                </p>
+                <button onclick="gerarAcorde('reBemolMenor')">Ouvir Ré Bemol Menor</button>
+            </div>
             
-            <p><strong>Nome do acorde:</strong> Lá Sustenido Menor</p>
-            <p><strong>Cifra:</strong> A♯m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('2ais')">Lá♯</button>,
-                <button onclick="tocarNota('2cis')">Dó♯</button>,
-                <button onclick="tocarNota('2f')">Mi♯</button>.
-            </p>
-            <button onclick="gerarAcorde('laSustenidoMenor')">Ouvir Lá Sustenido Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Si Bemol Menor</p>
-            <p><strong>Cifra:</strong> B♭m</p>
-            <p>
-                <button onclick="tocarNota('2ais')">Si♭</button>,
-                <button onclick="tocarNota('2cis')">Ré♭</button>,
-                <button onclick="tocarNota('2f')">Fá</button>.
-            </p>
-            <button onclick="gerarAcorde('siBemolMenor')">Ouvir Si Bemol Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Si Menor</p>
-            <p><strong>Cifra:</strong> Bm</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('2b')">Si</button>,
-                <button onclick="tocarNota('2d')">Ré</button>,
-                <button onclick="tocarNota('2fis')">Fá♯</button>.
-            </p>
-            <button onclick="gerarAcorde('siMenor')">Ouvir Si Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Si Sustenido Menor</p>
-            <p><strong>Cifra:</strong> B♯m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('2c')">Si♯</button>,
-                <button onclick="tocarNota('2dis')">Ré♯</button>,
-                <button onclick="tocarNota('2g')">Fá♯♯</button>.
-            </p>
-            <button onclick="gerarAcorde('siSustenidoMenor')">Ouvir Si Sustenido Menor</button>
-
-            <p><strong>Nome do acorde:</strong> Dó Bemol Menor</p>
-            <p><strong>Cifra:</strong> C♭m</p>
-            <p><strong>Notas:</strong>
-                <button onclick="tocarNota('2b')">Dó♭</button>,
-                <button onclick="tocarNota('2d')">Mi♭♭</button>,
-                <button onclick="tocarNota('2fis')">Sol♭</button>.
-            </p>
-            <button onclick="gerarAcorde('doBemolMenor')">Ouvir Dó Bemol Menor</button>
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Ré Menor</p>
+                <p><strong>Cifra:</strong> Dm</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1d')">Ré</button>
+                    <button onclick="tocarNota('1f')">Fá</button>
+                    <button onclick="tocarNota('2a')">Lá</button>
+                </p>
+                <button onclick="gerarAcorde('reMenor')">Ouvir Ré Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Ré Sustenido Menor</p>
+                <p><strong>Cifra:</strong> D♯m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1dis')">Ré♯</button>
+                    <button onclick="tocarNota('2fis')">Fá♯</button>
+                    <button onclick="tocarNota('2ais')">Lá♯</button>
+                </p>
+                <button onclick="gerarAcorde('reSustenidoMenor')">Ouvir Ré Sustenido Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Mi Bemol Menor</p>
+                <p><strong>Cifra:</strong> E♭m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1dis')">Mi♭</button>
+                    <button onclick="tocarNota('1fis')">Sol♭</button>
+                    <button onclick="tocarNota('2ais')">Si♭</button>
+                </p>
+                <button onclick="gerarAcorde('miBemolMenor')">Ouvir Mi Bemol Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Mi Menor</p>
+                <p><strong>Cifra:</strong> Em</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1e')">Mi</button>
+                    <button onclick="tocarNota('1g')">Sol</button>
+                    <button onclick="tocarNota('2b')">Si</button>
+                </p>
+                <button onclick="gerarAcorde('miMenor')">Ouvir Mi Menor</button>
+            </div>
+            
+            <div class="content__chord">                
+                <p><strong>Nome do acorde:</strong> Mi Sustenido Menor</p>
+                <p><strong>Cifra:</strong> E♯m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('2f')">Mi♯</button>
+                    <button onclick="tocarNota('3a')">Sol♯♯</button>
+                    <button onclick="tocarNota('3c')">Si♯</button>
+                </p>
+                <button onclick="gerarAcorde('miSustenidoMenor')">Ouvir Mi Sustenido Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Fá Bemol Menor</p>
+                <p><strong>Cifra:</strong> F♭m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1e')">Fá♭</button>
+                    <button onclick="tocarNota('1gis')">Lá♭</button>
+                    <button onclick="tocarNota('2b')">Dó♭</button>
+                </p>
+                <button onclick="gerarAcorde('faBemolMenor')">Ouvir Fá Bemol Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Fá Menor</p>
+                <p><strong>Cifra:</strong> Fm</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1f')">Fá</button>
+                    <button onclick="tocarNota('1gis')">Lá♭</button>
+                    <button onclick="tocarNota('2c')">Dó</button>
+                </p>
+                <button onclick="gerarAcorde('faMenor')">Ouvir Fá Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Fá Sustenido Menor</p>
+                <p><strong>Cifra:</strong> F♯m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1fis')">Fá♯</button>
+                    <button onclick="tocarNota('2a')">Lá</button>
+                    <button onclick="tocarNota('2cis')">Dó♯</button>
+                </p>
+                <button onclick="gerarAcorde('faSustenidoMenor')">Ouvir Fá Sustenido Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Sol Bemol Menor</p>
+                <p><strong>Cifra:</strong> G♭m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1fis')">Sol♭</button>
+                    <button onclick="tocarNota('2a')">Si♭♭</button>
+                    <button onclick="tocarNota('2cis')">Ré♭</button>
+                </p>
+                <button onclick="gerarAcorde('solBemolMenor')">Ouvir Sol Bemol Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Sol Menor</p>
+                <p><strong>Cifra:</strong> Gm</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1g')">Sol</button>
+                    <button onclick="tocarNota('2ais')">Si♭</button>
+                    <button onclick="tocarNota('2d')">Ré</button>
+                </p>
+                <button onclick="gerarAcorde('solMenor')">Ouvir Sol Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Sol Sustenido Menor</p>
+                <p><strong>Cifra:</strong> G♯m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1gis')">Sol♯</button>
+                    <button onclick="tocarNota('2b')">Si</button>
+                    <button onclick="tocarNota('2dis')">Ré♯</button>
+                </p>
+                <button onclick="gerarAcorde('solSustenidoMenor')">Ouvir Sol Sustenido Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Lá Bemol Menor</p>
+                <p><strong>Cifra:</strong> A♭m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1gis')">Lá♭</button>
+                    <button onclick="tocarNota('2b')">Dó♭</button>
+                    <button onclick="tocarNota('2dis')">Mi♭</button>
+                </p>
+                <button onclick="gerarAcorde('laBemolMenor')">Ouvir Lá Bemol Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Lá Menor</p>
+                <p><strong>Cifra:</strong> Am</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('2a')">Lá</button>
+                    <button onclick="tocarNota('2c')">Dó</button>
+                    <button onclick="tocarNota('2e')">Mi</button>
+                </p>
+                <button onclick="gerarAcorde('laMenor')">Ouvir Lá Menor</button>
+            </div>
+            
+            <div class="content__chord">                
+                <p><strong>Nome do acorde:</strong> Lá Sustenido Menor</p>
+                <p><strong>Cifra:</strong> A♯m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('2ais')">Lá♯</button>
+                    <button onclick="tocarNota('2cis')">Dó♯</button>
+                    <button onclick="tocarNota('2f')">Mi♯</button>
+                </p>
+                <button onclick="gerarAcorde('laSustenidoMenor')">Ouvir Lá Sustenido Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Si Bemol Menor</p>
+                <p><strong>Cifra:</strong> B♭m</p>
+                <p>
+                    <button onclick="tocarNota('2ais')">Si♭</button>
+                    <button onclick="tocarNota('2cis')">Ré♭</button>
+                    <button onclick="tocarNota('2f')">Fá</button>
+                </p>
+                <button onclick="gerarAcorde('siBemolMenor')">Ouvir Si Bemol Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Si Menor</p>
+                <p><strong>Cifra:</strong> Bm</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('2b')">Si</button>
+                    <button onclick="tocarNota('2d')">Ré</button>
+                    <button onclick="tocarNota('2fis')">Fá♯</button>
+                </p>
+                <button onclick="gerarAcorde('siMenor')">Ouvir Si Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Si Sustenido Menor</p>
+                <p><strong>Cifra:</strong> B♯m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('2c')">Si♯</button>
+                    <button onclick="tocarNota('2dis')">Ré♯</button>
+                    <button onclick="tocarNota('2g')">Fá♯♯</button>
+                </p>
+                <button onclick="gerarAcorde('siSustenidoMenor')">Ouvir Si Sustenido Menor</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Dó Bemol Menor</p>
+                <p><strong>Cifra:</strong> C♭m</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('2b')">Dó♭</button>
+                    <button onclick="tocarNota('2d')">Mi♭♭</button>
+                    <button onclick="tocarNota('2fis')">Sol♭</button>
+                </p>
+                <button onclick="gerarAcorde('doBemolMenor')">Ouvir Dó Bemol Menor</button>
+            </div>
         </section>
 
         <section class="piano">

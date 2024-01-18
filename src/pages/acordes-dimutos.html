@@ -9,63 +9,72 @@
     <title>Acordes básicos: Acordes Diminutos</title>
 </head>
 <body>
-    <header class="banner">      
+    <header class="banner" >      
         <div class="banner__content">
-            <h1 class="banner__logo">ACORDES BÁSICOS: ACORDES DIMINUTOS</h1>
+            <h1 class="banner__logo"><a href="../../index.html" class="banner__logo banner__link">ACORDES BÁSICOS</a>: ACORDES MAIORES</h1>
         </div>
 
         <nav class="banner__menu">
             <ul class="banner__menu-list">
-                <li class="banner__menu-item"><a href="../pages/acordes-maiores.html" class="banner__menu-link">Acorde Maiores</a></li>
-                <li class="banner__menu-item"><a href="../pages/acordes-menores.html" class="banner__menu-link">Acordes Menores</a></li>
-                <li class="banner__menu-item"><a href="../pages/acordes-dimutos.html" class="banner__menu-link">Acordes Diminutos</a></li>
-                <li class="banner__menu-item"><a href="../pages/acordes-aumentados.html" class="banner__menu-link">Acordes Aumentados</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-maiores.html" class="banner__link">Acorde Maiores</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-menores.html" class="banner__link">Acordes Menores</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-dimutos.html" class="banner__link">Acordes Diminutos</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-aumentados.html" class="banner__link">Acordes Aumentados</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section>
-            <h2>Introdução</h2>
+        <section class="content">
+            <h2 class="content__title">Introdução</h2>
             <p>Bem-vindo ao guia básico de acordes, um recurso para explorar e compreender os acordes de três sons, também conhecidos como tríades. Neste espaço, oferecemos informações sobre a formação dos acordes diminutos.</p>
         </section>
         <section>
-             <h2 id="AcordesDiminutos">Acordes Diminutos</h2>
-             <p><strong>Nome do acorde:</strong> Dó Diminuto</p>
-             <p><strong>Cifra:</strong> Cm(b5)</p>
-             <p><strong>Notas:</strong>
-                 <button onclick="tocarNota('1c')">Dó</button>,
-                 <button onclick="tocarNota('1dis')">Mi♭</button>,
-                 <button onclick="tocarNota('1fis')">Sol♭</button>.
-             </p>
-             <button onclick="gerarAcorde('doDiminuto')">Ouvir Dó Diminuto</button>
- 
-             <p><strong>Nome do acorde:</strong> Dó Sustenido Diminuto</p>
-             <p><strong>Cifra:</strong> C♯m(b5)</p>
-             <p><strong>Notas:</strong>
-                 <button onclick="tocarNota('1cis')">Dó♯</button>,
-                 <button onclick="tocarNota('1e')">Mi</button>,
-                 <button onclick="tocarNota('1g')">Sol</button>.
-             </p>
-             <button onclick="gerarAcorde('doSustenidoDiminuto')">Ouvir Dó Sustenido Diminuto</button>
- 
-             <p><strong>Nome do acorde:</strong> Ré Bemol Diminuto</p>
-             <p><strong>Cifra:</strong> D♭m(b5)</p>
-             <p><strong>Notas:</strong>
-                 <button onclick="tocarNota('1cis')">Ré♭</button>,
-                 <button onclick="tocarNota('1e')">Fá♭</button>,
-                 <button onclick="tocarNota('1g')">Lá♭♭</button>.
-             </p>
-             <button onclick="gerarAcorde('reBemolDiminuto')">Ouvir Ré Bemol Diminuto</button>
- 
-             <p><strong>Nome do acorde:</strong> Ré Diminuto</p>
-             <p><strong>Cifra:</strong> Dm(b5)</p>
-             <p><strong>Notas:</strong>
-                 <button onclick="tocarNota('1d')">Ré</button>,
-                 <button onclick="tocarNota('1f')">Fá</button>,
-                 <button onclick="tocarNota('1gis')">Lá♭</button>.
-             </p>
-             <button onclick="gerarAcorde('reDiminuto')">Ouvir Ré Diminuto</button>
- 
+             <h2 class="content__title">Acordes Diminutos</h2>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Dó Diminuto</p>
+                <p><strong>Cifra:</strong> Cm(b5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1c')">Dó</button>,
+                    <button onclick="tocarNota('1dis')">Mi♭</button>,
+                    <button onclick="tocarNota('1fis')">Sol♭</button>.
+                </p>
+                <button onclick="gerarAcorde('doDiminuto')">Ouvir Dó Diminuto</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Dó Sustenido Diminuto</p>
+                <p><strong>Cifra:</strong> C♯m(b5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1cis')">Dó♯</button>,
+                    <button onclick="tocarNota('1e')">Mi</button>,
+                    <button onclick="tocarNota('1g')">Sol</button>.
+                </p>
+                <button onclick="gerarAcorde('doSustenidoDiminuto')">Ouvir Dó Sustenido Diminuto</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Ré Bemol Diminuto</p>
+                <p><strong>Cifra:</strong> D♭m(b5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1cis')">Ré♭</button>,
+                    <button onclick="tocarNota('1e')">Fá♭</button>,
+                    <button onclick="tocarNota('1g')">Lá♭♭</button>.
+                </p>
+                <button onclick="gerarAcorde('reBemolDiminuto')">Ouvir Ré Bemol Diminuto</button>
+            </div>
+            
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Ré Diminuto</p>
+                <p><strong>Cifra:</strong> Dm(b5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="tocarNota('1d')">Ré</button>,
+                    <button onclick="tocarNota('1f')">Fá</button>,
+                    <button onclick="tocarNota('1gis')">Lá♭</button>.
+                </p>
+                <button onclick="gerarAcorde('reDiminuto')">Ouvir Ré Diminuto</button>
+            </div>
+            
         </section>
 
         <section class="piano">
