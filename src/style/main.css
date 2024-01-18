@@ -139,7 +139,7 @@ button {
 }
 
 button:hover {
-    background-color: var(--white);
+    background-color: var(--blue);
 
     color: var(--black);
 }
