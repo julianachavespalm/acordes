@@ -9,177 +9,185 @@
     <title>Acordes básicos: Piano Virtual</title>
 </head>
 <body>
-    <header class="banner" >      
+    <header class="banner" id="top">      
         <div class="banner__content">
             <h1 class="banner__logo"><a href="../../index.html" class="banner__logo banner__link">ACORDES BÁSICOS</a>: ACORDES MAIORES</h1>
         </div>
-
-        <nav class="banner__menu">
+        <nav class="sr-only" aria-label="Atalhos de navegação">
+            <ul>
+                <li>
+                    <a href="#content" accesskey="1">Ir para o conteúdo</a>
+                </li>
+                <li>
+                    <a href="#menu">Ir para o menu principal</a>
+                </li>
+                <li>
+                    <a href="#foo">Ir para o rodapé</a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="banner__menu" id="menu">
             <ul class="banner__menu-list">
-                <label class="banner__menu-item"><a href="../pages/acordes-maiores.html" class="banner__link">Acordes Maiores</a></label>
-                <label class="banner__menu-item"><a href="../pages/acordes-menores.html" class="banner__link">Acordes Menores</a></label>
-                <label class="banner__menu-item"><a href="../pages/acordes-dimutos.html" class="banner__link">Acordes Diminuto</a></label>
-                <label class="banner__menu-item"><a href="../pages/acordes-aumentados.html" class="banner__link">Acordes Aumentados</a></label>
-                <label class="banner__menu-item"><a href="../pages/piano-virtual.html" class="banner__link">Piano Virtual</a></label>
+                <li class="banner__menu-item"><a href="../pages/acordes-maiores.html" class="banner__link">Acordes Maiores</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-menores.html" class="banner__link">Acordes Menores</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-dimutos.html" class="banner__link">Acordes Diminuto</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-aumentados.html" class="banner__link">Acordes Aumentados</a></li>
+                <li class="banner__menu-item"><a href="#PianoVirtual" class="banner__link">Piano Virtual</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section class="content">
+        <section class="content" id="content">
             <h2 class="content__title">Introdução</h2>
             <p>Bem-vindo ao guia básico de acordes, um recurso para explorar e compreender os acordes de três sons, também conhecidos como tríades. Neste espaço, oferecemos informações sobre a formação dos acordes aumentados.</p>
         </section>
         <section class="content__chord">          
-            <h2 class="content__title">Piano Virtual</h2>
+            <h2 class="content__title" id="PianoVirtual">Piano Virtual</h2>
             <div class="piano">
                 <button id="startChordButton">Iniciar Formação de Acorde</button>
 
-                <form class="piano__keys">
-                    <input type="checkbox" id="1c" >
-                    <label for="Do1" class="piano__key piano__key--white" data-key="28" data-note="1c"><span>Dó</span></label>
-                    
-                    <input type="checkbox" id="1cis">
-                    <label for="1cis" class="piano__key piano__key--black" data-key="29" data-note="1cis">
-                        <span>Dó♯ <br />Ré♭</span>
-                    </label>
-
-                    <input type="checkbox" id="1d">
-                    <label class="piano__key piano__key--white" data-key="30" data-note="1d">
-                        <span>Ré</span>
-                    </label>
-
-                    <input type="checkbox" id="1dis">
-                    <label class="piano__key piano__key--black" data-key="31" data-note="1dis">
-                        <span>Ré♯ <br />Mi♭</span>
-                    </label>
-
-                    <input type="checkbox" id="1e">
-                    <label class="piano__key piano__key--white" data-key="32" data-note="1e">
-                        <span>Mi</span>
-                    </label>
-                    
-                    <input type="checkbox" id="1f">
-                    <label class="piano__key piano__key--white" data-key="33" data-note="1f">
-                        <span>Fá</span>
-                    </label>
-
-                    <input type="checkbox" id="1fis">
-                    <label class="piano__key piano__key--black" data-key="34" data-note="1fis">
-                        <span>Fá♯ <br />Sol♭</span>
-                    </label>
-
-                    <input type="checkbox" id="1g">
-                    <label class="piano__key piano__key--white" data-key="35" data-note="1g">
-                        <span>Sol</span>
-                    </label>
-
-                    <input type="checkbox" id="1gis">
-                    <label class="piano__key piano__key--black" data-key="36" data-note="1gis">
-                        <span>Sol♯ <br />Lá♭</span>
-                    </label>
-
-                    <input type="checkbox" id="2a">
-                    <label class="piano__key piano__key--white" data-key="37" data-note="2a">
-                        <span>Lá</span></label>
-                    <label class="piano__key piano__key--black" data-key="38" data-note="2ais">
-                        <span>Lá♯ <br />Si♭</span>
-                    </label>
-
-                    <input type="checkbox" id="2b">
-                    <label class="piano__key piano__key--white" data-key="39" data-note="2b">
-                        <span>Si</span>
-                    </label>
-
-                    <input type="checkbox" id="2c">
-                    <label class="piano__key piano__key--white" data-key="40" data-note="2c">
+                <ul class="piano__keys">
+                    <li for="1c" class="piano__key piano__key--white" data-key="28" data-note="1c">
                         <span>Dó</span>
-                    </label>
-
-                    <input type="checkbox" id="2cis">
-                    <label class="piano__key piano__key--black" data-key="41" data-note="2cis">
-                        <span>Dó♯ <br />Ré♭</span>
-                    </label>
-
-                    <input type="checkbox" id="2d">
-                    <label class="piano__key piano__key--white" data-key="42" data-note="2d">
-                        <span>Ré</span>
-                    </label>
-
-                    <input type="checkbox" id="2dis">
-                    <label class="piano__key piano__key--black" data-key="43" data-note="2dis">
-                        <span>Ré♯ <br />Mi♭</span>
-                    </label>
-
-                    <input type="checkbox" id="2e">
-                    <label class="piano__key piano__key--white" data-key="44" data-note="2e">
-                        <span>Mi</span>
-                    </label>
-
-                    <input type="checkbox" id="2f">
-                    <label class="piano__key piano__key--white" data-key="45" data-note="2f">
-                        <span>Fá</span>
-                    </label>
+                    </li>
                     
-                    <input type="checkbox" id="2fis">
-                    <label class="piano__key piano__key--black" data-key="46" data-note="2fis">
+                    <li for="1cis" class="piano__key piano__key--black" data-key="29" data-note="1cis">
+                        <span>Dó♯ <br />Ré♭</span>
+                    </li>
+
+                    <li for="1d" class="piano__key piano__key--white" data-key="30" data-note="1d">
+                        <span>Ré</span>
+                    </li>
+
+                    <li for="1dis" class="piano__key piano__key--black" data-key="31" data-note="1dis">
+                        <span>Ré♯ <br />Mi♭</span>
+                    </li>
+
+                    <li for="1e" class="piano__key piano__key--white" data-key="32" data-note="1e">
+                        <span>Mi</span>
+                    </li>
+                    
+                    <li for="1f" class="piano__key piano__key--white" data-key="33" data-note="1f">
+                        <span>Fá</span>
+                    </li>
+
+                    <li for="1fis" class="piano__key piano__key--black" data-key="34" data-note="1fis">
                         <span>Fá♯ <br />Sol♭</span>
-                    </label>
+                    </li>
 
-                    <input type="checkbox" id="2g">
-                    <label class="piano__key piano__key--white" data-key="47" data-note="2g">
+                    <li class="piano__checkbox" type="checkbox" id="1g">
+                    <li for="1g" class="piano__key piano__key--white" data-key="35" data-note="1g">
                         <span>Sol</span>
-                    </label>
+                    </li>
 
-                    <input type="checkbox" id="2gis">
-                    <label class="piano__key piano__key--black" data-key="48" data-note="2gis">
+                    <li for="1gis" class="piano__key piano__key--black" data-key="36" data-note="1gis">
                         <span>Sol♯ <br />Lá♭</span>
-                    </label>
+                    </li>
 
-                    <input type="checkbox" id="3a">
-                    <label class="piano__key piano__key--white" data-key="49" data-note="3a">
+                    <li for="2a" class="piano__key piano__key--white" data-key="37" data-note="2a">
                         <span>Lá</span>
-                    </label>
+                    </li>
 
-                    <input type="checkbox" id="3ais">
-                    <label class="piano__key piano__key--black" data-key="50" data-note="3ais">
+                    <li class="piano__key piano__key--black" data-key="38" data-note="2ais">
                         <span>Lá♯ <br />Si♭</span>
-                    </label>
+                    </li>
 
-                    <input type="checkbox" id="3b">
-                    <label class="piano__key piano__key--white" data-key="51" data-note="3b">
+                    <li for="2b" class="piano__key piano__key--white" data-key="39" data-note="2b">
                         <span>Si</span>
-                    </label>
+                    </li>
 
-                    <input type="checkbox" id="3c">
-                    <label class="piano__key piano__key--white" data-key="52" data-note="3c">
+                    <li for="2c"class="piano__key piano__key--white" data-key="40" data-note="2c">
                         <span>Dó</span>
-                    </label>                   
-                </form>
+                    </li>
 
+                    <li for="2cis" class="piano__key piano__key--black" data-key="41" data-note="2cis">
+                        <span>Dó♯ <br />Ré♭</span>
+                    </li>
+
+                    <li for="2d" class="piano__key piano__key--white" data-key="42" data-note="2d">
+                        <span>Ré</span>
+                    </li>
+
+                    <li for="2dis" class="piano__key piano__key--black" data-key="43" data-note="2dis">
+                        <span>Ré♯ <br />Mi♭</span>
+                    </li>
+
+                    <li for="2e" class="piano__key piano__key--white" data-key="44" data-note="2e">
+                        <span>Mi</span>
+                    </li>
+
+                    <li for="2f" class="piano__key piano__key--white" data-key="45" data-note="2f">
+                        <span>Fá</span>
+                    </li>
+                    
+                    <li for="2fis" class="piano__key piano__key--black" data-key="46" data-note="2fis">
+                        <span>Fá♯ <br />Sol♭</span>
+                    </li>
+
+                    <li for="2g" class="piano__key piano__key--white" data-key="47" data-note="2g">
+                        <span>Sol</span>
+                    </li>
+
+                    <li for="2gis" class="piano__key piano__key--black" data-key="48" data-note="2gis">
+                        <span>Sol♯ <br />Lá♭</span>
+                    </li>
+
+                    <li for="3a" class="piano__key piano__key--white" data-key="49" data-note="3a">
+                        <span>Lá</span>
+                    </li>
+
+                    <li for="3ais" class="piano__key piano__key--black" data-key="50" data-note="3ais">
+                        <span>Lá♯ <br />Si♭</span>
+                    </li>
+
+                    <li for="3b" class="piano__key piano__key--white" data-key="51" data-note="3b">
+                        <span>Si</span>
+                    </li>
+
+                    <li for="3c" class="piano__key piano__key--white" data-key="52" data-note="3c">
+                        <span>Dó</span>
+                    </li>                   
+                </ul>
                 <button id="playChordButton">Tocar Acorde</button>
                 <button id="clearChordButton">Limpar</button>
-
             </div>
             
         </section>
         <section class="content">
             <h2 class="content__title">Tutorial: Como Usar o Piano Virtual</h2>
-            <h3 class="content__title">1. Piano Virtual</h3>
+            <h3 class="content__subtitle">1. Piano Virtual</h3>
             <p>Nessa página, contém o piano virtual. Você deve ver as teclas do piano e alguns botões, como "Iniciar Formação de Acorde", "Piano Virtual", "Tocar Acorde" e "Limpar".</p>
-            <h3 class="content__title">2. Toque nas Teclas do Piano</h3>
+            <h3 class="content__subtitle">2. Toque nas Teclas do Piano</h3>
             <p>Cada tecla branca ou preta no piano representa uma nota musical. Clique nas teclas para reproduzir as notas correspondentes. Experimente tocar diferentes teclas para ouvir os diferentes sons.</p>
-            <h3 class="content__title">3. Formação de Acorde (Opcional)</h3>
+            <h3 class="content__subtitle">3. Formação de Acorde (Opcional)</h3>
             <p>Se desejar formar um acorde, clique no botão "Iniciar Formação de Acorde". Isso permite que você clique em várias teclas do piano para criar um acorde composto por várias notas. As notas serão armazenadas para reprodução posterior.</p>
-            <h3 class="content__title">4. Tocar Acorde</h3>
+            <h3 class="content__subtitle">4. Tocar Acorde</h3>
             <p>Quando estiver satisfeito com a formação do acorde, clique no botão "Tocar Acorde". Isso reproduzirá todas as notas do acorde simultaneamente, criando um som mais complexo.</p>
-            <h3 class="content__title">5. Limpar Notas (Opcional)</h3>
+            <h3 class="content__subtitle">5. Limpar Notas (Opcional)</h3>
             <p>Se quiser começar de novo ou limpar as notas armazenadas, clique no botão "Limpar". Isso reinicia a formação de acorde e apaga todas as notas armazenadas.</p>
-            <h3 class="content__title">6. Explore e Experimente</h3>
+            <h3 class="content__subtitle">6. Explore e Experimente</h3>
             <p>Sinta-se à vontade para explorar diferentes combinações de notas, acordes e experimentar com os botões disponíveis. O objetivo é se familiarizar com o funcionamento do piano virtual e se divertir explorando diferentes sons musicais.</p>   
         </section>
-    </main>  
-
+    </main>
+    <footer class="social-media" id="foo">
+        <p class="social-media__message">© 2024 Juliana Chaves Palm</p>
+        <ul class="social-media__links">
+            <li class="social-media__item">
+                <a href="mailto:julianachavespalm@gmail.com" class="social-media__link"><i class="fa-regular fa-envelope" aria-li="E-mail de Juliana Chaves Palm" title="E-mail" aria-hidden="true"></i><span class="sr-only">E-mail</span></a>
+            </li>
+            <li class="social-media__item">
+                <a href="https://www.linkedin.com/in/julianachavespalm" class="social-media__link"><i class="fa-brands fa-linkedin" aria-li="Linkedin de Juliana Chaves Palm" title="Linkedin" aria-hidden="true"></i><span class="sr-only">Linkedin</span></a>
+            </li>
+                <li class="social-media__item"><a href="https://www.github.com/julianachavespalm" class="social-media__link">
+                <i class="fa-brands fa-github-alt" aria-li="Link de acesso ao Github de Juliana Chaves Palm" title="Github" aria-hidden="true"></i><span class="sr-only">Github</span></a>
+            </li>
+        </ul>
+        <ul class="social-media__shortcuts sr-only" id="shortcuts">
+            <li><a href="#top">Ir para o topo do site</a></li>
+            <li><a href="#open-menu">Ir para o menu principal</a></li>
+        </ul>
+    </footer>  
     <script src="../script/piano.js"></script>
-
+    <script src="https://kit.fontawesome.com/e0954b0c75.js" crossorigin="anonymous"></script>
 </body>
 </html>

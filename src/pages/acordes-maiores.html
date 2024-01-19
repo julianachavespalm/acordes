@@ -9,14 +9,26 @@
     <title>Acordes básicos: Acordes Maiores</title>
 </head>
 <body>
-    <header class="banner" >      
+    <header class="banner" id="top" >      
         <div class="banner__content">
             <h1 class="banner__logo"><a href="../../index.html" class="banner__logo banner__link">ACORDES BÁSICOS</a>: ACORDES MAIORES</h1>
         </div>
-
-                <nav class="banner__menu">
+        <nav class="sr-only" aria-label="Atalhos de navegação">
+            <ul>
+                <li>
+                    <a href="#content" accesskey="1">Ir para o conteúdo</a>
+                </li>
+                <li>
+                    <a href="#menu">Ir para o menu principal</a>
+                </li>
+                <li>
+                    <a href="#foo">Ir para o rodapé</a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="banner__menu" id="menu">
             <ul class="banner__menu-list">
-                <li class="banner__menu-item"><a href="../pages/acordes-maiores.html" class="banner__link">Acordes Maiores</a></li>
+                <li class="banner__menu-item"><a href="#AcordesMaiores" class="banner__link">Acordes Maiores</a></li>
                 <li class="banner__menu-item"><a href="../pages/acordes-menores.html" class="banner__link">Acordes Menores</a></li>
                 <li class="banner__menu-item"><a href="../pages/acordes-dimutos.html" class="banner__link">Acordes Diminuto</a></li>
                 <li class="banner__menu-item"><a href="../pages/acordes-aumentados.html" class="banner__link">Acordes Aumentados</a></li>
@@ -25,7 +37,7 @@
         </nav>
     </header>
     <main>
-        <section class="content">
+        <section class="content" id="content">
             <h2 class="content__title">Introdução</h2>
             <p>Bem-vindo ao guia básico de acordes, um recurso para explorar e compreender os acordes de três sons, também conhecidos como tríades. Neste espaço, oferecemos informações sobre a formação dos acordes maiores.</p>
         </section>
@@ -262,6 +274,25 @@
             </div>
        </section>
     </main>
-    <script src="../script/chords.js"></script>
+    <footer class="social-media" id="foo">
+        <p class="social-media__message">© 2024 Juliana Chaves Palm</p>
+        <ul class="social-media__links">
+            <li class="social-media__item">
+                <a href="mailto:julianachavespalm@gmail.com" class="social-media__link"><i class="fa-regular fa-envelope" aria-label="E-mail de Juliana Chaves Palm" title="E-mail" aria-hidden="true"></i><span class="sr-only">E-mail</span></a>
+            </li>
+            <li class="social-media__item">
+                <a href="https://www.linkedin.com/in/julianachavespalm" class="social-media__link"><i class="fa-brands fa-linkedin" aria-label="Linkedin de Juliana Chaves Palm" title="Linkedin" aria-hidden="true"></i><span class="sr-only">Linkedin</span></a>
+            </li>
+                <li class="social-media__item"><a href="https://www.github.com/julianachavespalm" class="social-media__link">
+                <i class="fa-brands fa-github-alt" aria-label="Link de acesso ao Github de Juliana Chaves Palm" title="Github" aria-hidden="true"></i><span class="sr-only">Github</span></a>
+            </li>
+        </ul>
+        <ul class="social-media__shortcuts sr-only" id="shortcuts">
+            <li><a href="#top">Ir para o topo do site</a></li>
+            <li><a href="#open-menu">Ir para o menu principal</a></li>
+        </ul>
+    </footer>  
+    <script src="../script/piano.js"></script>
+    <script src="https://kit.fontawesome.com/e0954b0c75.js" crossorigin="anonymous"></script>
 </body>
 </html>

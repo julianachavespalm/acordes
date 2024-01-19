@@ -16,16 +16,22 @@
 
         font-family: 'Raleway', sans-serif;
     }
+    
 
     body {
         display: flex;
         flex-direction: column;
         justify-content: center;
         background-color: var(--black);
-
+        
         color: var(--white);
     }
 
+    .sr-only {
+        position: absolute;
+        left: -999em;
+    }
+    
     button {
         padding: 10px 5px;
         margin: 5px;
@@ -146,8 +152,6 @@
         font-weight: 700;
         letter-spacing: 4px;
         text-transform: uppercase;
-
-        border: 1px solid;
     }
 
     .content__chord {
@@ -173,3 +177,45 @@
         outline: none;
         border-bottom: 1px solid var(--blue);
     }
+
+    .social-media {
+        margin-top: 160px;
+        height: 170px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 60px;
+        text-align: center;
+
+        border-top: 1px solid;
+        border-image-outset: 0;
+        border-image-repeat: stretch;
+        border-image-slice: 10;
+        border-image-source: linear-gradient(#3ba1cd, #1572b7);
+
+    }    
+
+    .social-media__message{
+        color: var(--white);
+    }
+    
+    
+    .social-media__links {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        margin: 1rem;
+        text-align: center;
+    }
+    
+    .social-media__link {
+        margin: 1rem;
+    }
+    
+    /* Adicione a classe 'fa' aos ícones do Font Awesome */
+    .fa-envelope,
+    .fa-linkedin,
+    .fa-github-alt {
+        color: var(--white);
+    }
+    
