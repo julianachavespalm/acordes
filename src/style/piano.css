@@ -6,6 +6,8 @@
   font-size: 0.75rem;
 }
 
+
+
   .piano__logo {
       margin-right: auto;
 
@@ -18,8 +20,38 @@
       align-items: center;
 
       padding: 1rem 0;
-  }
+  } 
   
+/* Esconda a caixa de seleção padrão */
+.piano input {
+    display: none;
+}
+
+/* Estilo para o label quando o input está marcado */
+.piano input:checked + label {
+    position: relative;
+    display: inline-block;
+    width: 30px; /* Ajuste conforme necessário */
+    height: 30px; /* Ajuste conforme necessário */
+    border-radius: 50%; /* Faz o input ter a forma de uma bolinha */
+    background-color: #f5e027; /* Cor de fundo */
+    cursor: pointer;
+}
+
+/* Estilo para a bolinha dentro do label */
+.piano input:checked + label::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px; /* Diâmetro da bolinha */
+    height: 20px; /* Diâmetro da bolinha */
+    border-radius: 50%; /* Faz a bolinha ter bordas arredondadas */
+    background-color: #a50606; /* Cor da bolinha quando marcado */
+}
+
+
       .piano__label {
           margin: 0 0.5rem 0 0;
 

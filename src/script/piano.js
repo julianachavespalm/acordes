@@ -1,76 +1,66 @@
-const selectedNotes = [];
+document.addEventListener("DOMContentLoaded", function () {
+  const pianoKeys = document.querySelectorAll(".piano__key");
+  const startChordButton = document.getElementById("startChordButton");
+  const playChordButton = document.getElementById("playChordButton");
+  const clearChordButton = document.getElementById("clearChordButton");
 
-const audioElements = {};
+  let audioContext;
+  let audioBuffers = {};
+  let chordNotes = [];
+  let isChordFormationActive = false;
 
+  async function loadAudioFiles() {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-document.addEventListener("keydown", (e) => {
-    const key = e.key.toLowerCase();
-    const isKeyFound = Array.from(keys).some((el) => el.dataset.key === key);
-  
-    if (isKeyFound) {
-        const note = document.querySelector(`[data-key="${key}"]`).dataset.note;
-        const audio = audioElements[note];
-      
-        if (audio) {
-          audio.currentTime = 0;
-          audio.play();
-          const clickedKey = document.querySelector(`[data-note="${note}"]`);
-          clickedKey.classList.add("active");
-          setTimeout(() => {
-            clickedKey.classList.remove("active");
-          }, 150);
-        }
+      for (let i = 28; i <= 52; i++) {
+          const response = await fetch(`../tunes/${i}.mp3`);
+          const arrayBuffer = await response.arrayBuffer();
+          const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+          audioBuffers[i] = audioBuffer;
       }
-  }); 
-  
-  
-  function playAudio(note) {
-      const audio = audioElements[note];
-      if (audio) {
-        audio.currentTime = 0;
-        audio.play();
-      }
-    }
-
-function selectNote(note) {
-  const index = selectedNotes.indexOf(note);
-
-  if (index === -1) {
-    selectedNotes.push(note);
-  } else {
-    selectedNotes.splice(index, 1);
   }
 
-  const pianoKey = document.querySelector(`[data-note="${note}"]`);
-  pianoKey.classList.toggle("selected");
-}
+  function playNote(note) {
+      const source = audioContext.createBufferSource();
+      source.buffer = audioBuffers[note];
+      source.connect(audioContext.destination);
+      source.start(0);
+  }
 
-function startChordFormation() {
-  selectedNotes.length = 0;
+  pianoKeys.forEach(key => {
+      key.addEventListener("click", function () {
+          const note = parseInt(this.getAttribute("data-key"));
 
-  keys.forEach((key) => {
-    key.classList.remove("selected");
+          if (isChordFormationActive) {
+              chordNotes.push(note);
+          } else {
+              playNote(note);
+          }
+      });
   });
-}
 
-function playSelectedChord() {
-  tocarAcorde(selectedNotes);
-}
+  startChordButton.addEventListener("click", function () {
+      chordNotes = [];
+      isChordFormationActive = true;
 
-keys.forEach((key) => {
-  const note = key.dataset.note;
-
-  key.addEventListener("click", () => {
-    selectNote(note);
-    key.classList.add("active");
-    setTimeout(() => {
-      key.classList.remove("active");
-    }, 150);
+      pianoKeys.forEach(key => {
+          key.addEventListener("click", function () {
+              const note = parseInt(this.getAttribute("data-key"));
+              playNote(note);
+          });
+      });
   });
+
+  playChordButton.addEventListener("click", function () {
+      if (chordNotes.length > 0) {
+          chordNotes.forEach(note => playNote(note));
+      }
+  });
+
+  clearChordButton.addEventListener("click", function () {
+      chordNotes = [];
+      isChordFormationActive = false;
+  });
+
+  loadAudioFiles();
 });
-
-const startChordButton = document.getElementById("startChordButton");
-startChordButton.addEventListener("click", startChordFormation);
-
-const playChordButton = document.getElementById("playChordButton");
-playChordButton.addEventListener("click", playSelectedChord);
