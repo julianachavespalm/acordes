@@ -81,7 +81,22 @@ const acordes = {
   doSustenidoDiminuto: ["1cis", "1e", "1g"],
   reBemolDiminuto: ["1cis", "1e", "1g"],
   reDiminuto: ["1d", "1f", "1gis"],
-
+  reSustenidoDiminuto: ["1dis", "1fis", "2a"],
+  miBemolDiminuto: ["1dis", "1fis", "2a"],
+  miDiminuto: ["1e", "1g", "2ais"],
+  miSustenidoDiminuto: ["2f", "2gis", "3b"],
+  faBemolDiminuto: ["1f", "1g", "2ais"],
+  faDiminuto: ["1f", "1gis", "2b"],
+  faSustenidoDiminuto: ["1fis", "2a", "2c"],
+  solBemolDiminuto: ["1fis", "2a", "2c"],
+  solDiminuto: ["1g", "2ais", "2cis"],
+  solSustenidoDiminuto: ["1gis", "2b", "2d"],
+  laBemolDiminuto: ["1gis", "2b", "2d"],
+  laDiminuto: ["2a", "2c", "2dis"],
+  laSustenidoDiminuto: ["2ais", "2cis", "2e"],
+  siBemolDiminuto: ["2ais", "2cis", "2e"],
+  siDiminuto: ["2b", "2d", "2f"],
+  
 
 };
 

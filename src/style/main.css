@@ -6,7 +6,7 @@
     --gray: #4d4d4d;
     --light-gray: #acacac;
     --white: #ffffff;
-    --teal: #33A8DB80;
+    --teal: #33a8db80;
 }
 
 * {
@@ -40,7 +40,7 @@ button {
     color: var(--white);
     font-size: 1rem;
     font-weight: 700;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
 
     cursor: pointer;
 
@@ -120,7 +120,8 @@ button:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 800px;
+    width: 70vw;
+    max-width: 800px;
     margin: 0 auto;
     margin-bottom: 24px;
     line-height: 1.5;
@@ -141,8 +142,8 @@ button:focus {
     display: flex;
     flex-direction: column;
     margin: 0 auto 24px;
-    width: 800px;
-
+    width: 70vw;
+    max-width: 800px;
     line-height: 2;
 }
 
