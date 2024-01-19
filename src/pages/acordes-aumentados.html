@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/piano.css">
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+    <title>Acordes básicos: Acordes Aumentados</title>
+</head>
+<body>
+    <header class="banner" >      
+        <div class="banner__content">
+            <h1 class="banner__logo"><a href="../../index.html" class="banner__logo banner__link">ACORDES BÁSICOS</a>: ACORDES MAIORES</h1>
+        </div>
+
+        <nav class="banner__menu">
+            <ul class="banner__menu-list">
+                <li class="banner__menu-item"><a href="../pages/acordes-maiores.html" class="banner__link">Acordes Maiores</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-menores.html" class="banner__link">Acordes Menores</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-dimutos.html" class="banner__link">Acordes Diminuto</a></li>
+                <li class="banner__menu-item"><a href="../pages/acordes-aumentados.html" class="banner__link">Acordes Aumentados</a></li>
+                <li class="banner__menu-item"><a href="../pages/piano-virtual.html" class="banner__link">Piano Virtual</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="content">
+            <h2 class="content__title">Introdução</h2>
+            <p>Bem-vindo ao guia básico de acordes, um recurso para explorar e compreender os acordes de três sons, também conhecidos como tríades. Neste espaço, oferecemos informações sobre a formação dos acordes aumentados.</p>
+        </section>
+        <section>
+            <h2 class="content__title">Acordes Aumentados</h2>
+
+           <div class="content__chord">
+                <p><strong>Nome do acorde: </strong>Dó Aumentado</p>
+                <p><strong>Cifra: </strong>Dó(♯5)</p>
+                <p><strong>Notas: </strong>
+                    <button onclick="playNote('1c')">Dó</button>
+                    <button onclick="playNote('1e')">Mi</button>
+                    <button onclick="playNote('1gis')">Sol♯</button>
+                </p>
+                <button onclick="generateChord('doAumentado')">Ouvir Dó Aumentado</button>
+           </div>
+
+           <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Dó Sustenido Aumentado</p>
+                <p><strong>Cifra:</strong> Dó♯(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('2cis')">Dó♯</button>
+                    <button onclick="playNote('2f')">Mi♯</button>
+                    <button onclick="playNote('3a')">Sol♯♯</button>
+                </p>
+                <button onclick="generateChord('doSustenidoAumentado')">Ouvir Dó Sustenido Aumentado</button>
+           </div>
+
+              <div class="content__chord">
+                 <p><strong>Nome do acorde:</strong> Ré Bemol Aumentado</p>
+                 <p><strong>Cifra:</strong> D♭(♯5)</p>
+                 <p><strong>Notas:</strong>
+                      <button onclick="playNote('1cis')">Ré♭</button>
+                      <button onclick="playNote('1f')">Fá</button>
+                      <button onclick="playNote('2a')">Lá</button>
+                 </p>
+                 <button onclick="generateChord('reBemolAumentado')">Ouvir Ré Bemol Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Ré Aumentado</p>
+                <p><strong>Cifra:</strong> D(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('1d')">Ré</button>
+                    <button onclick="playNote('1fis')">Fá♯</button>
+                    <button onclick="playNote('2ais')">Lá♯</button>
+                </p>
+                <button onclick="generateChord('reAumentado')">Ouvir Ré Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Ré Sustenido Aumentado</p>
+                <p><strong>Cifra:</strong> D(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('2dis')">Ré♯</button>
+                    <button onclick="playNote('2g')">Fá♯♯</button>
+                    <button onclick="playNote('3b')">Lá♯♯</button>
+                </p>
+                <button onclick="generateChord('reSustenidoAumentado')">Ouvir Ré Sustenido Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Mi Bemol Aumentado</p>
+                <p><strong>Cifra:</strong> E♭(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('1dis')">Mi♭</button>
+                    <button onclick="playNote('1g')">Sol</button>
+                    <button onclick="playNote('2b')">Si</button>
+                </p>
+                <button onclick="generateChord('miBemolAumentado')">Ouvir Mi Bemol Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Mi Aumentado</p>
+                <p><strong>Cifra:</strong> E(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('1e')">Mi</button>
+                    <button onclick="playNote('1gis')">Sol♯</button>
+                    <button onclick="playNote('2c')">Si♯</button>
+                </p>
+                <button onclick="generateChord('miAumentado')">Ouvir Mi Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Mi Sustenido Aumentado</p>
+                <p><strong>Cifra:</strong> E♯(♯5)</p>
+                <p><strong>Notas: </strong>
+                    <button onclick="playNote('1f')">Mi♯</button>
+                    <button onclick="playNote('2a')">Sol♯♯</button>
+                    <button onclick="playNote('2cis')">Si♯♯</button>
+                </p>
+                <button onclick="generateChord('miSustenidoAumentado')">Ouvir Mi Sustenido Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Fá Bemol Aumentado</p>
+                <p><strong>Cifra:</strong> F♭(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('2e')">Fá♭</button>
+                    <button onclick="playNote('2gis')">Lá♭</button>
+                    <button onclick="playNote('3c')">Dó</button>
+                </p>
+                <button onclick="generateChord('faBemolAumentado')">Ouvir Fá Bemol Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Fá Aumentado</p>
+                <p><strong>Cifra:</strong> F(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('1f')">Fá</button>
+                    <button onclick="playNote('2a')">Lá</button>
+                    <button onclick="playNote('2cis')">Dó♯</button>
+                </p>
+                <button onclick="generateChord('faAumentado')">Ouvir Fá Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Fá Sustenido Aumentado</p>
+                <p><strong>Cifra:</strong> F♯(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('1fis')">Fá♯</button>
+                    <button onclick="playNote('2ais')">Lá♯</button>
+                    <button onclick="playNote('2d')">Dó♯♯</button>
+                </p>
+                <button onclick="generateChord('faSustenidoAumentado')">Ouvir Fá Sustenido Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Sol Bemol Aumentado</p>
+                <p><strong>Cifra:</strong> G♭(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('1fis')">Sol♭</button>
+                    <button onclick="playNote('2ais')">Si♭</button>
+                    <button onclick="playNote('2d')">Ré</button>
+                </p>
+                <button onclick="generateChord('solBemolAumentado')">Ouvir Sol Bemol Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Sol Aumentado</p>
+                <p><strong>Cifra:</strong> G(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('1g')">Sol</button>
+                    <button onclick="playNote('2b')">Si</button>
+                    <button onclick="playNote('2dis')">Ré♯</button>
+                </p>
+                <button onclick="generateChord('solAumentado')">Ouvir Sol Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Sol Sustenido Aumentado</p>
+                <p><strong>Cifra:</strong> G♯(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('1gis')">Sol♯</button>
+                    <button onclick="playNote('2c')">Si♯</button>
+                    <button onclick="playNote('2e')">Ré♯♯</button>
+                </p>
+                <button onclick="generateChord('solSustenidoAumentado')">Ouvir Sol Sustenido Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Lá Bemol Aumentado</p>
+                <p><strong>Cifra:</strong> A♭(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('1gis')">Lá♭</button>
+                    <button onclick="playNote('2c')">Dó</button>
+                    <button onclick="playNote('2e')">Mi</button>
+                </p>
+                <button onclick="generateChord('laBemolAumentado')">Ouvir Lá Bemol Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Lá Aumentado</p>
+                <p><strong>Cifra:</strong> A(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('2a')">Lá</button>
+                    <button onclick="playNote('2cis')">Dó♯</button>
+                    <button onclick="playNote('2f')">Mi♯</button>
+                </p>
+                <button onclick="generateChord('laAumentado')">Ouvir Lá Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Lá Sustenido Aumentado</p>
+                <p><strong>Cifra:</strong> A♯(♯5)</p>
+                <p><strong>Notas:</strong>
+                    <button onclick="playNote('2ais')">Lá♯</button>
+                    <button onclick="playNote('2d')">Dó♯♯</button>
+                    <button onclick="playNote('2f')">Mi♯♯</button>
+                </p>
+                <button onclick="generateChord('laSustenidoAumentado')">Ouvir Lá Sustenido Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde: </strong>Si Bemol Aumentado</p>
+                <p><strong>Cifra: </strong>B♭(♯5)</p>
+                <p><strong>Notas: </strong>
+                    <button onclick="playNote('2ais')">Si♭</button>
+                    <button onclick="playNote('2d')">Ré</button>
+                    <button onclick="playNote('2fis')">Fá♯</button>
+                </p>
+                <button onclick="generateChord('siBemolAumentado')">Ouvir Si Bemol Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde: </strong>Si Aumentado</p>
+                <p><strong>Cifra: </strong>B(♯5)</p>
+                <p><strong>Notas: </strong>
+                    <button onclick="playNote('2b')">Si</button>
+                    <button onclick="playNote('2dis')">Ré♯</button>
+                    <button onclick="playNote('2g')">Fá♯♯</button>
+                </p>
+                <button onclick="generateChord('siAumentado')">Ouvir Si Aumentado</button>
+            </div>
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde: </strong>Si Sustenido Aumentado</p>
+                <p><strong>Cifra: </strong>B♯(♯5)</p>
+                <p><strong>Notas: </strong>
+                    <button onclick="playNote('2c')">Si♯</button>
+                    <button onclick="playNote('2e')">Ré♯♯</button>
+                    <button onclick="playNote('2gis')">Fá♯♯♯</button>
+                    <p><em>Observação: conforme a teoria musical tradicional, não existe triplo sustenido, contudo, para seguir a técnica de formação de acordes exposta no livro "Compêndio de Teoria Elementar da Música" de Oswaldo Larcerda (1961), deve-se seguir essa formação.</em></p>
+                </p>
+                <button onclick="generateChord('siSustenidoAumentado')">Ouvir Si Sustenido Aumentado</button>
+            </div>
+
+
+            <div class="content__chord">
+                <p><strong>Nome do acorde:</strong> Dó Bemol Aumentado</p>
+                <p><strong>Cifra: </strong>Dó♭(♯5)</p>
+                <p><strong>Notas: </strong>
+                    <button onclick="playNote('2b')">Dó♭</button>
+                    <button onclick="playNote('2dis')">Mi♭</button>
+                    <button onclick="playNote('2g')">Sol</button>
+                </p>
+                <button onclick="generateChord('doBemolAumentado')">Ouvir Dó Bemol Aumentado</button>
+            </div>
+        </section>
+    </main>  
+    <script src="../script/chords.js"></script>
+</body>
+</html>
