@@ -64,10 +64,8 @@
 
     .banner {
         width: 100vw;
-        height: 180px;
+        min-height: 180px;
         display: flex;
-        flex-direction: column;
-        align-items: center;
         padding: 60px 0 31px;
         margin-bottom: 24px;
 
@@ -75,6 +73,7 @@
         border-bottom: 1px solid var(--teal);
 
         color: var(--white);
+        text-align: center;
     }
 
     .banner__link {
@@ -94,21 +93,18 @@
         text-transform: uppercase;
     }
 
-    .banner__menu-list {
-        display: flex;
+    .banner__menu-toggle { display: none; }
+
+    .banner__menu-dropdown {
         list-style: none;
     }
 
     .banner__menu-item {
+        height:min-content;
+        
         margin: 0 16px;
-    }
 
-    .banner__menu-item  .banner__link {
-        padding: 20px 10px;
-
-        border: 2px solid transparent;
-        border-radius: 30px;
-        transition: all 0.5s ease-in-out;
+        text-align: center;
     }
 
     .banner__menu-item  .banner__link:hover,
@@ -218,4 +214,96 @@
     .fa-github-alt {
         color: var(--white);
     }
+
+@media only screen and (max-width: 1099px) {
+    .banner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .banner__logo {
+        max-width: 350px;
+    }
+
+    .banner__menu-label {
+        position: relative;
+
+        margin: 0 20px;
+
+        font-size: 1.125rem;
+
+        cursor: pointer;
+    }
+
+    .banner__menu-dropdown {
+        visibility: hidden;
+        position: absolute;
+        max-height: 0;
+        width: 0;
+        margin: 0 1rem;
+        padding: 0.625rem;
+        overflow: hidden;    
+        box-shadow: 0.1875rem 0.1875rem 0.1875rem rgb(14, 14, 14, 80);   
+        
+        border-radius: 0.3125rem;
+
+        background-color: var(--not-black);
+        
+        color: var(--smoke-white);
+
+        list-style: none; 
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    .banner__menu-item {
+        transition: scale 0.2s ease-in-out;
+    }
+
+    .banner__acessibilities-item:hover,
+    .banner__acessibilities-item:focus,
+    .banner__menu-item:hover,
+    .banner__menu-item:focus {
+        background-color: var(--dark-blue);
+        scale: 1.1;
+    }
+
+    .banner__menu-toggle:checked + .banner__menu-label + .banner__menu-dropdown {
+        right: 0;
+        width: fit-content;
+        max-height: 25rem;
+        visibility: visible;
+
+        border: 2px solid var(--blue);
+
+        background-color: var(--black);
+    }
+
+    .banner__menu-item  .banner__link {
+        padding: 20px 10px;
+
+        border: 2px solid transparent;
+        border-radius: 30px;
+        transition: all 0.5s ease-in-out;
+    }
+
+}  
     
+@media only screen and (min-width: 1100px) {
+    .banner {
+        flex-direction: column;
+        align-items: center;
+        padding: 60px 0 31px;
+        margin-bottom: 24px;
+    }
+
+    .banner__menu-dropdown {
+        display: flex;
+    }
+
+    .banner__menu-label {
+        display: none;
+    }
+}

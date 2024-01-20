@@ -14,12 +14,19 @@
             <h1 class="banner__logo">ACORDES BÁSICOS</h1>
         </div>
 
-        <nav class="banner__menu">
-            <ul class="banner__menu-list">
+        <nav class="banner__menu" id="menu">
+            <input type="checkbox" id="menu-toggle" class="banner__menu-toggle">
+                <label for="menu-toggle" class="banner__menu-label" aria-label="Menu principal" title="Menu principal">
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </label>
+            <ul class="banner__menu-dropdown">
+                <li class="banner__menu-item"><a href="./src/index.html" class="banner__link">Home</a></li>
                 <li class="banner__menu-item"><a href="./src/pages/acordes-maiores.html" class="banner__link">Acordes Maiores</a></li>
                 <li class="banner__menu-item"><a href="./src/pages/acordes-menores.html" class="banner__link">Acordes Menores</a></li>
-                <li class="banner__menu-item"><a href="./src/pages/acordes-dimutos.html" class="banner__link">Acordes Diminutos</a></li>
-                <li class="banner__menu-item"><a href="./src/pages/acordes-aumentados.html" class="banner__link">Acordes Aumentados</a></li>
+                <li class="banner__menu-item"><a href="./src/pages/acordes-dimutos.html" class="banner__link">Acordes Diminuto</a></li>
+                <li class="banner__menu-item"><a href="./src/pages/acordes-aumentados" class="banner__link">Acordes Aumentados</a></li>
                 <li class="banner__menu-item"><a href="./src/pages/piano-virtual.html" class="banner__link">Piano Virtual</a></li>
             </ul>
         </nav>
