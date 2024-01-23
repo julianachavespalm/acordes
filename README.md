@@ -1,9 +1,9 @@
 # Acordes Básicos
 
-Bem-vindo ao guia básico de acordes, um recurso para explorar e compreender os acordes de três sons, também conhecidos como tríades. Este projeto inclui informações sobre a formação de acordes aumentados.
+Bem-vindo ao guia básico de acordes, um recurso para explorar e compreender os acordes de três sons, também conhecidos como tríades. Este projeto inclui informações sobre a formação de acordes Acordes Maiores, Acordes Menores, Acordes Diminutos, Acordes Aumentados e contém um piano virtual para que o usuário experimente criar seus acordes personalizados.
 
 ## Sobre o Projeto
-Este projeto visa fornecer um guia prático para entender e explorar acordes aumentados. Ele inclui uma seção sobre acordes aumentados e um piano virtual para experimentação interativa.
+Este projeto visa fornecer um guia prático para entender e explorar Acordes Maiores, Acordes Menores, Acordes Diminutos, Acordes Aumentados. Ele inclui uma seção sobre acordes aumentados e um piano virtual para experimentação interativa.
 
 ## Tecnologias utilizadas
 No processo de desenvolvimento deste projeto, foram empregadas as seguintes tecnologias: HTML, CSS e javascript.
