@@ -224,13 +224,20 @@
     }
 
     .banner__logo {
+        margin: auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         max-width: 350px;
+    }
+
+    .banner__logo .banner__link{
+        margin: auto 0;
     }
 
     .banner__menu-label {
         position: relative;
-
-        margin: 0 20px;
+        margin: auto 20px;
 
         font-size: 1.125rem;
 
@@ -247,6 +254,7 @@
         overflow: hidden;    
         box-shadow: 0.1875rem 0.1875rem 0.1875rem rgb(14, 14, 14, 80);   
         
+        border: 1px solid var(--blue);
         border-radius: 0.3125rem;
 
         background-color: var(--not-black);
