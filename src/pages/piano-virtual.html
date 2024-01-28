@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="../style/piano.css">
+    <link rel="stylesheet" href="../style/main.css">
     <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
     <title>Acordes básicos: Piano Virtual</title>
 </head>
@@ -45,135 +46,131 @@
         </nav>
     </header>
     <main>
-        <section class="content" id="content">
-            <h2 class="content__title">Introdução</h2>
-            <p>Bem-vindo ao guia básico de acordes, um recurso para explorar e compreender os acordes de três sons, também conhecidos como tríades. Neste espaço você poderá formar seus próprios acordes.</p>
-        </section>
-        <section class="content__chord">          
-            <h2 class="content__title" id="PianoVirtual">Piano Virtual</h2>
-            <div class="piano">
-                <button id="startChordButton">Iniciar Formação de Acorde</button>
+        <section class="piano">
+            <h2 class="piano__title" id="PianoVirtual">Piano Virtual</h2>
 
-                <ul class="piano__keys">
-                    <li for="1c" class="piano__key piano__key--white" data-key="28" data-note="1c">
-                        <span>Dó</span>
-                    </li>
-                    
-                    <li for="1cis" class="piano__key piano__key--black" data-key="29" data-note="1cis">
-                        <span>Dó♯ <br />Ré♭</span>
-                    </li>
+            <button id="startChordButton">Iniciar Formação de Acorde</button>
 
-                    <li for="1d" class="piano__key piano__key--white" data-key="30" data-note="1d">
-                        <span>Ré</span>
-                    </li>
+            <ul class="piano__keys">
+                <li for="1c" class="piano__key piano__key--white" data-key="28" data-note="1c">
+                    <span>Dó</span>
+                </li>
+                
+                <li for="1cis" class="piano__key piano__key--black" data-key="29" data-note="1cis">
+                    <span>Dó♯ <br />Ré♭</span>
+                </li>
 
-                    <li for="1dis" class="piano__key piano__key--black" data-key="31" data-note="1dis">
-                        <span>Ré♯ <br />Mi♭</span>
-                    </li>
+                <li for="1d" class="piano__key piano__key--white" data-key="30" data-note="1d">
+                    <span>Ré</span>
+                </li>
 
-                    <li for="1e" class="piano__key piano__key--white" data-key="32" data-note="1e">
-                        <span>Mi</span>
-                    </li>
-                    
-                    <li for="1f" class="piano__key piano__key--white" data-key="33" data-note="1f">
-                        <span>Fá</span>
-                    </li>
+                <li for="1dis" class="piano__key piano__key--black" data-key="31" data-note="1dis">
+                    <span>Ré♯ <br />Mi♭</span>
+                </li>
 
-                    <li for="1fis" class="piano__key piano__key--black" data-key="34" data-note="1fis">
-                        <span>Fá♯ <br />Sol♭</span>
-                    </li>
+                <li for="1e" class="piano__key piano__key--white" data-key="32" data-note="1e">
+                    <span>Mi</span>
+                </li>
+                
+                <li for="1f" class="piano__key piano__key--white" data-key="33" data-note="1f">
+                    <span>Fá</span>
+                </li>
 
-                    <li class="piano__checkbox" type="checkbox" id="1g">
-                    <li for="1g" class="piano__key piano__key--white" data-key="35" data-note="1g">
-                        <span>Sol</span>
-                    </li>
+                <li for="1fis" class="piano__key piano__key--black" data-key="34" data-note="1fis">
+                    <span>Fá♯ <br />Sol♭</span>
+                </li>
 
-                    <li for="1gis" class="piano__key piano__key--black" data-key="36" data-note="1gis">
-                        <span>Sol♯ <br />Lá♭</span>
-                    </li>
+                <li class="piano__checkbox" type="checkbox" id="1g">
+                <li for="1g" class="piano__key piano__key--white" data-key="35" data-note="1g">
+                    <span>Sol</span>
+                </li>
 
-                    <li for="2a" class="piano__key piano__key--white" data-key="37" data-note="2a">
-                        <span>Lá</span>
-                    </li>
+                <li for="1gis" class="piano__key piano__key--black" data-key="36" data-note="1gis">
+                    <span>Sol♯ <br />Lá♭</span>
+                </li>
 
-                    <li class="piano__key piano__key--black" data-key="38" data-note="2ais">
-                        <span>Lá♯ <br />Si♭</span>
-                    </li>
+                <li for="2a" class="piano__key piano__key--white" data-key="37" data-note="2a">
+                    <span>Lá</span>
+                </li>
 
-                    <li for="2b" class="piano__key piano__key--white" data-key="39" data-note="2b">
-                        <span>Si</span>
-                    </li>
+                <li class="piano__key piano__key--black" data-key="38" data-note="2ais">
+                    <span>Lá♯ <br />Si♭</span>
+                </li>
 
-                    <li for="2c"class="piano__key piano__key--white" data-key="40" data-note="2c">
-                        <span>Dó</span>
-                    </li>
+                <li for="2b" class="piano__key piano__key--white" data-key="39" data-note="2b">
+                    <span>Si</span>
+                </li>
 
-                    <li for="2cis" class="piano__key piano__key--black" data-key="41" data-note="2cis">
-                        <span>Dó♯ <br />Ré♭</span>
-                    </li>
+                <li for="2c"class="piano__key piano__key--white" data-key="40" data-note="2c">
+                    <span>Dó</span>
+                </li>
 
-                    <li for="2d" class="piano__key piano__key--white" data-key="42" data-note="2d">
-                        <span>Ré</span>
-                    </li>
+                <li for="2cis" class="piano__key piano__key--black" data-key="41" data-note="2cis">
+                    <span>Dó♯ <br />Ré♭</span>
+                </li>
 
-                    <li for="2dis" class="piano__key piano__key--black" data-key="43" data-note="2dis">
-                        <span>Ré♯ <br />Mi♭</span>
-                    </li>
+                <li for="2d" class="piano__key piano__key--white" data-key="42" data-note="2d">
+                    <span>Ré</span>
+                </li>
 
-                    <li for="2e" class="piano__key piano__key--white" data-key="44" data-note="2e">
-                        <span>Mi</span>
-                    </li>
+                <li for="2dis" class="piano__key piano__key--black" data-key="43" data-note="2dis">
+                    <span>Ré♯ <br />Mi♭</span>
+                </li>
 
-                    <li for="2f" class="piano__key piano__key--white" data-key="45" data-note="2f">
-                        <span>Fá</span>
-                    </li>
-                    
-                    <li for="2fis" class="piano__key piano__key--black" data-key="46" data-note="2fis">
-                        <span>Fá♯ <br />Sol♭</span>
-                    </li>
+                <li for="2e" class="piano__key piano__key--white" data-key="44" data-note="2e">
+                    <span>Mi</span>
+                </li>
 
-                    <li for="2g" class="piano__key piano__key--white" data-key="47" data-note="2g">
-                        <span>Sol</span>
-                    </li>
+                <li for="2f" class="piano__key piano__key--white" data-key="45" data-note="2f">
+                    <span>Fá</span>
+                </li>
+                
+                <li for="2fis" class="piano__key piano__key--black" data-key="46" data-note="2fis">
+                    <span>Fá♯ <br />Sol♭</span>
+                </li>
 
-                    <li for="2gis" class="piano__key piano__key--black" data-key="48" data-note="2gis">
-                        <span>Sol♯ <br />Lá♭</span>
-                    </li>
+                <li for="2g" class="piano__key piano__key--white" data-key="47" data-note="2g">
+                    <span>Sol</span>
+                </li>
 
-                    <li for="3a" class="piano__key piano__key--white" data-key="49" data-note="3a">
-                        <span>Lá</span>
-                    </li>
+                <li for="2gis" class="piano__key piano__key--black" data-key="48" data-note="2gis">
+                    <span>Sol♯ <br />Lá♭</span>
+                </li>
 
-                    <li for="3ais" class="piano__key piano__key--black" data-key="50" data-note="3ais">
-                        <span>Lá♯ <br />Si♭</span>
-                    </li>
+                <li for="3a" class="piano__key piano__key--white" data-key="49" data-note="3a">
+                    <span>Lá</span>
+                </li>
 
-                    <li for="3b" class="piano__key piano__key--white" data-key="51" data-note="3b">
-                        <span>Si</span>
-                    </li>
+                <li for="3ais" class="piano__key piano__key--black" data-key="50" data-note="3ais">
+                    <span>Lá♯ <br />Si♭</span>
+                </li>
 
-                    <li for="3c" class="piano__key piano__key--white" data-key="52" data-note="3c">
-                        <span>Dó</span>
-                    </li>                   
-                </ul>
+                <li for="3b" class="piano__key piano__key--white" data-key="51" data-note="3b">
+                    <span>Si</span>
+                </li>
+
+                <li for="3c" class="piano__key piano__key--white" data-key="52" data-note="3c">
+                    <span>Dó</span>
+                </li>                   
+            </ul>
+            <div class="piano__play-chord">
                 <button id="playChordButton">Tocar Acorde</button>
                 <button id="clearChordButton">Limpar</button>
-            </div>
-            
+            </div> 
         </section>
-        <section class="content">
-            <h2 class="content__title">Tutorial: Como Usar o Piano Virtual</h2>
-            <h3 class="content__subtitle">1. Piano Virtual</h3>
+        <section class="content__chord">
+            <h2 class="piano__title">Tutorial: Como Usar o Piano Virtual</h2>
+            <h3 class="piano__subtitle">1. Piano Virtual</h3>
             <p>Nessa página, contém o piano virtual. Você deve ver as teclas do piano e alguns botões, como "Iniciar Formação de Acorde", "Piano Virtual", "Tocar Acorde" e "Limpar".</p>
-            <h3 class="content__subtitle">2. Toque nas Teclas do Piano</h3>
+            <h3 class="piano__subtitle">2. Toque nas Teclas do Piano</h3>
             <p>Cada tecla branca ou preta no piano representa uma nota musical. Clique nas teclas para reproduzir as notas correspondentes. Experimente tocar diferentes teclas para ouvir os diferentes sons.</p>
-            <h3 class="content__subtitle">3. Formação de Acorde (Opcional)</h3>
+            <h3 class="piano__subtitle">3. Formação de Acorde (Opcional)</h3>
             <p>Se desejar formar um acorde, clique no botão "Iniciar Formação de Acorde". Isso permite que você clique em várias teclas do piano para criar um acorde composto por várias notas. As notas serão armazenadas para reprodução posterior.</p>
-            <h3 class="content__subtitle">4. Tocar Acorde</h3>
+            <h3 class="piano__subtitle">4. Tocar Acorde</h3>
             <p>Quando estiver satisfeito com a formação do acorde, clique no botão "Tocar Acorde". Isso reproduzirá todas as notas do acorde simultaneamente, criando um som mais complexo.</p>
-            <h3 class="content__subtitle">5. Limpar Notas (Opcional)</h3>
+            <h3 class="piano__subtitle">5. Limpar Notas (Opcional)</h3>
             <p>Se quiser começar de novo ou limpar as notas armazenadas, clique no botão "Limpar". Isso reinicia a formação de acorde e apaga todas as notas armazenadas.</p>
-            <h3 class="content__subtitle">6. Explore e Experimente</h3>
+            <h3 class="piano__subtitle">6. Explore e Experimente</h3>
             <p>Sinta-se à vontade para explorar diferentes combinações de notas, acordes e experimentar com os botões disponíveis. O objetivo é se familiarizar com o funcionamento do piano virtual e se divertir explorando diferentes sons musicais.</p>   
         </section>
     </main>
