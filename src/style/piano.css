@@ -1,208 +1,149 @@
 .piano {
-  display: flex;
-  flex-direction: column;
+    margin: 1rem ;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+}
 
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.75rem;
+.piano__title {
+    text-align: center;
+    margin: 1rem;
+}
+
+.piano__keys {
+    display: flex;
+    margin: 1rem auto;
+    position: relative;
+    list-style: none;
+    user-select: none;
+}
+
+.piano__key {
+    cursor: pointer;
+    text-align: center;
+    
+}
+
+.piano__key--white {
+    border: 1px solid;
+    border-radius: 5px;
+
+    background: linear-gradient(180deg, #ffffff 0%, #e6e6e6 100%);
+
+    color: #000000;
+}
+
+.piano__key--white:active,
+.piano__key--white .active {
+    top: 10px;
+    background: linear-gradient(180deg, #e6e6e6 0%, #ffffff 100%);
+    box-shadow: inset 0px -4px -4px rgba(0, 0, 0, 0.25);
+}
+
+.piano__key--black {
+    width: 100%;
+
+    border-radius: 0  0 5px 5px;
+
+    background: linear-gradient(180deg, #000000 0%, #141414 100%);  
+
+    color: #ffffff;
+    z-index: 2;
+}
+
+.piano__key--black:active,
+.piano__key--black .active  {
+    top: 10px;
+    background: linear-gradient(180deg, #2f2f2f 0%, #000000 100%);
+    box-shadow: inset 0px -4px -4px rgba(255, 255, 255, 0.25);
+}
+
+.piano__key {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.piano__key span {
+    position: absolute;
+    bottom: 5px;
+}
+
+.piano__mobile--hidden {
+    font-size: 1.5rem;
+}
+
+.piano__play-chord {
+    display: flex;
+    flex-direction: column;
 }
 
 
+@media screen and (max-width: 649px)  {
+    .piano {
+        margin: auto;
+        max-width: 320px;
+    }
 
-  .piano__logo {
-      margin-right: auto;
+    .piano__key--white {
+        width: 21.33px;  
+        height: 106px;
+        font-size: 0.75rem;  
+    }
 
-      font-size: 1rem;
-      text-align: center;
-  }
+    .piano__key--black {
+        width: 18px; 
+        height: 63px; 
+        margin: 0 -9px 0 -9px;
+        font-size: 0.5rem;
+    }
+}
 
-  .piano__controls {
-      display: flex;
-      align-items: center;
+@media screen and (min-width: 650px) and (max-width: 867px) {
+    .piano {
+        margin: auto;
+        max-width: 620px;
+    }
 
-      padding: 1rem 0;
-  } 
-  
-      .piano__label {
-          margin: 0 0.5rem 0 0;
+    .piano__key--white {
+        width: 40px;  
+        height: 213px;
+        font-size: 1rem;  
+    }
 
-          font-size: 1rem;
-      }
-
-      .piano__column {
-          display: flex;
-          align-items: center;
-      }
-
-          .piano__column--volume-slider {
-              margin-right: auto;
-              accent-color: #ffffff;
-              cursor: pointer;
-          }
-
-              .piano__column--keys-check input {
-                  position: relative;
-                  width: 60px; 
-                  height: 30px;
-                  appearance: none;
-
-                  border-radius: 30px;
-
-                  background-color: #4b4b4b;
-                  cursor: pointer;
-              }
-
-              .piano__column--keys-check input::before {
-                  content: '';
-                  position: absolute;
-                  top: 5px;
-                  left: 5px;
-                  width: 20px;
-                  height: 20px;
-
-                  border-radius: inherit;
-
-                  background-color: #acacac;
-
-                  transition: all  0.4s ease;
-              }
-
-              .piano__column--keys-check input:checked::before {
-                  left: calc(100% - 5px);
-
-                  background-color: #ffffff;
-
-                  transform: translateX(-100%);
-              }
-
-
-  .piano__keys {
-      position: relative;
-      display: flex;
-      margin: 2rem auto;
-
-      list-style: none;
-
-      user-select: none;
-  }
-
-      .piano__key {
-          cursor: pointer;
-          text-align: center;
-          
-      }
-
-          .piano__key--white {
-              border: 1px solid;
-              border-radius: 5px;
-
-              background: linear-gradient(180deg, #ffffff 0%, #e6e6e6 100%);
-
-              color: #000000;
-          }
-
-          .piano__key--white:active,
-          .piano__key--white .active {
-              top: 10px;
-              background: linear-gradient(180deg, #e6e6e6 0%, #ffffff 100%);
-              box-shadow: inset 0px -4px -4px rgba(0, 0, 0, 0.25);
-          }
-
-          .piano__key--black {
-              width: 100%;
-
-              border-radius: 0  0 5px 5px;
-  
-              background: linear-gradient(180deg, #000000 0%, #141414 100%);  
-
-              color: #ffffff;
-              z-index: 2;
-          }
-
-          .piano__key--black:active,
-          .piano__key--black .active  {
-              top: 10px;
-              background: linear-gradient(180deg, #141414 0%, #000000 100%);
-              box-shadow: inset 0px -4px -4px rgba(255, 255, 255, 0.25);
-          }
-
-          .piano__key {
-              position: relative;
-              display: flex;
-              justify-content: center;
-          }
-
-          .piano__key span {
-            position: absolute;
-            bottom: 5px;
-          }
-
-          .piano__mobile--hidden {
-              font-size: 1.5rem;
-          }
-
-          .social-media {
-            padding: 2rem;
-            font-family: 'Roboto', sans-serif;
-            color: #000000;
-          }
-
-            .social-media__links {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              margin: 1rem;
-              list-style: none;
-            }
-
-        .social-media__item {
-          margin: 0 1rem;
-          font-size: 1.5rem;
-        }
-
-            .social-media__link { 
-              color: #000000;
-              text-decoration: none;
-            }
-
-@media screen and (max-width: 866px) {
-  .piano {
-      width: 90vw;
-      padding: 1rem;
-  }
-
-  .piano__key {
-      font-size: 0.875rem;
-  }
-
-  .piano__key--white {
-    width: 6vw;  
-    height: 120px;  
-  }
-
-  .piano__key--black {
-    width: 3.6vw; 
-    height: 70px; 
-    margin: 0 -15px 0 -15px;
-  }
+    .piano__key--black {
+        width: 23px; 
+        height: 125px; 
+        margin: 0 -11.5px 0 -11.5px;
+        font-size: 0.625rem;
+    }
 }
 
 @media screen and (min-width: 867px) {
-  .piano {
-      max-height: 100vh;
-      padding: auto;
-  }
+    button {
+        width: 750px;
+    }
+    
+    .piano {
+        align-items: center;
+        font-size: 0.75rem;
+    }
 
-  .piano__key--white {
-    width: 50px; 
-    height: 180px;
-    max-height: 30vh;
-  }
+    .piano__key--white {
+        width: 50px; 
+        height: 266px;
+        max-height: 30vh;
+        font-size: 0.875rem
+    }
 
-  .piano__key--black {
-    width: 32px;
-    height: 110px;
-    max-height: 18vh;
-    margin: 0 -16px 0 -16px;
-  }
+    .piano__key--black {
+        width: 28.5px;
+        height: 157px;
+        max-height: 18vh;
+        margin: 0 -15px 0 -15px;
+        font-size: 0.875rem;
+    }
 
 }

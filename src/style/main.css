@@ -264,7 +264,6 @@ button:focus {
         color: var(--smoke-white);
     
         list-style: none; 
-        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
         z-index: 999;
     }
     
