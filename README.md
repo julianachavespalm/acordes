@@ -13,7 +13,7 @@ Para iniciar o aplicativo, certifique-se de possuir um navegador instalado, um d
 
 ## Execução da aplicação
 ### Via site
-1. Acesse o site [julianachavespalm.live/piano-simulator-js/](julianachavespalm.github.io/piano-simulator-js/).
+1. Acesse o site [julianachavespalm.live/acordes/](julianachavespalm.github.io/acordes/).
 
 ## Instruções de Uso
 
