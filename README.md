@@ -13,7 +13,7 @@ Para iniciar o aplicativo, certifique-se de possuir um navegador instalado, um d
 
 ## Execução da aplicação
 ### Via site
-1. Acesse o site https://julianachavespalm.live/acordes/
+1. Acesse o site http://julianachavespalm.github.io/acordes/
 
 ## Instruções de Uso
 
