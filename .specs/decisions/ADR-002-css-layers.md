@@ -2,7 +2,7 @@
 
 - **Status:** Aceito
 - **Data:** 2026-11-15
-- **Decisora:** Juliana Chaves Palm (Software Engineer & Solution Designer)
+- **Decisora:** Juliana Chaves Palm
 
 ## Contexto
 O projeto adota uma direção visual de livro didático contemporâneo minimalista, inspirada no Estilo Tipográfico Suíço e nas normas tabulares da ABNT. A diagramação editorial exige espaços em branco generosos, grid assimétrico de capítulo com títulos verticalizados e contraste rigoroso WCAG 2.1 AAA, sem frameworks de terceiros.

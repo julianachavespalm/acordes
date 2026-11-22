@@ -5,7 +5,7 @@
 | Atributo | Definição |
 | :--- | :--- |
 | **Status** | Approved · Implemented |
-| **Spec Owner** | Juliana Chaves Palm (Software Engineer & Solution Designer) |
+| **Spec Owner** | Juliana Chaves Palm |
 | **Prioridade** | P1 · Infraestrutura de Áudio Nativa |
 | **Decisões Arquiteturais** | [ADR-001: Arquitetura Modular Enxuta](../../decisions/ADR-001-lean-modular-architecture.md), [ADR-003: Orquestração Acústica](../../decisions/ADR-003-local-audio-orchestration.md), [ADR-005: Código em Inglês](../../decisions/ADR-005-coding-standards-bilingual-separation.md) |
 | **Aprovação** | 2026-11-15 |

@@ -1,6 +1,6 @@
 import { test, describe, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { ROUTES, normalizeHash, handleRouteChange } from '../../src/main.js';
+import { ROUTES, normalizeHash, handleRouteChange, initApp } from '../../src/main.js';
 
 class MockElement {
   constructor(tagName, attributes = {}) {
@@ -95,7 +95,8 @@ describe('FEAT-007: Roteador SPA por Hash e Acessibilidade (WCAG 2.1 AAA)', () =
       new MockElement('a', { class: 'nav-link', href: '#/maiores' }),
       new MockElement('a', { class: 'nav-link', href: '#/menores' }),
       new MockElement('a', { class: 'nav-link', href: '#/diminutos' }),
-      new MockElement('a', { class: 'nav-link', href: '#/aumentados' })
+      new MockElement('a', { class: 'nav-link', href: '#/aumentados' }),
+      new MockElement('a', { class: 'nav-link', href: '#/piano' })
     ];
     for (const l of navLinks) nav.appendChild(l);
     header.appendChild(nav);
@@ -157,5 +158,51 @@ describe('FEAT-007: Roteador SPA por Hash e Acessibilidade (WCAG 2.1 AAA)', () =
 
     handleRouteChange({ root: doc, hash: '#/maiores', soundEngine: mockSoundEngine });
     assert.equal(stopAllCalls, 2);
+  });
+
+  test('handleRouteChange deve renderizar a aba Piano Virtual para rota #/piano e marcar aba ativa (RN-01)', () => {
+    const teardown = handleRouteChange({ root: doc, hash: '#/piano' });
+
+    assert.equal(typeof teardown, 'function');
+    assert.match(appElement.innerHTML, /Piano Virtual/);
+    assert.match(appElement.innerHTML, /piano-keyboard/);
+    assert.equal(announcer.textContent, 'Piano Virtual carregado');
+    assert.equal(navLinks[5].getAttribute('aria-current'), 'page');
+  });
+
+  test('handleRouteChange deve sincronizar faixa superior mobile, limpar cifra no rodape e focar titulo', () => {
+    const mobileTitle = new MockElement('span', { id: 'mobile-topbar-title' });
+    const mobileSub = new MockElement('span', { id: 'mobile-topbar-subtitle' });
+    const footerCifra = new MockElement('span', { id: 'footer-cifra', class: 'is-visible' });
+    footerCifra.textContent = 'Cifra: C';
+    let headingFocused = false;
+    const fakeHeading = new MockElement('h1', { id: 'titulo-capitulo' });
+    fakeHeading.focus = () => { headingFocused = true; };
+
+    doc.appendChild(mobileTitle);
+    doc.appendChild(mobileSub);
+    doc.appendChild(footerCifra);
+    doc.appendChild(fakeHeading);
+
+    handleRouteChange({ root: doc, hash: '#/maiores' });
+    assert.equal(mobileTitle.textContent, 'Acordes Maiores');
+    assert.equal(mobileSub.textContent, 'Tríade 1 · 3 · 5');
+    assert.equal(mobileSub.hidden, false);
+    assert.equal(footerCifra.textContent, '');
+    assert.equal(headingFocused, true);
+
+    handleRouteChange({ root: doc, hash: '#/' });
+    assert.equal(mobileTitle.textContent, 'Acordes Básicos');
+    assert.equal(mobileSub.hidden, true);
+  });
+
+  test('initApp deve inicializar shell, osciloscopio e executar a rota inicial', () => {
+    doc.appendChild(new MockElement('path', { id: 'footer-separator-line' }));
+    const appState = initApp(doc);
+    assert.ok(appState.soundEngine);
+    assert.ok(appState.acousticAnalyzer);
+    assert.ok(appState.oscilloscopeView);
+    assert.equal(typeof appState.routeHandler, 'function');
+    assert.match(appElement.innerHTML, /Acordes Básicos/);
   });
 });

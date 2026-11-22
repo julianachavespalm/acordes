@@ -107,4 +107,82 @@ describe('FEAT-002: Piano Sample Audio Engine (public/tunes/*.mp3)', () => {
     assert.equal(createdAudios.length, 1, 'Deve reutilizar a mesma instância Audio do pool');
     assert.equal(engine.getPoolSize(), 1);
   });
+
+  test('deve tocar notas simultaneas sem corte via triggerNote (CA-10.2)', async () => {
+    await engine.triggerNote(60); // 28.mp3
+    await engine.triggerNote(64); // 32.mp3
+    await engine.triggerNote(67); // 35.mp3
+
+    assert.equal(createdAudios.length, 3);
+    assert.equal(engine.getActiveAudios().length, 3);
+    for (const audio of createdAudios) {
+      assert.equal(audio.played, true);
+      assert.equal(audio.paused, false);
+    }
+  });
+
+  test('deve pre-carregar amostras unicas no pool com preload e respeitar AbortSignal (ADR-011)', async () => {
+    let loadedCount = 0;
+    const preloadEngine = createSoundEngine({
+      audioFactory: (src) => ({
+        src,
+        currentTime: 0,
+        load() { loadedCount += 1; },
+        play: async () => {},
+        pause() {}
+      })
+    });
+
+    preloadEngine.preload([]);
+    assert.equal(preloadEngine.getPoolSize(), 0);
+
+    const controller = new AbortController();
+    preloadEngine.preload([60, 64, 60], { signal: controller.signal });
+    await new Promise((resolve) => setTimeout(resolve, 30));
+
+    assert.equal(preloadEngine.getPoolSize(), 2);
+    assert.equal(loadedCount, 2);
+
+    const abortedController = new AbortController();
+    abortedController.abort();
+    preloadEngine.preload([67, 71], { signal: abortedController.signal });
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    assert.equal(preloadEngine.getPoolSize(), 2);
+  });
+
+  test('deve notificar listeners onPlay e onStop e remover amostra do pool em falha de play()', async () => {
+    const playedEvents = [];
+    let stopCount = 0;
+    let shouldFail = true;
+
+    const resilientEngine = createSoundEngine({
+      audioFactory: (src) => ({
+        src,
+        currentTime: 0,
+        pause() {},
+        play() {
+          if (shouldFail) {
+            return Promise.reject(new Error('decode error'));
+          }
+          return Promise.resolve();
+        }
+      })
+    });
+
+    const unsubPlay = resilientEngine.onPlay((ids) => playedEvents.push(ids));
+    const unsubStop = resilientEngine.onStop(() => { stopCount += 1; });
+
+    await resilientEngine.playNote(60);
+    assert.equal(resilientEngine.getPoolSize(), 0, 'Falha em play() deve remover instancia corrompida do pool');
+    assert.equal(playedEvents.length, 1);
+    assert.equal(stopCount, 1);
+
+    shouldFail = false;
+    await resilientEngine.triggerNote(64);
+    await resilientEngine.playChord([60, 64, 67]);
+    assert.equal(resilientEngine.getPoolSize(), 3);
+
+    unsubPlay();
+    unsubStop();
+  });
 });

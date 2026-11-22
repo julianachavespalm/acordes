@@ -8,7 +8,7 @@ Implementar e validar as tarefas do Shell de Navegação e Menu Responsivo segun
 
 **Design**: [`.specs/features/FEAT-003-Shell-Navegacao/design.md`](design.md)  
 **Status**: Implemented · Verified  
-**Spec Owner**: Juliana Chaves Palm (Software Engineer & Solution Designer)  
+**Spec Owner**: Juliana Chaves Palm  
 **Build**: `node scripts/validate-sdd.mjs`  
 **Run unit**: `node --test tests/ui/shell.test.js`  
 

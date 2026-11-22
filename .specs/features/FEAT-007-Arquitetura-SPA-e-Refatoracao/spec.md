@@ -5,7 +5,7 @@
 | Atributo | Definição |
 | :--- | :--- |
 | **Status** | Approved · Implemented |
-| **Spec Owner** | Juliana Chaves Palm (Software Engineer & Solution Designer) |
+| **Spec Owner** | Juliana Chaves Palm |
 | **Prioridade** | P1 · Reestruturação Arquitetural e Higienização |
 | **Decisões Arquiteturais** | [ADR-001: Arquitetura Modular Enxuta](../../decisions/ADR-001-lean-modular-architecture.md), [ADR-002: CSS 4 Camadas e Padrão ABNT](../../decisions/ADR-002-css-layers.md), [ADR-004: Acessibilidade Universal ABNT](../../decisions/ADR-004-universal-accessibility-wai-aria.md), [ADR-008: Design System Editorial Suíço](../../decisions/ADR-008-design-system-tokens-editorial-swiss.md) |
 | **Aprovação** | **Approved**: 2026-11-16 - user: "perfeito, quero refatorar o código para implementar essa nova arquitetura. Importante, as alterações que fizemos está na raiz do projeto, não em pastas. então, cuidado." |

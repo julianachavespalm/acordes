@@ -7,7 +7,7 @@ Implementar e validar as tarefas de escala tipográfica modular, refatoração d
 ---
 
 **Status**: In Progress  
-**Spec Owner**: Juliana Chaves Palm (Software Engineer & Solution Designer)  
+**Spec Owner**: Juliana Chaves Palm  
 **Gate**: `npm run verify`
 
 ---

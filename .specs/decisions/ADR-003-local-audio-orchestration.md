@@ -2,7 +2,7 @@
 
 - **Status:** Aceito
 - **Data:** 2026-11-15
-- **Decisora:** Juliana Chaves Palm (Software Engineer & Solution Designer)
+- **Decisora:** Juliana Chaves Palm
 
 ## Contexto
 O projeto requer a reprodução auditiva instantânea tanto de notas isoladas quanto da tríade completa (3 notas simultâneas). Para suportar a totalidade das 21 tríades por categoria (incluindo acidentes dobrados e extensões enarmônicas) com zero dependências externas e sem depender de dezenas de arquivos pesados de áudio que possam sofrer latência de rede ou restrições de cache, é necessário um mecanismo de áudio nativo determinístico e de latência zero.

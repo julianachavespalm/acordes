@@ -2,7 +2,7 @@
 
 - **Status:** Aceito
 - **Data:** 2026-11-15
-- **Decisora:** Juliana Chaves Palm (Software Engineer & Solution Designer)
+- **Decisora:** Juliana Chaves Palm
 
 ## Contexto
 Garantir a integridade da teoria musical e a acessibilidade da interface exige testes automatizados que possam ser executados localmente e em pipelines de Continuous Integration (CI) com velocidade instantânea e sem atrito de instalação de dependências pesadas de terceiros (como Jest ou bibliotecas transitivas extensas).

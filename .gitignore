@@ -1,4 +1,5 @@
 node_modules/
 mockups/
+mocks/
 .DS_Store
 Thumbs.db

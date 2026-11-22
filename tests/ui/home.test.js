@@ -13,9 +13,10 @@ describe('FEAT-005: Home Editorial — Livro Didático Contemporâneo e Estilo S
     assert.match(html, /MAIORES, MENORES, DIMINUTOS E AUMENTADOS/);
   });
 
-  test('index.html deve renderizar os 3 parágrafos conceituais com fidelidade ao mockup (RN-01 / CA-05.1)', () => {
+  test('index.html deve renderizar os parágrafos conceituais e a referência bibliográfica de Oswaldo Lacerda (1961)', () => {
     assert.match(html, /Este material apresenta os principais tipos de tríades, acordes formados por três notas\./);
     assert.match(html, /O conteúdo aborda os acordes maiores, menores, diminutos e aumentados, destacando sua estrutura, formação e sonoridade\./);
+    assert.match(html, /Compêndio de Teoria Elementar da Música<\/cite>, de Oswaldo Lacerda \(1961\)/);
     assert.match(html, /Selecione uma categoria no menu para explorar os acordes, compreender sua construção e ouvir cada tríade individualmente\./);
   });
 
@@ -25,8 +26,8 @@ describe('FEAT-005: Home Editorial — Livro Didático Contemporâneo e Estilo S
     assert.match(html, /class="skip-link"/);
   });
 
-  test('index.html deve conter o rodapé centralizado institucional (RN-04)', () => {
-    assert.match(html, /© 2024 Juliana Chaves Palm/);
+  test('index.html deve conter o rodapé centralizado institucional com link autoral (RN-04)', () => {
+    assert.match(html, /Por <a href="https:\/\/github\.com\/julianachavespalm"[^>]*>Juliana Chaves Palm<\/a>/);
   });
 
   test('index.html deve importar as 4 camadas CSS sem scripts externos ou fontes locais pesadas', () => {

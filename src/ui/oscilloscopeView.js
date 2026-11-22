@@ -4,8 +4,8 @@
  * dos dados físicos fornecidos pelo analisador acústico em src/audio/oscilloscope.js.
  */
 
-export const BASELINE_Y = 20;
-export const STRAIGHT_PATH = 'M 0 20 L 1000 20';
+export const BASELINE_Y = 20.5;
+export const STRAIGHT_PATH = 'M 0 20.5 L 1000 20.5';
 
 /**
  * Converte um snapshot do domínio do tempo em um caminho SVG suavizado nas bordas.

@@ -17,8 +17,10 @@ import {
   getTriadChords,
   getChordById,
   calculateNoteFrequency,
-  getPhoneticChordDescription
+  getPhoneticChordDescription,
+  identifyTriadFromMidis
 } from '../../src/domain/musicTheory.js';
+import { sanitizePhoneticSymbol } from '../../src/domain/phonetics.js';
 
 describe('FEAT-001: Core Harmônico e Modelagem de Tríades', () => {
   it('deve conter as 4 categorias normativas de tríades', () => {
@@ -119,5 +121,33 @@ describe('FEAT-001: Core Harmônico e Modelagem de Tríades', () => {
       assert.equal(typeof note.midi, 'number');
       assert.equal(typeof note.frequency, 'number');
     }
+  });
+
+  it('deve identificar triades normativas a partir de notas MIDI (CA-10.1)', () => {
+    const cMajor = identifyTriadFromMidis([60, 64, 67]);
+    assert.ok(cMajor.length > 0);
+    assert.equal(cMajor[0].id, 'c-major');
+    assert.equal(cMajor[0].symbol, 'C');
+
+    const cMinor = identifyTriadFromMidis([60, 63, 67]);
+    assert.equal(cMinor[0].id, 'c-minor');
+
+    const cDim = identifyTriadFromMidis([60, 63, 66]);
+    assert.equal(cDim[0].id, 'c-diminished');
+
+    const cAug = identifyTriadFromMidis([60, 64, 68]);
+    assert.equal(cAug[0].id, 'c-augmented');
+
+    // Menos de 3 classes distintas (ex: oitava duplicada) ou entrada inválida retorna vazio
+    assert.deepEqual(identifyTriadFromMidis([60, 64, 72]), []);
+    assert.deepEqual(identifyTriadFromMidis([60, 64]), []);
+    assert.deepEqual(identifyTriadFromMidis(null), []);
+  });
+
+  it('deve sanitizar descricoes foneticas de cifras removendo prefixo e ponto final', () => {
+    assert.equal(sanitizePhoneticSymbol('Cifra: Dó maior.'), 'Dó maior');
+    assert.equal(sanitizePhoneticSymbol('Cifra: Lá bemol diminuto.'), 'Lá bemol diminuto');
+    assert.equal(sanitizePhoneticSymbol(''), '');
+    assert.equal(sanitizePhoneticSymbol(null), '');
   });
 });

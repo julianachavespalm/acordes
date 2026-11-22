@@ -2,7 +2,7 @@
 
 - **Status:** Aceito
 - **Data:** 2026-11-15
-- **Decisora:** Juliana Chaves Palm (Software Engineer & Solution Designer)
+- **Decisora:** Juliana Chaves Palm
 
 ## Contexto
 O projeto é um guia de acordes acessível para pessoas cegas e com baixa visão. Usuários de tecnologias assistivas (leitores de tela como NVDA, JAWS e VoiceOver) frequentemente enfrentam sobrecarga cognitiva severa com elementos `<table>` tradicionais, pois o leitor é forçado a anunciar coordenadas de matriz (*"linha 5, coluna 3"*), interrompendo o fluxo natural de leitura. Além disso, símbolos musicais visuais como bemóis (`♭`), sustenidos (`♯`), dobrados bemóis (`♭♭`) e cifras complexas como `D♭m(b5)` são frequentemente pronunciados de forma confusa pelos sintetizadores de voz. Por fim, vocalizações dinâmicas de voz concorrendo simultaneamente com o áudio musical degradam a percepção auditiva da harmonia.

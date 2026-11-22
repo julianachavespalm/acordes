@@ -155,19 +155,38 @@ describe('WAI-ARIA DPUB Chapter Footnotes & Editorial Style (FEAT-004 / ADR-004,
     assert.match(footnotesHtml, /Oswaldo Lacerda \(1961\)/);
   });
 
-  test('src/styles/components.css deve estilizar .editorial-noteref, .editorial-backlink e .editorial-footnotes com tokens sem borda dupla', () => {
+  test('src/styles/components.css deve estilizar .editorial-noteref, .editorial-backlink e .editorial-footnotes com filete ABNT e tokens', () => {
     const cssPath = fs.existsSync('src/styles/components.css') ? 'src/styles/components.css' : 'src/css/components.css';
     const css = fs.readFileSync(cssPath, 'utf8');
 
     assert.match(css, /\.editorial-noteref\s*{/);
     assert.match(css, /\.editorial-backlink\s*{/);
-    assert.match(css, /\.editorial-footnotes\s*{[^}]*border-top:\s*none/s);
-    assert.match(css, /\.editorial-footnotes\s*{[^}]*margin-top:\s*var\(--ds-space-md\)/s);
+    assert.match(css, /\.editorial-footnotes\s*{[^}]*border-top:\s*1px\s+solid\s+var\(--ds-color-line\)/s);
+    assert.match(css, /\.editorial-footnotes\s*{[^}]*padding-top:\s*var\(--ds-space-md\)/s);
     assert.match(css, /\.editorial-footnotes\s*{[^}]*font-size:\s*0\.95rem/s);
     assert.match(css, /\.editorial-footnotes\s*{[^}]*max-width:\s*100%/s);
 
     // Destaque em âmbar nos estados hover e focus-visible
     assert.match(css, /\.editorial-noteref:hover,\s*\.editorial-backlink:hover\s*{[^}]*background-color:\s*var\(--ds-color-accent-amber\)/s);
     assert.match(css, /\.editorial-noteref:focus-visible,\s*\.editorial-backlink:focus-visible\s*{[^}]*outline:\s*var\(--ds-focus-outline\)/s);
+  });
+
+  test('initChapterPage deve injetar notas de rodape DPUB no capitulo augmented e ignorar categorias sem nota', async () => {
+    const { initChapterPage } = await import('../../src/ui/chapterPage.js');
+    let insertedHtml = '';
+    const tableContainer = {
+      insertAdjacentHTML: (_pos, html) => { insertedHtml = html; }
+    };
+    const root = {
+      getElementById: (id) => (id === 'tabela-container' ? tableContainer : null),
+      querySelector: () => null,
+      addEventListener: () => {}
+    };
+
+    initChapterPage({ categoryId: 'major', root });
+    assert.equal(insertedHtml, '');
+
+    initChapterPage({ categoryId: 'augmented', root });
+    assert.match(insertedHtml, /nota-triplo-sustenido/);
   });
 });

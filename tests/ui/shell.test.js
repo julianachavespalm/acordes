@@ -1,7 +1,15 @@
 import { test, describe, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { syncActiveNavigation, initShell, initMenuToggle, initSkipLinks } from '../../src/ui/shell.js';
+import {
+  renderHeaderMarkup,
+  renderFooterMarkup,
+  syncActiveNavigation,
+  syncMenuOverflow,
+  initShell,
+  initMenuToggle,
+  initSkipLinks
+} from '../../src/ui/shell.js';
 
 function readCss(fileName) {
   const p = fs.existsSync(`src/styles/${fileName}`) ? `src/styles/${fileName}` : `src/css/${fileName}`;
@@ -312,16 +320,19 @@ describe('FEAT-003: Shell de Navegação, Design Suíço e Menu Responsivo Acess
     assert.match(css, /\.menu-toggle-btn\s*{[^}]*background-color:\s*transparent/s);
   });
 
-  test('deve configurar menu aberto como painel dropdown flutuante sem borda ancorado abaixo do botao (FEAT-003)', () => {
+  test('deve configurar menu aberto como gaveta editorial suica sem borda em altura total (FEAT-003 / FEAT-010)', () => {
     const layoutCss = readCss('layout.css');
     assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*border:\s*none/s);
     assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*min-width:\s*240px/s);
-    assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*top:\s*calc\(var\(--ds-space-md\)\s*\+\s*48px/s);
+    assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*top:\s*0/s);
+    assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*bottom:\s*0/s);
+    assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*border-radius:\s*0/s);
   });
 
-  test('deve anular ocupacao em bloco do site-header no mobile para o botao hamburguer flutuar lateralmente ao primeiro texto (FEAT-003)', () => {
+  test('deve configurar faixa superior fixa com altura --ds-header-height no mobile com titulo a esquerda e hamburguer a direita (FEAT-003 / FEAT-010)', () => {
     const layoutCss = readCss('layout.css');
-    assert.match(layoutCss, /\.site-header\s*{[^}]*height:\s*0/s);
+    assert.match(layoutCss, /\.site-header\s*{[^}]*height:\s*var\(--ds-header-height\)/s);
+    assert.match(layoutCss, /\.mobile-topbar-title\s*{[^}]*text-align:\s*left/s);
     assert.match(layoutCss, /\.chapter-title-vertical\s*{[^}]*padding-right:\s*56px/s);
   });
 
@@ -396,11 +407,68 @@ describe('FEAT-003: Shell de Navegação, Design Suíço e Menu Responsivo Acess
     assert.match(layoutCss, /@media\s*\(\s*max-width:\s*960px\s*\)\s*{[\s\S]*\.chapter-title-vertical\s*{[^}]*writing-mode:\s*horizontal-tb/);
   });
 
-  test('deve estilizar o footer centralizado na coluna de conteudo com espacamento compacto (ADR-008)', () => {
+  test('deve estilizar o footer alinhado a direita no grid editorial suico com espacamento compacto (ADR-008)', () => {
     const layoutCss = readCss('layout.css');
     assert.match(layoutCss, /\.site-footer\s*{[^}]*width:\s*100%/s);
-    assert.match(layoutCss, /\.site-footer\s*{[^}]*text-align:\s*center/s);
+    assert.match(layoutCss, /\.site-footer\s*{[^}]*text-align:\s*right/s);
     assert.match(layoutCss, /\.site-footer\s*{[^}]*margin-top:\s*var\(--ds-space-xl\)/s);
     assert.match(layoutCss, /\.site-footer\s*{[^}]*font-size:\s*0\.9rem/s);
+    assert.match(layoutCss, /\.footer-credit\s*{[^}]*text-align:\s*right/s);
+  });
+
+  test('renderHeaderMarkup e renderFooterMarkup devem gerar marcacao acessivel completa', () => {
+    const headerHtml = renderHeaderMarkup();
+    assert.match(headerHtml, /id="menu-toggle"/);
+    assert.match(headerHtml, /id="mobile-topbar-title"/);
+    assert.match(headerHtml, /href="#\/piano"/);
+
+    const footerHtml = renderFooterMarkup();
+    assert.match(footerHtml, /id="footer-cifra"/);
+    assert.match(footerHtml, /id="footer-separator-line"/);
+    assert.match(footerHtml, /aria-label="Juliana Chaves Palm, abrir GitHub em nova aba"/);
+  });
+
+  test('syncMenuOverflow deve ativar force-hamburger apenas quando nav-list exceder largura no desktop', () => {
+    const mockBody = new MockElement('body');
+    const mockHeader = new MockElement('header', { class: 'site-header' });
+    mockHeader.clientWidth = 1000;
+    const mockNavList = new MockElement('ul', { class: 'nav-list' });
+    mockNavList.scrollWidth = 1100;
+    const root = {
+      body: mockBody,
+      querySelector: (sel) => {
+        if (sel === '.site-header') return mockHeader;
+        if (sel === '.nav-list') return mockNavList;
+        return null;
+      }
+    };
+
+    assert.equal(syncMenuOverflow(root, { innerWidth: 1000 }), true);
+    assert.equal(mockBody.classList.contains('force-hamburger'), true);
+
+    mockNavList.scrollWidth = 700;
+    assert.equal(syncMenuOverflow(root, { innerWidth: 1000 }), false);
+    assert.equal(mockBody.classList.contains('force-hamburger'), false);
+
+    assert.equal(syncMenuOverflow(root, { innerWidth: 800 }), false);
+    assert.equal(mockBody.classList.contains('force-hamburger'), false);
+  });
+
+  test('initMenuToggle deve fechar ao clicar fora e ignorar clique na aba ativa', () => {
+    initMenuToggle({ root: doc });
+    const toggleBtn = doc.querySelector('#menu-toggle');
+    const activeLink = doc.querySelectorAll('.nav-link')[0];
+    activeLink.setAttribute('aria-current', 'page');
+
+    toggleBtn.dispatchEvent({ type: 'click' });
+    assert.equal(toggleBtn.getAttribute('aria-expanded'), 'true');
+
+    let prevented = false;
+    activeLink.dispatchEvent({ type: 'click', preventDefault: () => { prevented = true; } });
+    assert.equal(prevented, true);
+    assert.equal(toggleBtn.getAttribute('aria-expanded'), 'true');
+
+    doc.dispatchEvent({ type: 'click', target: new MockElement('div') });
+    assert.equal(toggleBtn.getAttribute('aria-expanded'), 'false');
   });
 });

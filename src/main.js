@@ -10,37 +10,56 @@ import { initOscilloscopeView } from './ui/oscilloscopeView.js';
 import { initShell, syncActiveNavigation } from './ui/shell.js';
 import { renderHomePage } from './ui/homePage.js';
 import { renderChapterPage } from './ui/chapterPage.js';
+import { renderPianoPage } from './ui/pianoPage.js';
 
 export const ROUTES = Object.freeze({
   '#/': {
     title: 'Acordes Básicos · Guia Acessível de Formação de Tríades',
+    mobileTitle: 'Acordes Básicos',
+    mobileSubtitle: '',
     announcement: 'Página inicial carregada',
     render: (app) => renderHomePage(app),
     headingId: 'titulo-home'
   },
   '#/maiores': {
     title: 'Acordes Maiores · Acordes Básicos',
+    mobileTitle: 'Acordes Maiores',
+    mobileSubtitle: 'Tríade 1 · 3 · 5',
     announcement: 'Capítulo de Acordes Maiores carregado',
     render: (app, sound) => renderChapterPage('major', sound, app),
     headingId: 'titulo-capitulo'
   },
   '#/menores': {
     title: 'Acordes Menores · Acordes Básicos',
+    mobileTitle: 'Acordes Menores',
+    mobileSubtitle: 'Tríade 1 · ♭3 · 5',
     announcement: 'Capítulo de Acordes Menores carregado',
     render: (app, sound) => renderChapterPage('minor', sound, app),
     headingId: 'titulo-capitulo'
   },
   '#/diminutos': {
     title: 'Acordes Diminutos · Acordes Básicos',
+    mobileTitle: 'Acordes Diminutos',
+    mobileSubtitle: 'Tríade 1 · ♭3 · ♭5',
     announcement: 'Capítulo de Acordes Diminutos carregado',
     render: (app, sound) => renderChapterPage('diminished', sound, app),
     headingId: 'titulo-capitulo'
   },
   '#/aumentados': {
     title: 'Acordes Aumentados · Acordes Básicos',
+    mobileTitle: 'Acordes Aumentados',
+    mobileSubtitle: 'Tríade 1 · 3 · ♯5',
     announcement: 'Capítulo de Acordes Aumentados carregado',
     render: (app, sound) => renderChapterPage('augmented', sound, app),
     headingId: 'titulo-capitulo'
+  },
+  '#/piano': {
+    title: 'Piano Virtual · Acordes Básicos',
+    mobileTitle: 'Piano Virtual',
+    mobileSubtitle: '',
+    announcement: 'Piano Virtual carregado',
+    render: (app, sound) => renderPianoPage(sound, app),
+    headingId: 'titulo-piano'
   }
 });
 
@@ -74,9 +93,33 @@ export function handleRouteChange(options = {}) {
   const teardown = route.render(appElement, soundEngine);
   activeRouteTeardown = typeof teardown === 'function' ? teardown : null;
 
-  // Atualiza título
+  // Atualiza título da página e da faixa superior mobile
   if (typeof document !== 'undefined') {
     document.title = route.title;
+  }
+
+  const mobileTitleEl = root.getElementById ? root.getElementById('mobile-topbar-title') : root.querySelector?.('#mobile-topbar-title');
+  if (mobileTitleEl) {
+    mobileTitleEl.textContent = route.mobileTitle || '';
+  }
+
+  const mobileSubtitleEl = root.getElementById ? root.getElementById('mobile-topbar-subtitle') : root.querySelector?.('#mobile-topbar-subtitle');
+  if (mobileSubtitleEl) {
+    const sub = route.mobileSubtitle || '';
+    mobileSubtitleEl.textContent = sub;
+    mobileSubtitleEl.hidden = !sub;
+    if (sub) {
+      mobileSubtitleEl.removeAttribute?.('hidden');
+    } else {
+      mobileSubtitleEl.setAttribute?.('hidden', '');
+    }
+  }
+
+  // Limpa indicador de cifra no rodapé ao trocar de rota
+  const footerCifraEl = root.getElementById ? root.getElementById('footer-cifra') : root.querySelector?.('#footer-cifra');
+  if (footerCifraEl) {
+    footerCifraEl.classList?.remove('is-visible');
+    footerCifraEl.textContent = '';
   }
 
   // Sincroniza estado de navegação

@@ -2,7 +2,7 @@
 
 - **Status:** Aceito
 - **Data:** 2026-11-15
-- **Decisora:** Juliana Chaves Palm (Software Engineer & Solution Designer)
+- **Decisora:** Juliana Chaves Palm
 
 ## Contexto
 Embora os testes unitários via `node --test` validem com precisão as regras teóricas e a integridade de DOM isolado, a interação real do usuário no navegador envolve reprodução de áudio, navegação por teclado (`Tab`, `Enter`, `Space`), foco visível, contraste e atualização de regiões acessíveis (`aria-live`). Além disso, para assegurar rastreabilidade de negócio e transformar os critérios de aceitação do SDD em documentação viva (*living documentation*), é essencial que os cenários de teste sejam expressos em linguagem humana e executáveis diretamente no navegador.

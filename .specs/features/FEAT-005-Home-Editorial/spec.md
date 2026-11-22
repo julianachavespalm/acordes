@@ -5,7 +5,7 @@
 | Atributo | Definição |
 | :--- | :--- |
 | **Status** | Approved · Implemented |
-| **Spec Owner** | Juliana Chaves Palm (Software Engineer & Solution Designer) |
+| **Spec Owner** | Juliana Chaves Palm |
 | **Prioridade** | P1 · Porta de Entrada Editorial |
 | **Decisões Arquiteturais** | [ADR-001: Arquitetura Modular Enxuta](../../decisions/ADR-001-lean-modular-architecture.md), [ADR-002: CSS 4 Camadas e Estilo Suíço](../../decisions/ADR-002-css-layers.md), [ADR-004: Acessibilidade Universal ABNT](../../decisions/ADR-004-universal-accessibility-wai-aria.md) |
 | **Aprovação** | 2026-11-15 |

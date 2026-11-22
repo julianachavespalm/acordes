@@ -2,7 +2,7 @@
 
 **Spec**: [`.specs/features/FEAT-006-Design-System-e-Tokens/spec.md`](spec.md)  
 **Status**: Approved  
-**Decisora**: Juliana Chaves Palm (Software Engineer & Solution Designer)
+**Decisora**: Juliana Chaves Palm
 
 ---
 
