@@ -1,0 +1,152 @@
+/**
+ * @fileoverview Camada Base de Estilos (FEAT-006 / ADR-002)
+ * Reset moderno, tipografia base, duplo skip-link, anel de foco acessível e .sr-only.
+ * Proibido o uso de cores ou medidas hardcoded sem var(--ds-*).
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--ds-font-size-base);
+  line-height: var(--ds-line-height-base);
+  background-color: var(--ds-color-paper);
+  color: var(--ds-color-ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--ds-font-primary);
+  background-color: var(--ds-color-paper);
+  color: var(--ds-color-ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+::selection {
+  background-color: var(--ds-color-accent-amber);
+  color: var(--ds-color-ink);
+}
+
+/* Tipografia Editorial */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--ds-font-weight-bold);
+  color: var(--ds-color-ink);
+}
+
+p {
+  color: var(--ds-color-ink);
+  line-height: var(--ds-line-height-base);
+}
+
+/* Duplo Skip-Link Acessível Exclusivo para Leitores de Tela (Ocultação Absoluta Permanente) */
+.skip-link,
+.skip-link:focus,
+.skip-link:focus-visible {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  outline: none !important;
+  color: transparent !important;
+  background-color: transparent !important;
+}
+
+.skip-link:not(:focus-visible) {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+}
+
+/* Anel de Foco Unificado WCAG AAA para controles interativos */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: var(--ds-focus-outline);
+  outline-offset: var(--ds-focus-offset);
+}
+
+/* Destinos de skip-links e containers não-interativos nunca devem ser pintados de laranja nem exibir contorno */
+:target,
+[tabindex="-1"]:focus,
+[tabindex="-1"]:focus-visible,
+main:focus,
+main:focus-visible,
+nav:focus,
+nav:focus-visible,
+section:focus,
+section:focus-visible,
+div:focus,
+div:focus-visible,
+ul:focus,
+ul:focus-visible {
+  background-color: transparent !important;
+  outline: none !important;
+}
+
+/* Estado de Reprodução Ativa */
+.playing {
+  background-color: var(--ds-color-accent-amber);
+  color: var(--ds-color-ink);
+  outline: var(--ds-focus-outline);
+  outline-offset: var(--ds-focus-offset);
+}
+
+/* Camada Fonética para Leitores de Tela (.sr-only) - Blindagem absoluta contra visibilidade visual */
+.sr-only,
+:target .sr-only,
+:focus .sr-only,
+:focus-within .sr-only,
+*:focus > .sr-only,
+*:target > .sr-only,
+.sr-only:focus,
+.sr-only:focus-visible,
+.sr-only:focus-within {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
+  border: 0 !important;
+  color: transparent !important;
+  background-color: transparent !important;
+  pointer-events: none !important;
+}
+
+/* Respeito a Movimento Reduzido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

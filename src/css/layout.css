@@ -1,0 +1,547 @@
+/**
+ * @fileoverview Layout Structure and Editorial Swiss Grid (FEAT-003 / ADR-002)
+ * Asymmetric chapter layout, centered header navigation, and minimal footer.
+ */
+
+/* Shell Container */
+.site-header {
+  width: 100%;
+  height: var(--ds-header-height);
+  padding: 0 var(--ds-space-md);
+  background-color: var(--ds-color-paper);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.main-navigation {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: var(--ds-space-lg);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-main,
+#app {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--ds-space-md);
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Home Editorial Container */
+.home-cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding-top: var(--ds-space-lg);
+  padding-bottom: 0;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.home-scroll-area {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-layout {
+  max-width: var(--ds-measure-reading);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--ds-space-md);
+}
+
+.home-hero-header {
+  margin-bottom: 0;
+}
+
+.home-title {
+  font-size: var(--ds-font-size-h1);
+  font-weight: var(--ds-font-weight-bold);
+  line-height: 1.1;
+  color: var(--ds-color-ink);
+  margin-top: 0;
+  margin-bottom: var(--ds-space-sm);
+}
+
+.home-subtitle-main {
+  font-size: var(--ds-font-size-subtitle);
+  font-weight: var(--ds-font-weight-medium);
+  letter-spacing: var(--ds-letter-spacing-spaced);
+  color: var(--ds-color-ink);
+  text-transform: uppercase;
+  margin-bottom: var(--ds-space-xs);
+}
+
+.home-subtitle-sub {
+  font-size: var(--ds-font-size-sm);
+  font-weight: var(--ds-font-weight-regular);
+  letter-spacing: var(--ds-letter-spacing-subtitle);
+  color: var(--ds-color-ink-muted);
+  text-transform: uppercase;
+  margin-bottom: var(--ds-space-lg);
+}
+
+.home-editorial-text p {
+  font-size: var(--ds-font-size-base);
+  line-height: var(--ds-line-height-base);
+  color: var(--ds-color-ink);
+  margin-top: 0;
+  margin-bottom: var(--ds-space-md);
+  max-width: var(--ds-measure-reading);
+}
+
+.home-editorial-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Asymmetric Chapter Grid (Desktop) */
+.chapter-layout,
+.triad-chapter-grid {
+  display: grid;
+  grid-template-columns: var(--ds-grid-sidebar-width) 1fr;
+  gap: var(--ds-space-2xl);
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.chapter-sidebar {
+  position: sticky;
+  top: var(--ds-header-height);
+  height: calc(100vh - var(--ds-header-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-left: var(--ds-space-xl);
+  padding-bottom: var(--ds-space-xl);
+  padding-right: var(--ds-space-md);
+  box-sizing: border-box;
+  border-right: 1px solid var(--ds-color-line-subtle);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.chapter-title-vertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-transform: none;
+  font-weight: var(--ds-font-weight-medium);
+  font-size: clamp(2rem, 5.5vh, 3.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ds-color-ink);
+}
+
+.chapter-title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.chapter-dash {
+  display: block;
+  width: 1.5px;
+  height: clamp(32px, 6vh, 56px);
+  background-color: var(--ds-color-line);
+  margin: var(--ds-space-md) 0 var(--ds-space-md) clamp(30px, 2.2vw, 38px);
+}
+
+.chapter-formula {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.formula-label {
+  font-size: 0.95rem;
+  color: var(--ds-color-ink-muted);
+  display: block;
+  line-height: 1.2;
+}
+
+.formula-intervals {
+  font-size: 1.25rem;
+  color: var(--ds-color-ink);
+  font-weight: var(--ds-font-weight-regular);
+  display: block;
+  margin-top: 2px;
+  line-height: 1.2;
+}
+
+.chapter-content {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chapter-scroll-area {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.editorial-lead {
+  width: 100%;
+  max-width: 100%;
+  font-size: var(--ds-font-size-base);
+  line-height: var(--ds-line-height-base);
+  color: var(--ds-color-ink);
+  margin-top: 0;
+  margin-bottom: var(--ds-space-md);
+}
+
+.chapter-content > .editorial-lead:first-child,
+.chapter-content > p:first-child {
+  margin-top: 0;
+}
+
+/* Minimal Footer */
+.site-footer {
+  width: 100%;
+  text-align: center;
+  margin-top: var(--ds-space-xl);
+  padding: var(--ds-space-md) 0 var(--ds-space-lg);
+  color: var(--ds-color-ink-muted);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.footer-credit {
+  font-size: 0.9rem;
+  color: var(--ds-color-ink-muted);
+}
+
+/* Responsive Editorial Layout */
+@media (max-width: 960px) {
+  /* O cabecalho nao ocupa espaco em bloco nem empurra o conteudo no fluxo */
+  .site-header {
+    padding: 0;
+    height: 0;
+    min-height: 0;
+    position: static;
+  }
+
+  .site-main {
+    padding: var(--ds-space-md);
+  }
+
+  .home-layout {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* Reserva espaco a direita do primeiro titulo para acomodar o botao flutuante lateral sem sobreposicao */
+  .home-title,
+  .chapter-title-vertical {
+    padding-right: 56px;
+  }
+
+  /* Substituicao da navbar desktop por botao hamburguer flutuante lateral */
+  .menu-toggle-btn {
+    display: flex !important;
+    position: fixed !important;
+    top: var(--ds-space-md) !important;
+    right: var(--ds-space-md) !important;
+    z-index: 10001 !important;
+  }
+
+  /* Quando fechado: preserva a arvore acessivel para leitores de tela sem bloquear a navegacao */
+  body:not(.menu-open) .main-navigation:not(:focus-within) {
+    position: fixed;
+    top: -9999px;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  /* Menu aberto no mobile ou focado por teclado: dropdown compacto sem borda */
+  body.menu-open .main-navigation,
+  .main-navigation:focus-within {
+    position: fixed;
+    top: calc(var(--ds-space-md) + 48px + var(--ds-space-xs));
+    right: var(--ds-space-md);
+    width: max-content;
+    min-width: 240px;
+    max-width: calc(100vw - var(--ds-space-lg));
+    background-color: var(--ds-color-surface);
+    border: none;
+    box-shadow: var(--ds-shadow-dropdown);
+    padding: var(--ds-space-sm);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-radius: 6px;
+  }
+
+  body.menu-open .nav-list,
+  .main-navigation:focus-within .nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--ds-space-xs);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  body.menu-open .nav-list li,
+  .main-navigation:focus-within .nav-list li {
+    width: 100%;
+  }
+
+  body.menu-open .nav-link,
+  .main-navigation:focus-within .nav-link {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: var(--ds-font-size-base);
+    padding: var(--ds-space-sm) var(--ds-space-md);
+  }
+
+  .chapter-layout {
+    grid-template-columns: 1fr;
+    gap: var(--ds-space-lg);
+    height: auto;
+    overflow: visible;
+  }
+
+  .chapter-content {
+    padding-top: 0;
+    height: auto;
+    overflow: visible;
+  }
+
+  .chapter-scroll-area {
+    overflow: visible;
+    height: auto;
+  }
+
+  .chapter-sidebar {
+    position: static;
+    height: auto;
+    min-height: auto;
+    border-bottom: 1.5px solid var(--ds-color-line);
+    padding: 0;
+    padding-bottom: var(--ds-space-md);
+    display: block;
+  }
+
+  .chapter-title-vertical {
+    writing-mode: horizontal-tb;
+    transform: none;
+    white-space: normal;
+    margin: 0;
+    font-size: var(--ds-font-size-h1);
+    padding-right: 56px;
+  }
+
+  .chapter-title-line {
+    display: inline;
+  }
+
+  .chapter-title-line:first-child::after {
+    content: " ";
+  }
+
+  .chapter-dash {
+    display: none;
+  }
+
+  .chapter-formula {
+    margin-top: var(--ds-space-xs);
+    padding-top: var(--ds-space-xs);
+    display: flex;
+    flex-direction: row;
+    gap: var(--ds-space-xs);
+    align-items: baseline;
+    text-align: left;
+  }
+
+  .formula-label {
+    display: inline;
+    font-size: var(--ds-font-size-sm);
+  }
+
+  .formula-label::after {
+    content: ":";
+  }
+
+  .formula-intervals {
+    display: inline;
+    margin-top: 0;
+    font-size: var(--ds-font-size-lg);
+  }
+
+
+}
+
+/* Equacao Estrutural no Desktop (>= 961px): Menu + Capitular + Rodape = 100dvh */
+@media (min-width: 961px) {
+  html,
+  body {
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-header {
+    width: 100%;
+    height: var(--ds-header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    border-top: none;
+    border-bottom: none;
+    padding: 0 var(--ds-space-xl);
+    box-sizing: border-box;
+  }
+
+  .main-navigation {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+  }
+
+  .nav-list {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ds-space-lg);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-list > li:first-child {
+    margin-right: auto;
+  }
+
+  .site-main,
+  #app {
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .chapter-layout,
+  .triad-chapter-grid {
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .chapter-sidebar {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    border-right: 1px solid var(--ds-color-line-subtle);
+    padding: var(--ds-space-md) var(--ds-space-lg) var(--ds-space-xl) var(--ds-space-xl);
+    box-sizing: border-box;
+    overflow: visible;
+    flex-shrink: 0;
+  }
+
+  .chapter-content {
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .chapter-scroll-area {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: var(--ds-space-md) var(--ds-space-xl);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .site-footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 0;
+    padding: var(--ds-space-sm) 0 var(--ds-space-md);
+    color: var(--ds-color-ink-muted);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    border-top: none;
+    border-bottom: none;
+  }
+}

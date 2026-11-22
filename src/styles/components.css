@@ -1,0 +1,347 @@
+/**
+ * @fileoverview Reusable Editorial Components (FEAT-003, FEAT-004 / ADR-002, ADR-004)
+ * Header navigation, ABNT false table without table tags, and inline audio triggers.
+ */
+
+/* Floating Hamburger Menu Button (Mobile & Narrow Viewports) */
+.menu-toggle-btn {
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: transparent;
+  border: none;
+  color: var(--ds-color-ink);
+  cursor: pointer;
+  padding: 0;
+  border-radius: 6px;
+  transition: background-color 0.15s ease-in-out;
+}
+
+@media (min-width: 961px) {
+  .menu-toggle-btn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 960px) {
+  .menu-toggle-btn {
+    display: flex !important;
+    position: fixed !important;
+    top: var(--ds-space-md) !important;
+    right: var(--ds-space-md) !important;
+    z-index: 10001 !important;
+  }
+}
+
+.menu-toggle-btn:hover {
+  background-color: var(--ds-color-accent-amber);
+}
+
+.menu-toggle-btn:focus-visible {
+  background-color: var(--ds-color-accent-amber);
+  outline: var(--ds-focus-outline);
+  outline-offset: var(--ds-focus-offset);
+}
+
+.icon-hamburger,
+.icon-close {
+  display: block;
+  width: 24px;
+  height: 24px;
+  stroke: var(--ds-color-ink);
+}
+
+body:not(.menu-open) .icon-close {
+  display: none;
+}
+
+body.menu-open .icon-hamburger {
+  display: none;
+}
+
+body.menu-open .icon-close {
+  display: block;
+}
+
+/* Header Navigation Links */
+.nav-link {
+  color: var(--ds-color-ink);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: var(--ds-font-weight-regular);
+  padding: var(--ds-space-xs) var(--ds-space-sm);
+  white-space: nowrap;
+  border-radius: 0;
+  transition: color 0.15s ease-in-out;
+}
+
+.nav-link:hover {
+  background-color: var(--ds-color-accent-amber);
+  color: var(--ds-color-ink);
+  border-radius: 0;
+}
+
+.nav-link:focus-visible {
+  background-color: var(--ds-color-accent-amber);
+  color: var(--ds-color-ink);
+  outline: var(--ds-focus-outline);
+  outline-offset: var(--ds-focus-offset);
+  border-radius: 0;
+}
+
+/* Swiss Active State: apenas em negrito, sem fundo de pílula, não clicável (ADR-008) */
+.nav-link[aria-current="page"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--ds-color-ink) !important;
+  font-weight: var(--ds-font-weight-bold) !important;
+  border-radius: 0 !important;
+  padding: var(--ds-space-xs) var(--ds-space-sm) !important;
+  text-decoration: none !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  box-shadow: none !important;
+}
+
+.nav-link[aria-current="page"]:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.chapter-content > .editorial-lead:first-child,
+.chapter-content > p:first-child {
+  margin-top: 0;
+}
+
+/* ABNT False Table (Semantic list without <table> tags) */
+.abnt-table {
+  width: 100%;
+  max-width: 100%;
+  margin-top: var(--ds-space-lg);
+}
+
+/* Header line 1 (top) and line 2 (intermediate) */
+.abnt-table-header {
+  display: grid;
+  grid-template-columns: minmax(220px, 2fr) minmax(140px, 1.2fr) minmax(180px, 1fr);
+  column-gap: var(--ds-space-lg);
+  align-items: center;
+  padding: var(--ds-space-sm) 0;
+  border-top: 1.5px solid var(--ds-color-line);
+  border-bottom: 1.5px solid var(--ds-color-line);
+  font-weight: var(--ds-font-weight-bold);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ds-color-ink);
+}
+
+.abnt-table-header span {
+  text-align: left;
+  justify-self: start;
+}
+
+.acordes-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.acorde-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 2fr) minmax(140px, 1.2fr) minmax(180px, 1fr);
+  column-gap: var(--ds-space-lg);
+  align-items: center;
+  padding: var(--ds-space-sm) 0;
+}
+
+.acorde-col,
+.cifra-col,
+.notas-col {
+  text-align: left;
+  justify-self: start;
+}
+
+.notas-col {
+  white-space: nowrap;
+}
+
+/* Removida a linha separadora inferior das tabelas */
+.acordes-lista .acorde-row:last-child {
+  border-bottom: none;
+}
+
+/* Audio Trigger Buttons styled as clean editorial text */
+.chord-trigger,
+.note-trigger {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: var(--ds-font-size-base);
+  color: var(--ds-color-ink);
+  cursor: pointer;
+  padding: var(--ds-space-xs);
+  text-align: left;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.chord-trigger {
+  font-weight: var(--ds-font-weight-semibold);
+  padding-left: 0;
+}
+
+.notas-col > .note-trigger:first-child {
+  padding-left: 0;
+}
+
+.note-trigger {
+  font-weight: var(--ds-font-weight-regular);
+}
+
+.note-separator {
+  color: var(--ds-color-ink-muted);
+  padding: 0 var(--ds-space-xs);
+}
+
+/* High contrast hover & playing states */
+.chord-trigger:hover,
+.note-trigger:hover {
+  background-color: var(--ds-color-accent-amber);
+}
+
+.chord-trigger.playing,
+.note-trigger.playing {
+  background-color: var(--ds-color-accent-amber);
+  outline: var(--ds-focus-outline);
+  outline-offset: var(--ds-focus-offset);
+}
+
+.cifra-col {
+  font-family: var(--ds-font-primary);
+  font-size: 1.05rem;
+  font-weight: var(--ds-font-weight-medium);
+}
+
+/* Responsive Table Breakdown */
+@media (max-width: 640px) {
+  .abnt-table-header {
+    grid-template-columns: 1.8fr 1.2fr 2fr;
+    column-gap: 0;
+    font-size: 0.85rem;
+  }
+
+  .acorde-row {
+    grid-template-columns: 1.8fr 1.2fr 2fr;
+    column-gap: 0;
+  }
+
+  .chord-trigger,
+  .note-trigger {
+    font-size: 0.95rem;
+  }
+}
+
+/* Editorial DPUB Footnotes (WAI-ARIA DPUB / ADR-004 / ADR-008) */
+.editorial-noteref {
+  font-size: 0.75rem;
+  font-weight: var(--ds-font-weight-bold);
+  color: var(--ds-color-ink);
+  text-decoration: none;
+  padding: 1px 4px;
+  border-radius: 0;
+  vertical-align: super;
+  line-height: 0;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.editorial-noteref:hover,
+.editorial-backlink:hover {
+  background-color: var(--ds-color-accent-amber);
+}
+
+.editorial-noteref:focus-visible,
+.editorial-backlink:focus-visible {
+  outline: var(--ds-focus-outline);
+  outline-offset: var(--ds-focus-offset);
+  background-color: var(--ds-color-accent-amber);
+}
+
+.editorial-backlink {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: var(--ds-font-weight-bold);
+  color: var(--ds-color-ink);
+  text-decoration: none;
+  padding: 2px 4px;
+  margin-left: var(--ds-space-xs);
+  display: inline-block;
+}
+
+.editorial-footnotes {
+  border-top: none;
+  margin-top: var(--ds-space-md);
+  padding-top: 0;
+  font-size: 0.95rem;
+  width: 100%;
+  max-width: 100%;
+  color: var(--ds-color-ink);
+  line-height: var(--ds-line-height-base);
+}
+
+.editorial-footnote {
+  outline: none;
+}
+
+.editorial-footnote:focus-visible {
+  outline: var(--ds-focus-outline);
+  outline-offset: var(--ds-focus-offset);
+}
+
+.editorial-footnote p {
+  margin: 0;
+  font-size: inherit;
+  line-height: var(--ds-line-height-base);
+  color: var(--ds-color-ink);
+}
+
+.editorial-footnote cite {
+  font-style: italic;
+}
+
+/* Fixação de Altura Sem Compressão (100dvh Layout) */
+header,
+footer,
+.site-header,
+.site-footer {
+  flex-shrink: 0;
+}
+
+/* Barra Separadora Osciloscópio Acústico de 1px */
+.footer-separator-bar {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin: 0 0 2px;
+}
+
+.footer-separator-svg {
+  display: block;
+  width: 100%;
+  height: 40px;
+  overflow: visible;
+}
+
+.footer-separator-line {
+  fill: none;
+  stroke: var(--ds-color-ink);
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
