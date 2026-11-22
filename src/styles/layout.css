@@ -608,6 +608,28 @@
   box-sizing: border-box;
 }
 
+/* Em telas menores (<= 960px), a legenda da nota/acorde vai para baixo do piano */
+@media (max-width: 960px) {
+  .piano-orientation-hint {
+    order: 1;
+  }
+
+  .piano-toolbar {
+    order: 2;
+  }
+
+  .piano-stage {
+    order: 3;
+    flex: 0 0 auto;
+    min-height: 0;
+  }
+
+  .piano-readout {
+    order: 4;
+    text-align: center;
+  }
+}
+
 /* Telas estreitas ou Mobile Portrait: espaçamento seguro para hambúrguer e rodapé fixo */
 @media (max-width: 649px), (max-width: 960px) and (orientation: portrait) {
   .piano-layout {

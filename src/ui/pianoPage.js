@@ -70,8 +70,9 @@ export function renderPianoMarkup() {
           <button type="button" class="piano-control-btn" id="piano-play-pinned" disabled>Tocar juntas</button>
           <button type="button" class="piano-control-btn" id="piano-clear-pinned" disabled>Limpar</button>
         </div>
-        <div class="piano-readout" id="piano-readout" aria-live="polite" aria-atomic="true">Toque nas teclas para ouvir</div>
       </div>
+
+      <div class="piano-readout" id="piano-readout" aria-live="polite" aria-atomic="true">Toque nas teclas para ouvir</div>
 
       <div class="piano-stage">
         <div class="piano-keyboard" id="piano-keyboard" role="group" aria-label="Teclado do piano virtual">
