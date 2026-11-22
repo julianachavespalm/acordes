@@ -259,7 +259,7 @@
   width: 100%;
   text-align: right;
   margin-top: var(--ds-space-xl);
-  padding: 0 0 8px;
+  padding: 0 0 calc(8px + env(safe-area-inset-bottom, 0px));
   color: var(--ds-color-ink-muted);
   font-size: 0.9rem;
   flex-shrink: 0;
@@ -1049,10 +1049,13 @@ body.force-hamburger .piano-toolbar {
   .site-header {
     height: 44px;
     min-height: 44px;
+    padding-left: calc(var(--ds-space-md) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--ds-space-md) + env(safe-area-inset-right, 0px));
   }
 
   .menu-toggle-btn {
     top: -2px !important;
+    right: calc(var(--ds-space-md) + env(safe-area-inset-right, 0px)) !important;
   }
 
   body.menu-open .nav-list,
@@ -1080,7 +1083,7 @@ body.force-hamburger .piano-toolbar {
 
   .site-main:has(.piano-layout),
   #app:has(.piano-layout) {
-    padding: 0 var(--ds-space-md);
+    padding: 0 calc(var(--ds-space-md) + env(safe-area-inset-right, 0px)) 0 calc(var(--ds-space-md) + env(safe-area-inset-left, 0px));
     overflow: hidden;
   }
 
@@ -1116,6 +1119,12 @@ body.force-hamburger .piano-toolbar {
   }
 
   .site-footer {
-    padding: 0 0 6px;
+    padding: 0 0 calc(6px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .footer-separator-row,
+  .footer-credit {
+    padding-left: calc(var(--ds-space-md) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--ds-space-md) + env(safe-area-inset-right, 0px));
   }
 }
