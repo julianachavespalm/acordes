@@ -225,4 +225,62 @@ describe('FEAT-004: Falsa Tabela Estilo ABNT, Silêncio Auditivo e Interação S
     const normalHtml = renderChordMarkup(cMajorChord);
     assert.doesNotMatch(normalHtml, /role="doc-noteref"/);
   });
+
+  test('initChordList deve delegar cliques em acorde e nota, acionar preload e limpar ao abortar', async () => {
+    const container = new MockElement('div');
+    const preloaded = [];
+    const controller = new AbortController();
+
+    const engineWithPreload = {
+      ...mockSoundEngine,
+      preload: (midis) => { preloaded.push(...midis); }
+    };
+
+    const footerCifra = new MockElement('span', { id: 'footer-cifra' });
+    const prevDoc = globalThis.document;
+    globalThis.document = {
+      getElementById: (id) => (id === 'footer-cifra' ? footerCifra : null)
+    };
+
+    try {
+      initChordList({
+        containerElement: container,
+        categoryId: 'diminished',
+        soundEngine: engineWithPreload,
+        signal: controller.signal
+      });
+
+      assert.equal(preloaded.length, 63, 'Deve pre-carregar todas as 63 notas das 21 triades');
+
+      const chordBtn = new MockElement('button', {
+        class: 'chord-trigger',
+        'data-midis': '60,63,66',
+        'data-symbol': 'C°'
+      });
+      chordBtn.closest = (sel) => (sel === '.chord-trigger' ? chordBtn : null);
+
+      const clickHandler = container.eventListeners['click'][0];
+      await clickHandler({ target: chordBtn, preventDefault: () => {} });
+      assert.equal(playedFrequencies.length, 1);
+      assert.equal(footerCifra.textContent, 'Cifra: C°');
+      assert.equal(footerCifra.classList.contains('is-visible'), true);
+
+      const noteBtn = new MockElement('button', {
+        class: 'note-trigger',
+        'data-midi': '60',
+        'data-symbol': 'C°'
+      });
+      noteBtn.closest = (sel) => (sel === '.note-trigger' ? noteBtn : null);
+
+      await clickHandler({ target: noteBtn, preventDefault: () => {} });
+      assert.equal(playedNotes.length, 1);
+
+      controller.abort();
+      assert.equal(footerCifra.textContent, '');
+      assert.equal(footerCifra.classList.contains('is-visible'), false);
+    } finally {
+      if (prevDoc === undefined) delete globalThis.document;
+      else globalThis.document = prevDoc;
+    }
+  });
 });

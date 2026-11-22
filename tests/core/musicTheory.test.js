@@ -20,6 +20,7 @@ import {
   getPhoneticChordDescription,
   identifyTriadFromMidis
 } from '../../src/domain/musicTheory.js';
+import { sanitizePhoneticSymbol } from '../../src/domain/phonetics.js';
 
 describe('FEAT-001: Core Harmônico e Modelagem de Tríades', () => {
   it('deve conter as 4 categorias normativas de tríades', () => {
@@ -141,5 +142,12 @@ describe('FEAT-001: Core Harmônico e Modelagem de Tríades', () => {
     assert.deepEqual(identifyTriadFromMidis([60, 64, 72]), []);
     assert.deepEqual(identifyTriadFromMidis([60, 64]), []);
     assert.deepEqual(identifyTriadFromMidis(null), []);
+  });
+
+  it('deve sanitizar descricoes foneticas de cifras removendo prefixo e ponto final', () => {
+    assert.equal(sanitizePhoneticSymbol('Cifra: Dó maior.'), 'Dó maior');
+    assert.equal(sanitizePhoneticSymbol('Cifra: Lá bemol diminuto.'), 'Lá bemol diminuto');
+    assert.equal(sanitizePhoneticSymbol(''), '');
+    assert.equal(sanitizePhoneticSymbol(null), '');
   });
 });
