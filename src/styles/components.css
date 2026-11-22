@@ -346,30 +346,62 @@ footer,
 }
 
 /* ==========================================================================
-   Piano Virtual Interativo (Design clássico da main + ADR-012)
+   Piano Virtual Interativo (Protótipo Validado — FEAT-010 / ADR-012)
    ========================================================================== */
-.piano-orientation-hint {
-  display: none;
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--ds-color-ink-muted);
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  font-size: 20px;
+  line-height: 1;
+  vertical-align: middle;
 }
 
-.piano-control-btn {
-  background-color: var(--ds-color-surface);
-  color: var(--ds-color-ink);
-  border: 1.5px solid var(--ds-color-line);
-  border-radius: 0;
-  font-family: inherit;
+.piano-orientation-hint {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
   font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--ds-color-ink);
+}
+
+/* Botões táteis 3D proporcionais (100% dentro da célula do grid) */
+.piano-control-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--ds-space-sm);
+  height: 38px;
+  padding: 0 14px;
+  background: var(--ds-btn-3d-bg);
+  color: var(--ds-color-ink);
+  border: 1px solid var(--ds-btn-3d-border);
+  border-radius: 0;
+  box-shadow: var(--ds-btn-3d-shadow);
+  font-family: inherit;
+  font-size: 0.85rem;
   font-weight: var(--ds-font-weight-medium);
-  padding: var(--ds-space-xs) var(--ds-space-md);
+  letter-spacing: -0.005em;
   cursor: pointer;
-  transition: background-color 0.12s ease-in-out;
+  white-space: nowrap;
+  transform: translateY(0);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.12s ease, opacity 0.12s ease;
 }
 
 .piano-control-btn:hover:not(:disabled) {
-  background-color: var(--ds-color-accent-amber);
+  background: var(--ds-btn-3d-hover-bg);
+  border-color: var(--ds-color-ink);
+  box-shadow: var(--ds-btn-3d-hover-shadow);
+}
+
+.piano-control-btn:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: var(--ds-btn-3d-pressed-shadow);
 }
 
 .piano-control-btn:focus-visible {
@@ -377,34 +409,147 @@ footer,
   outline-offset: var(--ds-focus-offset);
 }
 
+.piano-control-btn[aria-pressed="true"],
+.piano-control-btn[aria-expanded="true"],
 .piano-control-btn.is-active {
-  background-color: var(--ds-color-accent-amber);
-  font-weight: var(--ds-font-weight-bold);
+  background: var(--ds-btn-3d-active-bg);
+  border-color: var(--ds-color-ink);
+  color: var(--ds-color-ink);
+  font-weight: var(--ds-font-weight-semibold);
+  transform: translateY(1px);
+  box-shadow: var(--ds-btn-3d-active-shadow);
 }
 
 .piano-control-btn:disabled {
-  opacity: 0.45;
+  background: var(--ds-color-paper);
+  border-color: var(--ds-color-line-subtle);
+  box-shadow: var(--ds-btn-3d-disabled-shadow);
+  color: var(--ds-color-ink-muted);
+  opacity: 0.55;
   cursor: not-allowed;
+  transform: none;
 }
 
-.piano-readout {
-  font-size: 1rem;
+.piano-btn-icon {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Popover Como usar em tela inteira (igual ao menu, acima do rodapé) */
+.piano-help-popover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 48px;
+  width: 100%;
+  background-color: var(--ds-color-surface);
+  border: none;
+  border-radius: 0;
+  padding: var(--ds-space-md) var(--ds-space-xl) var(--ds-space-xl);
+  z-index: 10002;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ds-color-ink-muted);
+}
+
+.piano-help-popover[hidden] {
+  display: none;
+}
+
+.piano-help-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  gap: var(--ds-space-sm);
+  padding-bottom: 12px;
+  margin-bottom: var(--ds-space-lg);
+  border-bottom: 1px solid var(--ds-color-line-faint);
+}
+
+.piano-help-popover h2 {
+  margin: 0;
+  font-size: 1.15rem;
   font-weight: var(--ds-font-weight-semibold);
   color: var(--ds-color-ink);
-  text-align: center;
-  min-height: 1.6em;
-  width: 100%;
 }
 
-/* Proporções reais de piano acústico em escala:
-   Tecla preta = 58.3% da largura da branca (3.88% em 15 brancas / 7.28% em 8 brancas)
-   Altura da tecla preta = 63.3% da altura da branca */
+.piano-help-close-btn {
+  position: fixed;
+  top: var(--ds-space-md);
+  right: var(--ds-space-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--ds-color-ink);
+  cursor: pointer;
+  z-index: 10003;
+}
+
+.piano-help-close-btn:hover,
+.piano-help-close-btn:focus-visible {
+  background-color: var(--ds-color-accent-amber);
+  color: var(--ds-color-ink);
+}
+
+.piano-help-close-btn:focus-visible {
+  outline: var(--ds-focus-outline);
+  outline-offset: var(--ds-focus-offset);
+}
+
+.piano-help-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: var(--ds-measure-reading);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-md);
+}
+
+.piano-help-list li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-xs);
+}
+
+.piano-help-list strong {
+  color: var(--ds-color-ink);
+  font-size: 1rem;
+  font-weight: var(--ds-font-weight-semibold);
+}
+
+/* Legenda das notas: centralizada verticalmente entre piano e rodapé */
+.piano-readout {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: var(--ds-font-weight-semibold);
+  color: var(--ds-color-ink);
+  min-height: 2rem;
+}
+
+/* Teclado auto-proporcional em escala real de piano acústico */
 .piano-keyboard {
   display: flex;
   align-items: flex-start;
   width: 100%;
-  height: clamp(280px, 35vw, 420px);
-  max-height: 56vh;
+  height: var(--piano-height, 300px);
   margin: 0;
   position: relative;
   touch-action: none;
@@ -443,7 +588,8 @@ footer,
   flex: 0 0 3.88%;
   height: 63.3%;
   margin: 0 -1.94%;
-  border: none;
+  border: 1px solid var(--ds-color-ink);
+  border-top: none;
   border-radius: 0 0 5px 5px;
   background: var(--ds-piano-black-bg);
   color: var(--ds-color-surface);
@@ -457,9 +603,14 @@ footer,
   background: var(--ds-piano-black-active-bg);
 }
 
+/* Estado fixado: destaque âmbar com borda de 1px preservada nas teclas pretas */
 .piano-key[aria-pressed="true"] {
   background: var(--ds-color-accent-amber);
   color: var(--ds-color-ink);
+}
+
+.piano-key--black[aria-pressed="true"] {
+  border: 1px solid var(--ds-color-ink);
 }
 
 .piano-key:focus-visible {
@@ -491,42 +642,55 @@ footer,
   line-height: 1;
 }
 
-/* Telas estreitas ou Mobile Portrait: aviso visível + 1ª oitava em proporção real de piano */
+/* Escala automática: 1ª Oitava (8 brancas) e 7ª Maior (7 brancas) */
+.piano-keyboard[data-piano-mode="one-octave"] .piano-key[data-tier="two-octaves"] {
+  display: none;
+}
+
+.piano-keyboard[data-piano-mode="one-octave"] .piano-key--black {
+  flex: 0 0 7.28%;
+  height: 63.3%;
+  margin: 0 -3.64%;
+  font-size: 0.68rem;
+}
+
+.piano-keyboard[data-piano-mode="major-seventh"] .piano-key[data-tier="one-octave"],
+.piano-keyboard[data-piano-mode="major-seventh"] .piano-key[data-tier="two-octaves"] {
+  display: none;
+}
+
+.piano-keyboard[data-piano-mode="major-seventh"] .piano-key--black {
+  flex: 0 0 8.32%;
+  height: 63.3%;
+  margin: 0 -4.16%;
+  font-size: 0.65rem;
+}
+
+/* Telas estreitas ou Mobile Portrait: aviso visível + sem atalhos físicos + legenda no bottom */
 @media (max-width: 649px), (max-width: 960px) and (orientation: portrait) {
   .piano-orientation-hint {
-    display: block;
-    padding-right: 0;
-  }
-
-  .piano-keyboard {
-    height: clamp(220px, 72vw, 300px);
-    max-height: 55vh;
-  }
-
-  .piano-key[data-octave="2"] {
-    display: none;
-  }
-
-  .piano-key--black {
-    flex: 0 0 7.28%;
-    height: 63.3%;
-    margin: 0 -3.64%;
-    font-size: 0.62rem;
+    display: flex;
+    padding-right: 56px;
   }
 
   .piano-key-shortcut {
     display: none;
   }
-}
 
-/* Mobile Landscape largo (>= 650px): 2 oitavas completas em escala para multitouch */
-@media (min-width: 650px) and (max-width: 960px) and (orientation: landscape) {
-  .piano-keyboard {
-    height: clamp(160px, 48vh, 220px);
+  .piano-help-popover {
+    padding: var(--ds-space-md) var(--ds-space-sm) var(--ds-space-lg);
   }
 
+  .piano-readout {
+    align-items: flex-end;
+    padding-bottom: 6px;
+  }
+}
+
+/* Mobile Landscape largo (>= 650px): sem atalhos físicos */
+@media (min-width: 650px) and (max-width: 960px) and (orientation: landscape) {
   .piano-key--white {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
   }
 
   .piano-key--black {

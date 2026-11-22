@@ -305,25 +305,26 @@
     clip: rect(0, 0, 0, 0);
   }
 
-  /* Menu aberto no mobile ou focado por teclado: dropdown compacto sem borda */
+  /* Menu aberto no mobile ou focado por teclado: gaveta editorial suíça acima do rodapé */
   body.menu-open .main-navigation,
   .main-navigation:focus-within {
     position: fixed;
-    top: calc(var(--ds-space-md) + 48px + var(--ds-space-xs));
-    right: var(--ds-space-md);
-    width: max-content;
+    top: 0;
+    right: 0;
+    bottom: 48px;
+    width: min(320px, 44vw);
     min-width: 240px;
-    max-width: calc(100vw - var(--ds-space-lg));
+    max-width: 100vw;
     background-color: var(--ds-color-surface);
     border: none;
-    box-shadow: var(--ds-shadow-dropdown);
-    padding: var(--ds-space-sm);
+    box-shadow: var(--ds-shadow-drawer);
+    padding: var(--ds-space-md) 0;
     z-index: 10000;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    border-radius: 6px;
+    border-radius: 0;
   }
 
   body.menu-open .nav-list,
@@ -334,13 +335,22 @@
     gap: var(--ds-space-xs);
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 0 12px;
     width: 100%;
+    box-sizing: border-box;
   }
 
   body.menu-open .nav-list li,
   .main-navigation:focus-within .nav-list li {
     width: 100%;
+  }
+
+  body.menu-open .nav-list > li:first-child,
+  .main-navigation:focus-within .nav-list > li:first-child {
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+    padding-right: 56px;
+    border-bottom: 1px solid var(--ds-color-line-faint);
   }
 
   body.menu-open .nav-link,
@@ -349,7 +359,8 @@
     width: 100%;
     text-align: left;
     font-size: var(--ds-font-size-base);
-    padding: var(--ds-space-sm) var(--ds-space-md);
+    padding: 12px 14px;
+    box-sizing: border-box;
   }
 
   .chapter-layout {
@@ -564,17 +575,95 @@
 }
 
 /* ==========================================================================
+   Fallback Automático de Menu Hambúrguer contra Rolagem Horizontal
+   ========================================================================== */
+body.force-hamburger .site-header {
+  height: 0;
+  min-height: 0;
+  padding: 0;
+  overflow: visible;
+  position: static;
+}
+
+body.force-hamburger .menu-toggle-btn {
+  display: flex !important;
+  position: fixed !important;
+  top: var(--ds-space-md) !important;
+  right: var(--ds-space-md) !important;
+  z-index: 10001 !important;
+}
+
+body.force-hamburger:not(.menu-open) .main-navigation:not(:focus-within) {
+  position: fixed;
+  top: -9999px;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+body.force-hamburger.menu-open .main-navigation {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 48px;
+  width: min(320px, 44vw);
+  min-width: 240px;
+  background-color: var(--ds-color-surface);
+  border: none;
+  box-shadow: var(--ds-shadow-drawer);
+  padding: var(--ds-space-md) 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+body.force-hamburger.menu-open .nav-list {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--ds-space-xs);
+  padding: 0 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+body.force-hamburger.menu-open .nav-list > li:first-child {
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+  padding-right: 56px;
+  border-bottom: 1px solid var(--ds-color-line-faint);
+}
+
+body.force-hamburger.menu-open .nav-link {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  box-sizing: border-box;
+}
+
+body.force-hamburger .piano-layout {
+  padding-top: var(--ds-space-md);
+}
+
+body.force-hamburger .piano-toolbar {
+  min-height: 48px;
+  padding-right: 56px;
+}
+
+/* ==========================================================================
    Layout da Aba Piano Virtual (100% largura da tela — FEAT-010 / ADR-012)
    ========================================================================== */
 .piano-layout {
   width: 100%;
   max-width: 100%;
   margin: 0;
-  padding: var(--ds-space-sm) var(--ds-space-md) var(--ds-space-md);
+  padding: var(--ds-space-sm) var(--ds-space-xl) var(--ds-space-md);
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: var(--ds-space-sm);
+  gap: var(--ds-space-md);
   flex: 1;
   min-height: 0;
   height: 100%;
@@ -584,19 +673,26 @@
 .piano-toolbar {
   width: 100%;
   max-width: 100%;
+  border-top: none;
+  border-bottom: none;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--ds-space-sm);
 }
 
-.piano-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--ds-space-sm);
+.piano-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(136px, 168px));
+  grid-template-areas: "pin clear play help";
+  gap: 10px;
+  align-items: stretch;
 }
+
+.btn-area-pin { grid-area: pin; }
+.btn-area-clear { grid-area: clear; }
+.btn-area-play { grid-area: play; }
+.btn-area-help { grid-area: help; }
 
 .piano-stage {
   flex: 0 0 auto;
@@ -607,47 +703,61 @@
   box-sizing: border-box;
 }
 
-/* Em telas menores (<= 960px), barra de botões alinhada à altura do menu hambúrguer */
+/* Em telas menores (<= 960px), alinhamento com hambúrguer */
 @media (max-width: 960px) {
   .piano-layout {
-    padding: var(--ds-space-md) var(--ds-space-sm);
-    gap: var(--ds-space-sm);
+    padding: var(--ds-space-md) var(--ds-space-md);
+    gap: var(--ds-space-md);
   }
 
   .piano-toolbar {
-    order: 1;
     min-height: 48px;
     align-items: center;
     padding-right: 56px;
   }
-
-  .piano-orientation-hint {
-    order: 2;
-  }
-
-  .piano-stage {
-    order: 3;
-  }
-
-  .piano-readout {
-    order: 4;
-  }
 }
 
-/* Telas estreitas ou Mobile Portrait: espaço inferior para rodapé fixo */
+/* Telas pequenas (iPhone SE / Portrait <= 649px):
+   - Aviso no topo + hambúrguer à direita
+   - Grid 2x2 de botões proporcionais (Fixar/Tocar; Limpar/Como usar)
+   - Gaveta do menu em 100% da largura */
 @media (max-width: 649px), (max-width: 960px) and (orientation: portrait) {
   .piano-layout {
-    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    padding: var(--ds-space-md) var(--ds-space-sm);
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .piano-toolbar {
+    min-height: auto;
+    padding-right: 0;
+  }
+
+  .piano-controls-grid {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "pin play"
+      "clear help";
+    column-gap: 24px;
+    row-gap: 10px;
+  }
+
+  body.menu-open .main-navigation,
+  .main-navigation:focus-within {
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
   }
 }
 
-/* Mobile Landscape largo (>= 650px): 2 oitavas ocupando 100% da largura da tela para multitouch */
+/* Mobile Landscape largo (>= 650px): 4 botões em 1 linha + 2 oitavas */
 @media (min-width: 650px) and (max-width: 960px) and (orientation: landscape) {
   .piano-layout {
-    padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
   }
 
-  .piano-stage {
-    min-height: 185px;
+  .piano-controls-grid {
+    grid-template-columns: repeat(4, minmax(120px, 148px));
+    grid-template-areas: "pin clear play help";
   }
 }

@@ -1,7 +1,7 @@
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { PIANO_KEYS, renderPianoMarkup, renderPianoPage } from '../../src/ui/pianoPage.js';
+import { PIANO_KEYS, computePianoScale, renderPianoMarkup, renderPianoPage } from '../../src/ui/pianoPage.js';
 
 class MockElement {
   constructor(tagName, attributes = {}) {
@@ -109,6 +109,11 @@ function buildMountedPiano(soundEngine) {
       const pinBtn = new MockElement('button', { id: 'piano-pin-toggle', class: 'piano-control-btn', 'aria-pressed': 'false' });
       const playBtn = new MockElement('button', { id: 'piano-play-pinned', class: 'piano-control-btn', disabled: '' });
       const clearBtn = new MockElement('button', { id: 'piano-clear-pinned', class: 'piano-control-btn', disabled: '' });
+      const helpBtn = new MockElement('button', { id: 'piano-help-btn', class: 'piano-control-btn', 'aria-expanded': 'false' });
+      const helpPopover = new MockElement('div', { id: 'piano-help-popover', class: 'piano-help-popover', hidden: '' });
+      helpPopover.hidden = true;
+      const helpCloseBtn = new MockElement('button', { id: 'piano-help-close', class: 'piano-help-close-btn' });
+      helpPopover.appendChild(helpCloseBtn);
       const readout = new MockElement('div', { id: 'piano-readout', class: 'piano-readout' });
       const keyboard = new MockElement('div', { id: 'piano-keyboard', class: 'piano-keyboard' });
 
@@ -118,6 +123,7 @@ function buildMountedPiano(soundEngine) {
           class: cls,
           'data-midi': String(key.midi),
           'data-octave': String(key.octave),
+          'data-tier': key.tier,
           'aria-label': key.phonetic
         }));
       }
@@ -125,6 +131,8 @@ function buildMountedPiano(soundEngine) {
       mount.appendChild(pinBtn);
       mount.appendChild(playBtn);
       mount.appendChild(clearBtn);
+      mount.appendChild(helpBtn);
+      mount.appendChild(helpPopover);
       mount.appendChild(readout);
       mount.appendChild(keyboard);
     }
@@ -143,8 +151,44 @@ describe('FEAT-010: Piano Virtual Interativo, Multitouch e Reconhecimento de Tr√
     assert.match(html, /id="piano-pin-toggle" aria-pressed="false"/);
     assert.match(html, /id="piano-play-pinned" disabled/);
     assert.match(html, /id="piano-clear-pinned" disabled/);
-    assert.match(html, /data-midi="60" data-octave="1"/);
-    assert.match(html, /data-midi="84" data-octave="2"/);
+    assert.match(html, /id="piano-help-btn" aria-expanded="false"/);
+    assert.match(html, /id="piano-help-popover"/);
+    assert.match(html, /data-midi="60" data-octave="1" data-tier="major-seventh"/);
+    assert.match(html, /data-midi="72" data-octave="1" data-tier="one-octave"/);
+    assert.match(html, /data-midi="84" data-octave="2" data-tier="two-octaves"/);
+  });
+
+  test('computePianoScale deve reduzir automaticamente de 2 oitavas para 1a oitava e 7a maior mantendo proporcao real', () => {
+    const desktop = computePianoScale(1100, 460);
+    assert.equal(desktop.mode, 'two-octaves');
+
+    const medium = computePianoScale(560, 420);
+    assert.equal(medium.mode, 'one-octave');
+
+    const iphoneSe = computePianoScale(359, 400);
+    assert.equal(iphoneSe.mode, 'major-seventh');
+  });
+
+  test('deve abrir e fechar o popover Como usar via botao fechar e tecla Escape', () => {
+    const mockSound = { triggerNote: () => {}, playChord: async () => {}, stopAll: () => {}, preload: () => {} };
+    const { mount, win } = buildMountedPiano(mockSound);
+    const helpBtn = mount.querySelector('#piano-help-btn');
+    const helpPopover = mount.querySelector('#piano-help-popover');
+    const helpCloseBtn = mount.querySelector('#piano-help-close');
+
+    assert.equal(helpPopover.hidden, true);
+    helpBtn.dispatchEvent({ type: 'click', stopPropagation: () => {} });
+    assert.equal(helpBtn.getAttribute('aria-expanded'), 'true');
+    assert.equal(helpPopover.hidden, false);
+
+    helpCloseBtn.dispatchEvent({ type: 'click' });
+    assert.equal(helpBtn.getAttribute('aria-expanded'), 'false');
+    assert.equal(helpPopover.hidden, true);
+
+    helpBtn.dispatchEvent({ type: 'click', stopPropagation: () => {} });
+    assert.equal(helpPopover.hidden, false);
+    win.dispatchEvent({ type: 'keydown', key: 'Escape' });
+    assert.equal(helpPopover.hidden, true);
   });
 
   test('deve suportar multitouch simultaneo por pointerId e reconhecer triade (CA-10.3)', () => {
@@ -262,6 +306,7 @@ describe('FEAT-010: Piano Virtual Interativo, Multitouch e Reconhecimento de Tr√
     assert.match(componentsCss, /\.piano-key--white\s*{[^}]*background:\s*var\(--ds-piano-white-bg\)/s);
     assert.match(componentsCss, /\.piano-key--black\s*{[^}]*background:\s*var\(--ds-piano-black-bg\)/s);
     assert.match(componentsCss, /\.piano-key\[aria-pressed="true"\]\s*{[^}]*background:\s*var\(--ds-color-accent-amber\)/s);
+    assert.match(componentsCss, /\.piano-key--black\[aria-pressed="true"\]\s*{[^}]*border:\s*1px solid var\(--ds-color-ink\)/s);
     assert.match(layoutCss, /@media\s*\(\s*max-width:\s*649px\s*\),\s*\(\s*max-width:\s*960px\s*\)\s*and\s*\(\s*orientation:\s*portrait\s*\)/);
     assert.match(layoutCss, /@media\s*\(\s*min-width:\s*650px\s*\)\s*and\s*\(\s*max-width:\s*960px\s*\)\s*and\s*\(\s*orientation:\s*landscape\s*\)/);
   });
