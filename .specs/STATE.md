@@ -90,13 +90,21 @@
 - **Date**: 2026-11-18
 - **Status**: active
 
+### AD-012
+- **Decision**: Aba Piano Virtual (`#/piano`) com disparo polifônico aditivo de `.mp3` reais (`triggerNote`), multitouch via Pointer Events priorizando celular em landscape (2 oitavas) com fallback acessível em portrait (aviso discreto + 1 oitava), toggle único `Fixar notas`, atalhos de teclado físico no desktop e reconhecimento de tríades no domínio puro (`identifyTriadFromMidis`).
+- **Reason**: Restabelecer a experimentação prática de acordes de forma autoexplicativa (zero manual), acessível para leitores de tela e ergonômica em dispositivos móveis deitados.
+- **Trade-off**: Compactação vertical específica em mobile landscape e tratamento de enarmonias no reconhecimento por pitch class.
+- **Scope**: `src/domain/musicTheory.js`, `src/audio/soundEngine.js`, `src/ui/pianoPage.js`, `src/ui/shell.js`, `src/main.js`, `src/styles/` e seus testes.
+- **Date**: 2026-11-22
+- **Status**: active
+
 ## Handoff
 
-- **Feature**: FEAT-009-Otimizacao-de-Runtime-e-Usabilidade
-- **Phase / Task**: Phase 3 (Tasks) - Especificação, design e tarefas reescritos sob a ótica de evolução de produto e escopo
-- **Completed**: FEAT-001 a FEAT-008 (especificações e tarefas revisadas), AD-001 a AD-011 ativos
-- **In-progress**: FEAT-009 (pronta para execução)
-- **Next step**: Criar branch dedicada a partir da main e iniciar execução atômica
+- **Feature**: FEAT-010-Piano-Virtual
+- **Phase / Task**: Phase 1-3 (Specify, Design & Tasks) — Aguardando aprovação da autora para iniciar execução
+- **Completed**: FEAT-001 a FEAT-009, refatoração DDD/SOLID, correção do osciloscópio no primeiro toque, AD-001 a AD-012 ativos
+- **In-progress**: FEAT-010-Piano-Virtual (planejamento ADR + SDD)
+- **Next step**: Aprovação da spec e das tasks de FEAT-010 pela usuária para iniciar implementação atômica (T1 a T6)
 - **Blockers**: none
-- **Uncommitted files**: .specs/
+- **Uncommitted files**: .specs/decisions/ADR-012-*, .specs/STATE.md, .specs/features/FEAT-010-Piano-Virtual/
 - **Branch**: main
