@@ -44,4 +44,10 @@
 
   /* 5. Sombras e Elevação Acessível */
   --ds-shadow-dropdown: 0 8px 24px rgba(17, 17, 17, 0.12);
+
+  /* 6. Superfícies do Piano Virtual (Identidade visual clássica) */
+  --ds-piano-white-bg: linear-gradient(180deg, #FFFFFF 0%, #E6E6E6 100%);
+  --ds-piano-white-active-bg: linear-gradient(180deg, #E6E6E6 0%, #FFFFFF 100%);
+  --ds-piano-black-bg: linear-gradient(180deg, #000000 0%, #141414 100%);
+  --ds-piano-black-active-bg: linear-gradient(180deg, #2F2F2F 0%, #000000 100%);
 }

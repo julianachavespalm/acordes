@@ -8,33 +8,33 @@ import { identifyTriadFromMidis } from '../domain/musicTheory.js';
 
 export const PIANO_KEYS = Object.freeze([
   // 1ª Oitava (MIDI 60 a 72 — visível em portrait, landscape e desktop)
-  Object.freeze({ midi: 60, pitch: 'Dó', phonetic: 'Dó', isSharp: false, octave: 1, shortcut: 'a' }),
-  Object.freeze({ midi: 61, pitch: 'Dó♯', phonetic: 'Dó sustenido', isSharp: true, octave: 1, shortcut: 'w' }),
-  Object.freeze({ midi: 62, pitch: 'Ré', phonetic: 'Ré', isSharp: false, octave: 1, shortcut: 's' }),
-  Object.freeze({ midi: 63, pitch: 'Ré♯', phonetic: 'Ré sustenido', isSharp: true, octave: 1, shortcut: 'e' }),
-  Object.freeze({ midi: 64, pitch: 'Mi', phonetic: 'Mi', isSharp: false, octave: 1, shortcut: 'd' }),
-  Object.freeze({ midi: 65, pitch: 'Fá', phonetic: 'Fá', isSharp: false, octave: 1, shortcut: 'f' }),
-  Object.freeze({ midi: 66, pitch: 'Fá♯', phonetic: 'Fá sustenido', isSharp: true, octave: 1, shortcut: 't' }),
-  Object.freeze({ midi: 67, pitch: 'Sol', phonetic: 'Sol', isSharp: false, octave: 1, shortcut: 'g' }),
-  Object.freeze({ midi: 68, pitch: 'Sol♯', phonetic: 'Sol sustenido', isSharp: true, octave: 1, shortcut: 'y' }),
-  Object.freeze({ midi: 69, pitch: 'Lá', phonetic: 'Lá', isSharp: false, octave: 1, shortcut: 'h' }),
-  Object.freeze({ midi: 70, pitch: 'Lá♯', phonetic: 'Lá sustenido', isSharp: true, octave: 1, shortcut: 'u' }),
-  Object.freeze({ midi: 71, pitch: 'Si', phonetic: 'Si', isSharp: false, octave: 1, shortcut: 'j' }),
-  Object.freeze({ midi: 72, pitch: 'Dó', phonetic: 'Dó agudo', isSharp: false, octave: 1, shortcut: 'k' }),
+  Object.freeze({ midi: 60, pitch: 'Dó', keyLabel: 'Dó', phonetic: 'Dó', isSharp: false, octave: 1, shortcut: 'a' }),
+  Object.freeze({ midi: 61, pitch: 'Dó♯', keyLabel: 'Dó♯ Ré♭', phonetic: 'Dó sustenido ou Ré bemol', isSharp: true, octave: 1, shortcut: 'w' }),
+  Object.freeze({ midi: 62, pitch: 'Ré', keyLabel: 'Ré', phonetic: 'Ré', isSharp: false, octave: 1, shortcut: 's' }),
+  Object.freeze({ midi: 63, pitch: 'Ré♯', keyLabel: 'Ré♯ Mi♭', phonetic: 'Ré sustenido ou Mi bemol', isSharp: true, octave: 1, shortcut: 'e' }),
+  Object.freeze({ midi: 64, pitch: 'Mi', keyLabel: 'Mi', phonetic: 'Mi', isSharp: false, octave: 1, shortcut: 'd' }),
+  Object.freeze({ midi: 65, pitch: 'Fá', keyLabel: 'Fá', phonetic: 'Fá', isSharp: false, octave: 1, shortcut: 'f' }),
+  Object.freeze({ midi: 66, pitch: 'Fá♯', keyLabel: 'Fá♯ Sol♭', phonetic: 'Fá sustenido ou Sol bemol', isSharp: true, octave: 1, shortcut: 't' }),
+  Object.freeze({ midi: 67, pitch: 'Sol', keyLabel: 'Sol', phonetic: 'Sol', isSharp: false, octave: 1, shortcut: 'g' }),
+  Object.freeze({ midi: 68, pitch: 'Sol♯', keyLabel: 'Sol♯ Lá♭', phonetic: 'Sol sustenido ou Lá bemol', isSharp: true, octave: 1, shortcut: 'y' }),
+  Object.freeze({ midi: 69, pitch: 'Lá', keyLabel: 'Lá', phonetic: 'Lá', isSharp: false, octave: 1, shortcut: 'h' }),
+  Object.freeze({ midi: 70, pitch: 'Lá♯', keyLabel: 'Lá♯ Si♭', phonetic: 'Lá sustenido ou Si bemol', isSharp: true, octave: 1, shortcut: 'u' }),
+  Object.freeze({ midi: 71, pitch: 'Si', keyLabel: 'Si', phonetic: 'Si', isSharp: false, octave: 1, shortcut: 'j' }),
+  Object.freeze({ midi: 72, pitch: 'Dó', keyLabel: 'Dó', phonetic: 'Dó agudo', isSharp: false, octave: 1, shortcut: 'k' }),
 
   // 2ª Oitava (MIDI 73 a 84 — expandida em mobile landscape e desktop)
-  Object.freeze({ midi: 73, pitch: 'Dó♯', phonetic: 'Dó sustenido agudo', isSharp: true, octave: 2, shortcut: '' }),
-  Object.freeze({ midi: 74, pitch: 'Ré', phonetic: 'Ré agudo', isSharp: false, octave: 2, shortcut: '' }),
-  Object.freeze({ midi: 75, pitch: 'Ré♯', phonetic: 'Ré sustenido agudo', isSharp: true, octave: 2, shortcut: '' }),
-  Object.freeze({ midi: 76, pitch: 'Mi', phonetic: 'Mi agudo', isSharp: false, octave: 2, shortcut: '' }),
-  Object.freeze({ midi: 77, pitch: 'Fá', phonetic: 'Fá agudo', isSharp: false, octave: 2, shortcut: '' }),
-  Object.freeze({ midi: 78, pitch: 'Fá♯', phonetic: 'Fá sustenido agudo', isSharp: true, octave: 2, shortcut: '' }),
-  Object.freeze({ midi: 79, pitch: 'Sol', phonetic: 'Sol agudo', isSharp: false, octave: 2, shortcut: '' }),
-  Object.freeze({ midi: 80, pitch: 'Sol♯', phonetic: 'Sol sustenido agudo', isSharp: true, octave: 2, shortcut: '' }),
-  Object.freeze({ midi: 81, pitch: 'Lá', phonetic: 'Lá agudo', isSharp: false, octave: 2, shortcut: '' }),
-  Object.freeze({ midi: 82, pitch: 'Lá♯', phonetic: 'Lá sustenido agudo', isSharp: true, octave: 2, shortcut: '' }),
-  Object.freeze({ midi: 83, pitch: 'Si', phonetic: 'Si agudo', isSharp: false, octave: 2, shortcut: '' }),
-  Object.freeze({ midi: 84, pitch: 'Dó', phonetic: 'Dó superagudo', isSharp: false, octave: 2, shortcut: '' })
+  Object.freeze({ midi: 73, pitch: 'Dó♯', keyLabel: 'Dó♯ Ré♭', phonetic: 'Dó sustenido ou Ré bemol agudo', isSharp: true, octave: 2, shortcut: '' }),
+  Object.freeze({ midi: 74, pitch: 'Ré', keyLabel: 'Ré', phonetic: 'Ré agudo', isSharp: false, octave: 2, shortcut: '' }),
+  Object.freeze({ midi: 75, pitch: 'Ré♯', keyLabel: 'Ré♯ Mi♭', phonetic: 'Ré sustenido ou Mi bemol agudo', isSharp: true, octave: 2, shortcut: '' }),
+  Object.freeze({ midi: 76, pitch: 'Mi', keyLabel: 'Mi', phonetic: 'Mi agudo', isSharp: false, octave: 2, shortcut: '' }),
+  Object.freeze({ midi: 77, pitch: 'Fá', keyLabel: 'Fá', phonetic: 'Fá agudo', isSharp: false, octave: 2, shortcut: '' }),
+  Object.freeze({ midi: 78, pitch: 'Fá♯', keyLabel: 'Fá♯ Sol♭', phonetic: 'Fá sustenido ou Sol bemol agudo', isSharp: true, octave: 2, shortcut: '' }),
+  Object.freeze({ midi: 79, pitch: 'Sol', keyLabel: 'Sol', phonetic: 'Sol agudo', isSharp: false, octave: 2, shortcut: '' }),
+  Object.freeze({ midi: 80, pitch: 'Sol♯', keyLabel: 'Sol♯ Lá♭', phonetic: 'Sol sustenido ou Lá bemol agudo', isSharp: true, octave: 2, shortcut: '' }),
+  Object.freeze({ midi: 81, pitch: 'Lá', keyLabel: 'Lá', phonetic: 'Lá agudo', isSharp: false, octave: 2, shortcut: '' }),
+  Object.freeze({ midi: 82, pitch: 'Lá♯', keyLabel: 'Lá♯ Si♭', phonetic: 'Lá sustenido ou Si bemol agudo', isSharp: true, octave: 2, shortcut: '' }),
+  Object.freeze({ midi: 83, pitch: 'Si', keyLabel: 'Si', phonetic: 'Si agudo', isSharp: false, octave: 2, shortcut: '' }),
+  Object.freeze({ midi: 84, pitch: 'Dó', keyLabel: 'Dó', phonetic: 'Dó superagudo', isSharp: false, octave: 2, shortcut: '' })
 ]);
 
 const KEY_BY_MIDI = new Map(PIANO_KEYS.map((k) => [k.midi, k]));
@@ -45,24 +45,18 @@ const MIDI_BY_SHORTCUT = new Map(
 export function renderPianoMarkup() {
   const keysHtml = PIANO_KEYS.map((key) => {
     const typeClass = key.isSharp ? 'piano-key--black' : 'piano-key--white';
-    const shortcutHtml = key.shortcut
-      ? `<span class="piano-key-shortcut" aria-hidden="true">${key.shortcut.toUpperCase()}</span>`
-      : '';
 
     return `
       <button type="button" class="piano-key ${typeClass}" data-midi="${key.midi}" data-octave="${key.octave}" aria-label="${key.phonetic}">
-        <span class="piano-key-label" aria-hidden="true">${key.pitch}</span>
-        ${shortcutHtml}
+        <span class="piano-key-label" aria-hidden="true">${key.keyLabel}</span>
       </button>
     `.trim();
   }).join('\n          ');
 
   return `
     <div class="piano-layout" id="conteudo-principal" tabindex="-1">
-      <header class="piano-header">
-        <h1 class="piano-title" id="titulo-piano" tabindex="-1">Piano Virtual</h1>
-        <p class="piano-orientation-hint" role="note">Para tocar com duas oitavas e multitouch, gire o celular na horizontal.</p>
-      </header>
+      <h1 class="sr-only" id="titulo-piano" tabindex="-1">Piano Virtual</h1>
+      <p class="piano-orientation-hint" role="note">Para tocar com duas oitavas e multitouch, gire o celular na horizontal.</p>
 
       <div class="piano-toolbar" role="region" aria-label="Controles do piano">
         <div class="piano-controls">

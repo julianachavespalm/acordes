@@ -570,22 +570,20 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--ds-space-md) var(--ds-space-xl) var(--ds-space-md);
+  padding: var(--ds-space-md) var(--ds-space-xl);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: var(--ds-space-md);
   flex: 1;
   min-height: 0;
   box-sizing: border-box;
 }
 
-.piano-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ds-space-xs);
-}
-
 .piano-toolbar {
+  width: 100%;
+  max-width: 750px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -601,57 +599,79 @@
 }
 
 .piano-stage {
-  flex: 1;
-  min-height: 220px;
   display: flex;
-  align-items: stretch;
+  justify-content: center;
+  align-items: flex-start;
   width: 100%;
 }
 
-/* Mobile Portrait: aviso discreto e 1 oitava confortável (13 teclas, WCAG 2.1 Orientation) */
+/* Tablet / Landscape médio (proporções clássicas da main) */
+@media screen and (min-width: 650px) and (max-width: 866px) {
+  .piano-key--white {
+    width: 40px;
+    height: 213px;
+    font-size: 1rem;
+  }
+
+  .piano-key--black {
+    width: 23px;
+    height: 125px;
+    margin: 0 -11.5px;
+    font-size: 0.625rem;
+  }
+}
+
+/* Mobile Portrait: aviso discreto e 1 oitava confortável (WCAG 2.1 Orientation) */
 @media (max-width: 960px) and (orientation: portrait) {
   .piano-layout {
     padding: var(--ds-space-md);
     padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    justify-content: flex-start;
   }
 
   .piano-orientation-hint {
     display: block;
+    text-align: center;
   }
 
   .piano-key[data-octave="2"] {
     display: none;
   }
 
-  .piano-key--black {
-    flex: 0 0 8.5%;
-    margin-left: -4.25%;
-    margin-right: -4.25%;
+  .piano-key--white {
+    width: 38px;
+    height: 190px;
+    font-size: 0.85rem;
   }
 
-  .piano-key-shortcut {
-    display: none;
+  .piano-key--black {
+    width: 24px;
+    height: 112px;
+    margin: 0 -12px;
+    font-size: 0.58rem;
   }
 }
 
-/* Mobile Landscape: 2 oitavas completas com compactação vertical para multitouch */
+/* Mobile Landscape: 2 oitavas completas com proporções clássicas compactadas */
 @media (max-width: 960px) and (orientation: landscape) {
   .piano-layout {
-    padding: var(--ds-space-sm) var(--ds-space-md);
-    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    padding: var(--ds-space-xs) var(--ds-space-md);
+    padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
     gap: var(--ds-space-sm);
   }
 
-  .piano-title {
-    font-size: 1.4rem;
+  .piano-key--white {
+    width: 40px;
+    height: 175px;
+    max-height: 52vh;
+    font-size: 0.85rem;
   }
 
-  .piano-keyboard {
-    min-height: 165px;
-    max-height: 220px;
-  }
-
-  .piano-key-shortcut {
-    display: none;
+  .piano-key--black {
+    width: 23px;
+    height: 104px;
+    max-height: 31vh;
+    margin: 0 -11.5px;
+    font-size: 0.58rem;
   }
 }

@@ -252,13 +252,14 @@ describe('FEAT-010: Piano Virtual Interativo, Multitouch e Reconhecimento de Tr�
     assert.deepEqual(triggered, [60, 64], 'Após teardown, teclado físico não deve mais disparar áudio');
   });
 
-  test('deve estilizar piano com tokens suicos, touch-action e adaptacao de orientacao (CA-10.6)', () => {
+  test('deve estilizar piano com design classico, tokens, touch-action e adaptacao de orientacao (CA-10.6)', () => {
     const componentsCss = fs.readFileSync('src/styles/components.css', 'utf8');
     const layoutCss = fs.readFileSync('src/styles/layout.css', 'utf8');
 
     assert.match(componentsCss, /\.piano-keyboard\s*{[^}]*touch-action:\s*none/s);
-    assert.match(componentsCss, /\.piano-key\s*{[^}]*border-radius:\s*0/s);
-    assert.match(componentsCss, /\.piano-key\.is-active\s*{[^}]*background-color:\s*var\(--ds-color-accent-amber\)/s);
+    assert.match(componentsCss, /\.piano-key--white\s*{[^}]*background:\s*var\(--ds-piano-white-bg\)/s);
+    assert.match(componentsCss, /\.piano-key--black\s*{[^}]*background:\s*var\(--ds-piano-black-bg\)/s);
+    assert.match(componentsCss, /\.piano-key\[aria-pressed="true"\]\s*{[^}]*background:\s*var\(--ds-color-accent-amber\)/s);
     assert.match(layoutCss, /@media\s*\(\s*max-width:\s*960px\s*\)\s*and\s*\(\s*orientation:\s*portrait\s*\)/);
     assert.match(layoutCss, /@media\s*\(\s*max-width:\s*960px\s*\)\s*and\s*\(\s*orientation:\s*landscape\s*\)/);
   });
