@@ -8,7 +8,7 @@ Implementar e validar a Arquitetura SPA Consolidada com Roteamento por Hash, Eli
 
 **Design**: [`.specs/features/FEAT-007-Arquitetura-SPA-e-Refatoracao/design.md`](design.md)  
 **Status**: **Approved**: 2026-11-16 - user: "perfeito, quero refatorar o código para implementar essa nova arquitetura. Importante, as alterações que fizemos está na raiz do projeto, não em pastas. então, cuidado."  
-**Spec Owner**: Juliana Chaves Palm (Software Engineer & Solution Designer)  
+**Spec Owner**: Juliana Chaves Palm  
 **Build**: `node scripts/validate-sdd.mjs`  
 **Run unit**: `node --test tests/ui/main.test.js`  
 

@@ -2,7 +2,7 @@
 
 - **Status:** Aceito
 - **Data:** 2026-11-15
-- **Decisora:** Juliana Chaves Palm (Software Engineer & Solution Designer)
+- **Decisora:** Juliana Chaves Palm
 
 ## Contexto
 O projeto `acordes` é uma aplicação web educacional estática e acessível cujo propósito é o ensino de tríades musicais para pessoas com deficiência visual. Frameworks pesados de Single Page Application (como React, Angular ou Vue) ou um backend dedicado introduziriam sobrecarga de build, consumo desnecessário de recursos de rede e complexidade operacional dispensável para uma aplicação puramente de cliente hospedável via GitHub Pages.

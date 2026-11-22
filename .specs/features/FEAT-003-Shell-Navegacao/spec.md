@@ -5,7 +5,7 @@
 | Atributo | Definição |
 | :--- | :--- |
 | **Status** | Approved · Implemented |
-| **Spec Owner** | Juliana Chaves Palm (Software Engineer & Solution Designer) |
+| **Spec Owner** | Juliana Chaves Palm |
 | **Prioridade** | P1 · Estrutura e Navegação Editorial |
 | **Decisões Arquiteturais** | [ADR-001: Arquitetura Modular Enxuta](../../decisions/ADR-001-lean-modular-architecture.md), [ADR-002: CSS 4 Camadas](../../decisions/ADR-002-css-layers.md), [ADR-004: Acessibilidade Universal ABNT](../../decisions/ADR-004-universal-accessibility-wai-aria.md), [ADR-008: Design System Editorial Suíço](../../decisions/ADR-008-design-system-tokens-editorial-swiss.md) |
 | **Aprovação** | 2026-11-15 |
@@ -45,10 +45,10 @@ A navegação e a moldura global da aplicação seguem o Estilo Tipográfico Su�
   1. `"Ir para o conteúdo principal"` direcionando o foco para o container principal.
   2. `"Ir para o menu"` direcionando o foco para `#menu-principal`.
   - Ambos invisíveis na interface visual regular e destacados de forma acessível sob foco do teclado.
-- **RN-02 (Barra de Navegação Centralizada com 5 Seções):** The system SHALL renderizar no `<header>` uma navegação `<nav id="menu-principal" aria-label="Navegação principal">` contendo exatamente os 5 links normativos sem quebras de linha (`white-space: nowrap`).
+- **RN-02 (Barra de Navegação com 6 Seções e Fallback Automático):** The system SHALL renderizar no `<header>` uma navegação `<nav id="menu-principal" aria-label="Navegação principal">` contendo os 6 links normativos (`Home`, `Acordes Maiores`, `Acordes Menores`, `Acordes Diminutos`, `Acordes Aumentados`, `Piano Virtual`) sem quebras de linha (`white-space: nowrap`), ativando automaticamente o fallback de menu hambúrguer (`body.force-hamburger`) caso a barra horizontal exceda a largura disponível.
 - **RN-03 (Indicador de Página Ativa Suíço):** The system SHALL marcar o link da página ativa exclusivamente com o atributo `aria-current="page"`.
-- **RN-04 (Menu Responsivo em Telas Estreitas):** Em telas com largura menor ou igual a 960px, the system SHALL disponibilizar o botão hambúrguer flutuante (`#menu-toggle`), alternando os atributos `aria-expanded` entre `"true"` e `"false"` e fechando automaticamente ao acionar qualquer link, a tecla `Escape` ou clique externo.
-- **RN-05 (Estilo de Foco de Alto Contraste):** Em todos os links e botões focáveis, the system SHALL aplicar contorno visual evidente sob `:focus-visible` em conformidade com as diretrizes de acessibilidade.
+- **RN-04 (Cabeçalho Fixo, Gaveta Responsiva e *Hairlines* Recuadas):** Em telas `<= 960px` (ou sob `body.force-hamburger`), the system SHALL exibir faixa superior fixa de `72px` (`48px` em celular horizontal `>= 650px`) com título e subtítulo de fórmula alinhados à esquerda, botão hambúrguer (`#menu-toggle`) à direita alternando `aria-expanded`, e *hairline* recuada (`.site-header::after`) alinhada às margens do grid em todas as telas e abas. A gaveta aberta ocupa `100dvh` em celulares (`< 768px`) e ajusta largura e altura ao conteúdo (`width: max-content; height: auto`) a partir de tablet (`>= 768px`), fechando ao selecionar um link, pressionar `Escape` ou clicar fora.
+- **RN-05 (Estilo de Foco e Colofão Autoral Acessível):** Em todos os links e botões focáveis, the system SHALL aplicar contorno visual evidente sob `:focus-visible`. O rodapé exibe o osciloscópio acústico de `1px` recuado às mesmas margens do grid e o crédito autoral `Por Juliana Chaves Palm` alinhado à direita, sem sublinhado visual (`border-bottom: none`) e com `aria-label="Juliana Chaves Palm, abrir GitHub em nova aba"` para leitores de tela.
 
 ---
 

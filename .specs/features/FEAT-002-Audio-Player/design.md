@@ -2,7 +2,7 @@
 
 **Spec**: [`.specs/features/FEAT-002-Audio-Player/spec.md`](spec.md)  
 **Status**: Approved  
-**Decisora**: Juliana Chaves Palm (Software Engineer & Solution Designer)
+**Decisora**: Juliana Chaves Palm
 
 ---
 

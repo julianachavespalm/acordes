@@ -8,7 +8,7 @@ Implementar e validar as tarefas da Home Editorial segundo o fluxo de Spec-Drive
 
 **Design**: [`.specs/features/FEAT-005-Home-Editorial/design.md`](design.md)  
 **Status**: Implemented · Verified  
-**Spec Owner**: Juliana Chaves Palm (Software Engineer & Solution Designer)  
+**Spec Owner**: Juliana Chaves Palm  
 **Build**: `node scripts/validate-sdd.mjs`  
 **Run unit**: `node --test tests/ui/home.test.js`  
 

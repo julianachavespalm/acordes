@@ -59,11 +59,11 @@
 - **Status**: active
 
 ### AD-008
-- **Decision**: Design System Editorial Suíço formalizado em tokens CSS nativos (`tokens.css`), governando cores de alto contraste (tinta #111111 sobre papel #FAFAFA, destaque âmbar #FFB800), tipografia neutra ('Inter'/'Plus Jakarta Sans', base 18px, entrelinha 1.6), grid de capítulo assimétrico (180px 1fr) e medida de leitura de 65ch, com auditoria matemática de contraste WCAG 2.1 AAA.
-- **Reason**: Estabelece fonte única da verdade (Single Source of Truth) para o design visual e garante conformidade de acessibilidade comprovada por cálculo de luminância em suíte de testes automatizados.
+- **Decision**: Design System Editorial Suíço formalizado em tokens CSS nativos (`src/styles/tokens.css`), governando cores WCAG 2.1 AAA (tinta `#111111` sobre papel `#FAFAFA`, destaque âmbar `#FFB703`), hierarquia de filetes ABNT (`1.5px` cabeçalho, `1px` nota de rodapé e osciloscópio, `1px` sutil em topbar/linhas internas), filetes recuados às margens do grid (`--ds-space-xl` desktop / `--ds-space-md` mobile), colofão autoral alinhado à direita sem sublinhado visual e tokens do console preto do Piano Virtual (`--ds-console-*`).
+- **Reason**: Estabelece fonte única da verdade (Single Source of Truth) para o design visual editorial suíço e garante conformidade de acessibilidade comprovada por cálculo de luminância e validação estática de tokens.
 - **Trade-off**: Exige uso estrito das variáveis `--ds-*` em todas as camadas CSS.
-- **Scope**: Todas as folhas de estilo em `src/css/` e testes visuais em `tests/ui/designSystem.test.js`.
-- **Date**: 2026-11-15
+- **Scope**: Todas as folhas de estilo em `src/styles/` e testes visuais em `tests/ui/designSystem.test.js`.
+- **Date**: 2026-11-22
 - **Status**: active
 
 ### AD-009
@@ -91,9 +91,9 @@
 - **Status**: active
 
 ### AD-012
-- **Decision**: Aba Piano Virtual (`#/piano`) com disparo polifônico aditivo de `.mp3` reais (`triggerNote`), multitouch via Pointer Events priorizando celular em landscape (2 oitavas) com fallback acessível em portrait (aviso discreto + 1 oitava), toggle único `Fixar notas`, atalhos de teclado físico no desktop e reconhecimento de tríades no domínio puro (`identifyTriadFromMidis`).
-- **Reason**: Restabelecer a experimentação prática de acordes de forma autoexplicativa (zero manual), acessível para leitores de tela e ergonômica em dispositivos móveis deitados.
-- **Trade-off**: Compactação vertical específica em mobile landscape e tratamento de enarmonias no reconhecimento por pitch class.
+- **Decision**: Aba Piano Virtual (`#/piano`) em console preto integrado com moldura fina arredondada e 4 controles táteis escuros, disparo polifônico aditivo de `.mp3` reais (`triggerNote`), escala auto-proporcional em 3 níveis (`computePianoScale`), multitouch via Pointer Events, aviso de orientação restrito a `<= 649px`, popover `Como usar` em 2 colunas (desktop/tablet horizontal) com atalhos em 1 coluna, reconhecimento de tríades no domínio puro (`identifyTriadFromMidis`) e indicador dinâmico unificado no rodapé (`#footer-cifra`).
+- **Reason**: Oferecer experimentação prática de acordes em um instrumento coeso, ergonômico em qualquer proporção de tela e plenamente acessível para leitores de tela e teclado físico.
+- **Trade-off**: Recálculo dinâmico de escala em redimensionamento e tratamento de enarmonias no reconhecimento por pitch class.
 - **Scope**: `src/domain/musicTheory.js`, `src/audio/soundEngine.js`, `src/ui/pianoPage.js`, `src/ui/shell.js`, `src/main.js`, `src/styles/` e seus testes.
 - **Date**: 2026-11-22
 - **Status**: active

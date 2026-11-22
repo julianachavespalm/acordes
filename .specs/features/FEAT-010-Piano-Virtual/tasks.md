@@ -9,7 +9,7 @@ Implementar e validar a aba **Piano Virtual (`#/piano`)** em tarefas atômicas s
 **Design**: [`.specs/features/FEAT-010-Piano-Virtual/design.md`](design.md)  
 **Status**: Completed · Verified  
 **Approved**: 2026-11-22 - user: "aprovado."  
-**Spec Owner**: Juliana Chaves Palm (Software Engineer & Solution Designer)  
+**Spec Owner**: Juliana Chaves Palm  
 **Build**: `node scripts/gate.mjs`  
 **Run unit**: `node --test tests/core/musicTheory.test.js tests/audio/soundEngine.test.js tests/ui/pianoPage.test.js tests/ui/shell.test.js tests/ui/main.test.js`  
 

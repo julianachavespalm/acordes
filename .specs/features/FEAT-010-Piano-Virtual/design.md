@@ -36,12 +36,13 @@ Todo estado do piano reside encapsulado dentro da closure de `renderPianoPage(so
 - `pinnedNotes = new Set()` (`midi`): gerencia as notas marcadas quando `Fixar notas` está ligado.
 - `isPinMode = false`: alternado exclusivamente pelo botão `Fixar notas`.
 
-## 4. Layout Editorial Suíço e Responsividade
+## 4. Layout Editorial Suíço, Console Preto e Responsividade
 
-- **Desktop (> 960px):** 2 oitavas completas centralizadas na largura do contêiner editorial (até `1200px`), barra superior minimalista com `[ Fixar notas ] [ Tocar juntas ] [ Limpar ]` à esquerda e visor de notas/tríade reconhecida à direita.
-- **Mobile Landscape (`@media (max-width: 960px) and (orientation: landscape)`):** 2 oitavas completas, espaçamentos verticais compactados para o teclado aproveitar toda a altura disponível acima do rodapé com osciloscópio.
-- **Mobile Portrait (`@media (max-width: 960px) and (orientation: portrait)`):** exibe aviso discreto (*"Para tocar com duas oitavas e multitouch, gire o celular na horizontal"*) e oculta visualmente apenas as teclas da 2ª oitava (`data-octave="2"`), mantendo 1 oitava confortável (13 teclas largas) totalmente funcional.
-- **Estética:** `border-radius: 0` em todas as teclas e botões, bordas finas em `var(--ds-color-line)`, teclas ativas/fixadas em `var(--ds-color-accent-amber)` com texto `var(--ds-color-ink)`.
+- **Console Unificado (`.piano-console`):** envolve `.piano-toolbar` (4 botões táteis escuros com ícones homologados: `Fixar notas`, `Limpar`, `Tocar juntas`, `Como usar`) e `.piano-stage` (`.piano-keyboard` centralizado horizontalmente sem vãos entre teclas) em um chassi preto de moldura fina (`border-radius: 14px`, `10px` em celular horizontal), sombra calibrada (`--ds-console-shadow`) e destaque âmbar (`--ds-color-accent-amber`) no estado ativo.
+- **Distribuição Vertical:** `.piano-layout` usa `justify-content: center; gap: clamp(16px, 3vh, 32px);`, centralizando o console como peça única equilibrada entre a *hairline* da topbar e a linha do osciloscópio no rodapé em desktop, tablet e celular.
+- **Escala Auto-Proporcional (`computePianoScale`):** calcula dinamicamente o modo (`two-octaves` -> `one-octave` -> `major-seventh`) e a altura exata das teclas a partir da altura útil de `.piano-layout`, descontando aviso de orientação (apenas `<= 649px`), barra de controles e moldura do console, garantindo zero rolagem vertical em qualquer proporção.
+- **Popover `Como usar` (`.piano-help-popover`):** cabeçalho com *hairline* recuada alinhada ao grid (`--ds-space-xl` no desktop, `--ds-space-md` no tablet/mobile); corpo em grid editorial suíço de 2 colunas no desktop e tablet horizontal (instruções à esquerda com `<em>` nos nomes dos botões; tabela `Atalhos no teclado` em 1 coluna à direita com cabeçalho `1.5px` ABNT) e coluna única `100%` de largura em telas verticais.
+- **Indicador Dinâmico no Rodapé (`#footer-cifra`):** exibe notas tocadas ou tríade reconhecida à esquerda da linha acústica de `1px` do osciloscópio, retornando à linha limpa quando nenhuma nota está ativa.
 
 ## 5. Acessibilidade (WCAG 2.1 AAA)
 

@@ -5,7 +5,7 @@
 | Atributo | Definição |
 | :--- | :--- |
 | **Status** | Approved · Ready for Implementation |
-| **Spec Owner** | Juliana Chaves Palm (Software Engineer & Solution Designer) |
+| **Spec Owner** | Juliana Chaves Palm |
 | **Prioridade** | P1 · Refinamento de Runtime e Expansão de Usabilidade |
 | **Decisões Arquiteturais** | [ADR-001: Arquitetura Modular Enxuta](../../decisions/ADR-001-lean-modular-architecture.md), [ADR-002: CSS 4 Camadas](../../decisions/ADR-002-css-layers.md), [ADR-008: Design System Editorial Suíço](../../decisions/ADR-008-design-system-tokens-editorial-swiss.md), [ADR-010: Política de Seleção e Cópia Aberta](../../decisions/ADR-010-open-text-selection-policy.md), [ADR-011: Audio Pool e Ciclo de Vida de Rotas](../../decisions/ADR-011-audio-pool-and-route-teardown.md) |
 | **Aprovação** | 2026-11-18 |

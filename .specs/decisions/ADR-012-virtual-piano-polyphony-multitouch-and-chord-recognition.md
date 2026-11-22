@@ -16,18 +16,20 @@ Com a arquitetura DDD/SOLID consolidada, o Piano Virtual retorna como uma nova a
    - O `soundEngine` em `src/audio/soundEngine.js` mantém `playNote` e `playChord` com corte prévio (`stopAll`) para os capítulos de tríades e ganha `triggerNote(midi)` para disparo polifônico aditivo sem interromper outras notas já pressionadas.
    - Toda emissão sonora utiliza exclusivamente as 26 amostras gravadas em `public/tunes/28.mp3` a `53.mp3`, alimentando também o osciloscópio acústico de 1px no rodapé.
 
-2. **Multitouch Nativo via Pointer Events e Responsividade WCAG 2.1 (Orientation):**
+2. **Multitouch Nativo via Pointer Events, Escala Auto-Proporcional e Responsividade WCAG 2.1 (Orientation):**
    - As teclas do piano escutam `pointerdown`, `pointerup`, `pointercancel` e `pointerleave` rastreados por `event.pointerId`, com `touch-action: none` exclusivamente no contêiner do teclado para permitir 3 ou mais dedos simultâneos sem rolagem ou zoom acidental.
-   - No celular deitado (*landscape*), o teclado exibe as 2 oitavas completas (25 teclas, MIDI 60 a 84, cobrindo toda a extensão das amostras).
-   - No celular em pé (*portrait*), o sistema exibe um aviso discreto sugerindo girar o aparelho na horizontal e mantém 1 oitava confortável utilizável (13 teclas, MIDI 60 a 72), cumprindo o critério WCAG 2.1 1.3.4 (*Orientation*) sem travar a tela.
+   - A função pura `computePianoScale(containerWidth, availableHeight)` seleciona automaticamente a extensão proporcional em 3 níveis (`two-octaves` com 15 teclas brancas -> `one-octave` com 8 brancas -> `major-seventh` com 7 brancas), mantendo proporção real de teclas encostadas (zero vão entre teclas) e altura calibrada sem rolagem vertical.
+   - Em telas estreitas (`<= 649px`, onde não cabem 2 oitavas), o sistema exibe o aviso discreto sugerindo girar o aparelho na horizontal e mantém 1 oitava ou 7ª maior confortável utilizável, cumprindo o critério WCAG 2.1 1.3.4 (*Orientation*) sem travar a tela.
 
-3. **Interação Autoexplicativa (Zero Manual) e Modo Acessível `Fixar notas`:**
-   - Por padrão, o piano opera em modo livre (toque/clique/teclado físico dispara o som imediatamente).
-   - Um único controle booleano (`Fixar notas` com `aria-pressed`) permite marcar e desmarcar teclas em âmbar (`#FFB800`) para estudantes usando mouse, teclado ou leitor de tela, acompanhado apenas pelos botões `Tocar juntas` e `Limpar`.
+3. **Console Preto Integrado, Modo Acessível `Fixar notas` e Popover `Como usar`:**
+   - Os 4 controles com ícones homologados (`Fixar notas`, `Limpar`, `Tocar juntas`, `Como usar`) e o teclado formam um único console preto (`<section class="piano-console">`) com moldura fina, cantos arredondados (`14px` / `10px`), sombras realistas governadas por tokens `--ds-console-*` e centralização vertical no espaço útil entre topbar e rodapé.
+   - Os controles escuros táteis exibem destaque âmbar (`--ds-color-accent-amber`) com texto `--ds-color-ink` no estado ativo (`aria-pressed="true"` / `aria-expanded="true"`).
+   - O popover `Como usar` em tela cheia adota grid editorial suíço de 2 colunas no desktop e tablet horizontal (instruções à esquerda com nomes dos botões em itálico `<em>` e tabela de atalhos em 1 coluna à direita) e coluna única de largura total (`100%`) em telas verticais.
    - No desktop, o teclado físico é mapeado para notas simultâneas (`keydown`/`keyup` ignorando `event.repeat` e teclas modificadoras), coexistindo com a navegação padrão por `Tab`/`Enter`/`Espaço`.
 
-4. **Reconhecimento de Tríades no Domínio Puro (`src/domain/`):**
+4. **Reconhecimento de Tríades no Domínio Puro (`src/domain/`) e Indicador Unificado no Rodapé:**
    - A função pura `identifyTriadFromMidis(midiNotes)` em `src/domain/musicTheory.js` compara um conjunto de notas MIDI pressionadas ou fixadas com o catálogo normativo `TRIAD_DEFINITIONS` (considerando classes de altura *pitch classes* módulo 12), retornando as tríades correspondentes sem duplicar regras musicais na UI.
+   - O resultado de notas tocadas ou tríade reconhecida é exibido no indicador dinâmico `#footer-cifra` à esquerda da linha do osciloscópio acústico de 1px no rodapé, com anúncio acessível via região `.sr-only` `aria-live="polite"`.
 
 ## Consequências
 

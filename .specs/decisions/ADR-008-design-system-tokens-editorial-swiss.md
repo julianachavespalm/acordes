@@ -12,28 +12,32 @@ Para garantir consistência e conformidade estrita com o nível **WCAG 2.1 AAA**
 
 ## Decisão
 
-Centralizar todas as variáveis visuais em `src/css/tokens.css`, utilizando CSS Custom Properties nativas com o prefixo `--ds-*`:
+Centralizar todas as variáveis visuais em `src/styles/tokens.css`, utilizando CSS Custom Properties nativas com o prefixo `--ds-*`:
 
-### 1. Cores e Contraste (WCAG AAA)
+### 1. Cores, Hierarquia de Filetes e Contraste (WCAG AAA)
 * `--ds-color-paper: #FAFAFA` — Fundo principal tipo papel (evita o ofuscamento do branco puro).
-* `--ds-color-surface: #FFFFFF` — Fundo para cartões e áreas destacadas.
+* `--ds-color-surface: #FFFFFF` — Fundo para superfícies elevadas e teclas brancas.
 * `--ds-color-ink: #111111` — Tinta preta para texto. Contraste de **15.2:1** sobre `#FAFAFA` e **21.0:1** sobre `#FFFFFF` (mínimo AAA exigido: 7:1).
-* `--ds-color-ink-muted: #444444` — Texto secundário. Contraste de **8.8:1** (cumpre AAA).
-* `--ds-color-accent-amber: #FFB800` — Destaque para `:hover`, `:focus-visible` e `.playing`. Contraste de **9.5:1** contra o texto `#111111`.
-* `--ds-color-line: #111111` — Linhas horizontais do padrão ABNT (espessura fixa de `1.5px`).
+* `--ds-color-ink-muted: #525252` — Texto secundário e colofão autoral. Contraste compatível com WCAG AAA/AA.
+* `--ds-color-accent-amber: #FFB703` — Destaque para `:hover`, `:focus-visible`, `.playing` e controles ativos. Contraste superior a 9:1 contra `#111111`.
+* `--ds-color-line: #111111` — Filetes estruturais ABNT (`1.5px` no topo e base do cabeçalho das tabelas; `1px` no filete superior de notas de rodapé e no osciloscópio acústico do rodapé).
+* `--ds-color-line-faint: rgba(17, 17, 17, 0.08)` — Guias ópticas sutis de `1px` na topbar, no cabeçalho de popovers e entre linhas internas das tabelas (sem borda na última linha).
+* `--ds-console-*` e `--ds-piano-*-shadow` — Tokens semânticos do chassi preto do console do Piano Virtual (fundo, divisória, botões táteis escuros, estado desabilitado e sombras calibradas sem vazamento sobre o rodapé).
 
-### 2. Tipografia
+### 2. Tipografia e Distribuição Editorial
 * `--ds-font-primary: 'Inter', 'Plus Jakarta Sans', sans-serif` — Família sem serifa limpa e geométrica.
-* `--ds-font-size-base: 18px` — Tamanho base maior que o padrão para facilitar a leitura.
-* `--ds-line-height-base: 1.6` — Entrelinha confortável para evitar fadiga visual.
+* `--ds-font-size-base: 16px` / escala modular Minor Third (`--ds-font-size-*`) com entrelinha `--ds-line-height-base: 1.6`.
 * `--ds-font-size-h1: clamp(2.5rem, 5vw, 4.2rem)` — Títulos fluidos adaptados ao tamanho da tela.
 * `--ds-letter-spacing-spaced: 0.25em` — Espaçamento para subtítulos em caixa alta.
 * **Pesos:** regular (`400`), medium (`500`), semibold (`600`) e bold (`700`).
+* **Alinhamento vertical por natureza do conteúdo:** páginas de leitura e tabelas ancoradas ao topo; artefato funcional único (console do Piano Virtual) centralizado verticalmente no campo útil entre topbar e rodapé.
+* **Colofão autoral:** assinatura discreta (`0.78rem`) ancorada à margem direita do grid (`Por Juliana Chaves Palm`), sem sublinhado visual (`border-bottom: none`) e com `aria-label` explícito para leitores de tela.
 
-### 3. Espaçamento e Grid
-* **Escala base 8px:** `--ds-space-xs: 4px`, `--ds-space-sm: 8px`, `--ds-space-md: 16px`, `--ds-space-lg: 24px`, `--ds-space-xl: 48px`.
+### 3. Espaçamento, Margens Recuadas e Grid
+* **Escala base 8px:** `--ds-space-xs: 4px`, `--ds-space-sm: 8px`, `--ds-space-md: 16px`, `--ds-space-lg: 32px`, `--ds-space-xl: 48px`.
+* **Filetes recuados ao grid:** a *hairline* da topbar (`.site-header::after`), dos popovers (`.piano-help-popover-header::after`) e a linha do osciloscópio no rodapé (`.footer-separator-row`) respeitam exatamente as margens laterais da página (`--ds-space-xl` no desktop `>= 961px` e `--ds-space-md` no tablet/celular `<= 960px`).
 * `--ds-measure-reading: 65ch` — Largura máxima de linha (entre 60 e 75 caracteres) para leitura ergonômica.
-* `--ds-grid-sidebar-width: 180px` — Largura da coluna esquerda de título e fórmula do capítulo.
+* `--ds-grid-sidebar-width: 180px` — Largura base da coluna esquerda de título e fórmula do capítulo.
 
 ### 4. Foco e Feedback Interativo
 * `--ds-focus-outline: 3px solid #111111` e `--ds-focus-offset: 2px` — Anel de foco nítido e visível.

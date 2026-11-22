@@ -2,7 +2,7 @@
 
 - **Status:** Aceito
 - **Data:** 2026-11-17
-- **Decisora:** Juliana Chaves Palm (Software Engineer & Solution Designer)
+- **Decisora:** Juliana Chaves Palm
 
 ## Contexto
 

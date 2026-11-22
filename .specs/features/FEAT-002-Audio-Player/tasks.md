@@ -8,7 +8,7 @@ Implementar e validar as tarefas do Audio Player de Piano Acústico segundo o fl
 
 **Design**: [`.specs/features/FEAT-002-Audio-Player/design.md`](design.md)  
 **Status**: Implemented · Verified  
-**Spec Owner**: Juliana Chaves Palm (Software Engineer & Solution Designer)  
+**Spec Owner**: Juliana Chaves Palm  
 **Build**: `node scripts/validate-sdd.mjs`  
 **Run unit**: `node --test tests/audio/soundEngine.test.js`  
 

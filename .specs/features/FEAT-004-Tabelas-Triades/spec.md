@@ -5,7 +5,7 @@
 | Atributo | Definição |
 | :--- | :--- |
 | **Status** | Approved · Implemented |
-| **Spec Owner** | Juliana Chaves Palm (Software Engineer & Solution Designer) |
+| **Spec Owner** | Juliana Chaves Palm |
 | **Prioridade** | P1 · Interação Didática Central |
 | **Decisões Arquiteturais** | [ADR-001: Arquitetura Modular Enxuta](../../decisions/ADR-001-lean-modular-architecture.md), [ADR-002: CSS 4 Camadas e Padrão ABNT](../../decisions/ADR-002-css-layers.md), [ADR-003: Orquestração Acústica](../../decisions/ADR-003-local-audio-orchestration.md), [ADR-004: Acessibilidade Universal ABNT](../../decisions/ADR-004-universal-accessibility-wai-aria.md) |
 | **Aprovação** | 2026-11-15 |
@@ -45,8 +45,8 @@ Pessoas cegas e com baixa visão que utilizam leitores de tela (NVDA, JAWS, Voic
 ## 4. Especificação Funcional e Regras de Negócio (Normativo)
 
 - **RN-01 (Semântica de Falsa Tabela):** The system SHALL construir a visualização tabular utilizando exclusivamente lista semântica `<ul class="acordes-lista" role="list">` com cabeçalho `aria-hidden="true"` e zero tags `<table>`, `<tr>`, `<th>` ou `<td>`.
-- **RN-02 (Linhas Normativas ABNT):** The system SHALL aplicar bordas horizontais exclusivamente no topo da tabela, abaixo do cabeçalho e no fechamento da lista, sem bordas verticais.
-- **RN-03 (Grid de Capítulo Assimétrico):** The system SHALL estruturar os capítulos em grid assimétrico com identificação vertical da tríade e área central de leitura e tabela.
+- **RN-02 (Hierarquia de Filetes ABNT e Ritmo Uniforme):** The system SHALL aplicar filetes horizontais sem bordas verticais segundo hierarquia ABNT/Editorial Suíço: `1.5px solid var(--ds-color-line)` no topo e na base do cabeçalho da tabela, `1px solid var(--ds-color-line-faint)` entre linhas internas de acordes em todas as telas, última linha aberta (`border-bottom: none`) e `1px solid var(--ds-color-line)` no topo de `.editorial-footnotes` quando houver nota de rodapé. Cabeçalho e linhas compartilham altura mínima uniforme (`48px` no desktop e `68px` em telas `<= 640px`), com coluna `Notas` alinhada à esquerda (*flush-left*) em todas as telas.
+- **RN-03 (Grid de Capítulo Assimétrico e Quebra Responsiva `<= 640px`):** The system SHALL estruturar os capítulos em grid assimétrico no desktop com identificação vertical da tríade e área de leitura e tabela ancorada ao topo. Em telas estreitas (`<= 640px`), a tabela exibe visualmente 2 colunas (`minmax(0, 130px) minmax(0, 1fr)`, `column-gap: 12px`, `0.92rem`, `text-wrap: balance` nos acordes, alvo tátil vertical `36px` e `.note-unit` agrupando cada nota ao separador `·`), preservando a coluna `Cifra` acessível via `.sr-only` e exibindo `Cifra: <símbolo>` no indicador dinâmico do rodapé (`#footer-cifra`) ao acionar um acorde ou nota.
 - **RN-04 (Gatilhos Inline de Áudio):** O nome do acorde DEVE disparar a tríade polifônica e cada nota individual DEVE disparar o som acústico isolado.
 - **RN-05 (Camada Fonética `.sr-only`):** Símbolos de cifra e notas DEVEM possuir leitura fonética descritiva associada via `<span class="sr-only">`.
 - **RN-06 (Silêncio Auditivo):** The system SHALL NÃO emitir anúncios vocais em `aria-live` concorrentes com o som da nota ou acorde.

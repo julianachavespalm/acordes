@@ -5,7 +5,7 @@
 | Atributo | Definição |
 | :--- | :--- |
 | **Status** | Approved · Ready for Implementation |
-| **Spec Owner** | Juliana Chaves Palm (Software Engineer & Solution Designer) |
+| **Spec Owner** | Juliana Chaves Palm |
 | **Prioridade** | P1 · Qualidade Visual & Arquitetura Editorial |
 | **Decisões Arquiteturais** | [ADR-002: CSS em 4 Camadas](../../decisions/ADR-002-css-layers.md), [ADR-008: Design System Editorial Suíço](../../decisions/ADR-008-design-system-tokens-editorial-swiss.md), [ADR-009: Escala Tipográfica Minor Third](../../decisions/ADR-009-modular-typographic-scale-editorial-governance.md) |
 | **Aprovação** | 2026-11-17 |

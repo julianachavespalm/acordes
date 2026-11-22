@@ -8,7 +8,7 @@ Implementar e validar as tarefas de Otimização de Performance, Ciclo de Vida e
 
 **Design**: [`.specs/features/FEAT-009-Otimizacao-de-Runtime-e-Usabilidade/design.md`](design.md)  
 **Status**: Ready for Implementation  
-**Spec Owner**: Juliana Chaves Palm (Software Engineer & Solution Designer)  
+**Spec Owner**: Juliana Chaves Palm  
 **Build**: `node scripts/validate-sdd.mjs`  
 **Run unit**: `node --test tests/audio/soundEngine.test.js tests/ui/main.test.js`  
 

@@ -8,7 +8,7 @@ Implementar e validar as tarefas do Design System e Tokens segundo o fluxo de Sp
 
 **Design**: [`.specs/features/FEAT-006-Design-System-e-Tokens/design.md`](design.md)  
 **Status**: Implemented · Verified  
-**Spec Owner**: Juliana Chaves Palm (Software Engineer & Solution Designer)  
+**Spec Owner**: Juliana Chaves Palm  
 **Build**: `node scripts/validate-sdd.mjs`  
 **Run unit**: `node --test tests/ui/designSystem.test.js`  
 
