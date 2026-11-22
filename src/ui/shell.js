@@ -58,7 +58,7 @@ export function renderFooterMarkup() {
           </svg>
         </div>
       </div>
-      <p class="footer-credit">Por <a href="https://github.com/julianachavespalm" class="footer-author-link" target="_blank" rel="noopener noreferrer">Juliana Chaves Palm</a></p>
+      <p class="footer-credit">Por <a href="https://github.com/julianachavespalm" class="footer-author-link" target="_blank" rel="noopener noreferrer" aria-label="Juliana Chaves Palm, abrir GitHub em nova aba">Juliana Chaves Palm</a></p>
     </footer>
   `.trim();
 }

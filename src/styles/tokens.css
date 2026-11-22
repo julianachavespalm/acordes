@@ -63,4 +63,23 @@
   --ds-btn-3d-disabled-shadow: 0 2px 0 rgba(17, 17, 17, 0.12);
   --ds-shadow-drawer: -8px 0 32px rgba(17, 17, 17, 0.08);
   --ds-color-line-faint: rgba(17, 17, 17, 0.08);
+
+  /* 8. Console Preto do Piano Virtual (Chassi Físico com Moldura Fina e Sombras) */
+  --ds-console-bg: linear-gradient(180deg, #1A1A1A 0%, #0D0D0D 100%);
+  --ds-console-border: #000000;
+  --ds-console-divider: #2A2A2A;
+  --ds-console-shadow: 0 8px 18px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  --ds-console-keybed-bg: #000000;
+  --ds-console-keybed-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.85);
+  --ds-console-btn-bg: #1F1F1F;
+  --ds-console-btn-hover-bg: #2C2C2C;
+  --ds-console-btn-border: #383838;
+  --ds-console-btn-hover-border: #555555;
+  --ds-console-btn-disabled-bg: #141414;
+  --ds-console-btn-disabled-border: #242424;
+  --ds-console-btn-disabled-color: #7A7A7A;
+  --ds-console-btn-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 2px 0 #000000;
+  --ds-console-btn-active-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --ds-piano-white-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.3);
+  --ds-piano-black-shadow: 0 5px 8px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }

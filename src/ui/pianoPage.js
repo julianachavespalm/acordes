@@ -113,29 +113,37 @@ export function renderPianoMarkup() {
         <span>Para tocar com duas oitavas e multitouch, gire o celular na horizontal.</span>
       </p>
 
-      <div class="piano-toolbar" role="region" aria-label="Controles do piano">
-        <div class="piano-controls-grid">
-          <button type="button" class="piano-control-btn btn-area-pin" id="piano-pin-toggle" aria-pressed="false">
-            <svg class="piano-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="currentColor" aria-hidden="true"><path d="M9.18,19.83Q8,18.65 8,17t1.18-2.83T12,13q0.58,0 1.06,0.14T14,13.55V3h6V7H16V17q0,1.65-1.17,2.82T12,21T9.18,19.83ZM7,11V8H4V6H7V3H9V6h3V8H9v3H7Z"/></svg>
-            <span>Fixar notas</span>
-          </button>
+      <section class="piano-console" aria-label="Console do piano virtual">
+        <div class="piano-toolbar" role="region" aria-label="Controles do piano">
+          <div class="piano-controls-grid">
+            <button type="button" class="piano-control-btn btn-area-pin" id="piano-pin-toggle" aria-pressed="false">
+              <svg class="piano-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="currentColor" aria-hidden="true"><path d="M9.18,19.83Q8,18.65 8,17t1.18-2.83T12,13q0.58,0 1.06,0.14T14,13.55V3h6V7H16V17q0,1.65-1.17,2.82T12,21T9.18,19.83ZM7,11V8H4V6H7V3H9V6h3V8H9v3H7Z"/></svg>
+              <span>Fixar notas</span>
+            </button>
 
-          <button type="button" class="piano-control-btn btn-area-clear" id="piano-clear-pinned" disabled>
-            <span class="material-symbols-outlined" aria-hidden="true">ink_eraser</span>
-            <span>Limpar</span>
-          </button>
+            <button type="button" class="piano-control-btn btn-area-clear" id="piano-clear-pinned" disabled>
+              <span class="material-symbols-outlined" aria-hidden="true">ink_eraser</span>
+              <span>Limpar</span>
+            </button>
 
-          <button type="button" class="piano-control-btn btn-area-play" id="piano-play-pinned" disabled>
-            <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
-            <span>Tocar juntas</span>
-          </button>
+            <button type="button" class="piano-control-btn btn-area-play" id="piano-play-pinned" disabled>
+              <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
+              <span>Tocar juntas</span>
+            </button>
 
-          <button type="button" class="piano-control-btn btn-area-help" id="piano-help-btn" aria-expanded="false" aria-controls="piano-help-popover">
-            <span class="material-symbols-outlined" aria-hidden="true">help</span>
-            <span>Como usar</span>
-          </button>
+            <button type="button" class="piano-control-btn btn-area-help" id="piano-help-btn" aria-expanded="false" aria-controls="piano-help-popover">
+              <span class="material-symbols-outlined" aria-hidden="true">help</span>
+              <span>Como usar</span>
+            </button>
+          </div>
         </div>
-      </div>
+
+        <div class="piano-stage">
+          <div class="piano-keyboard" id="piano-keyboard" role="group" aria-label="Teclado do piano virtual">
+            ${keysHtml}
+          </div>
+        </div>
+      </section>
 
       <div class="piano-help-popover" id="piano-help-popover" role="dialog" aria-label="Instruções de uso do piano virtual" hidden>
         <div class="piano-help-popover-header">
@@ -152,7 +160,7 @@ export function renderPianoMarkup() {
             </li>
             <li>
               <strong>Fixar notas</strong>
-              <span>Ative para marcar as teclas de um acorde, pressione Tocar juntas para ouvir e Limpar para recomeçar.</span>
+              <span>Ative para marcar as teclas de um acorde, pressione <em>Tocar juntas</em> para ouvir e <em>Limpar</em> para recomeçar.</span>
             </li>
             <li>
               <strong>Reconhecimento</strong>
@@ -172,12 +180,6 @@ export function renderPianoMarkup() {
               </ul>
             </div>
           </section>
-        </div>
-      </div>
-
-      <div class="piano-stage">
-        <div class="piano-keyboard" id="piano-keyboard" role="group" aria-label="Teclado do piano virtual">
-          ${keysHtml}
         </div>
       </div>
 
@@ -211,6 +213,10 @@ export function renderPianoPage(soundEngine, mountElement, options = {}) {
     soundEngine.preload(PIANO_KEYS.map((k) => k.midi), { signal });
   }
 
+  const layoutEl = mountElement.querySelector?.('.piano-layout');
+  const hintEl = mountElement.querySelector?.('.piano-orientation-hint');
+  const toolbarEl = mountElement.querySelector?.('.piano-toolbar');
+  const stageEl = mountElement.querySelector?.('.piano-stage');
   const keyboardEl = mountElement.querySelector?.('#piano-keyboard');
   const pinToggleBtn = mountElement.querySelector?.('#piano-pin-toggle');
   const playPinnedBtn = mountElement.querySelector?.('#piano-play-pinned');
@@ -239,15 +245,27 @@ export function renderPianoPage(soundEngine, mountElement, options = {}) {
   function syncKeyboardScale() {
     if (!keyboardEl || !windowTarget) return;
     const containerWidth = keyboardEl.clientWidth || windowTarget.innerWidth || 0;
-    const rectTop = typeof keyboardEl.getBoundingClientRect === 'function'
-      ? keyboardEl.getBoundingClientRect().top
-      : 120;
-    const footerEl = typeof document !== 'undefined' ? document.querySelector('.site-footer') : null;
-    const footerTop = footerEl && typeof footerEl.getBoundingClientRect === 'function'
-      ? footerEl.getBoundingClientRect().top
-      : (windowTarget.innerHeight || 720) - 88;
-    const spaceBelow = footerTop - rectTop - 24;
-    const { mode, height } = computePianoScale(containerWidth, spaceBelow);
+    let availableHeight;
+
+    if (layoutEl && layoutEl.clientHeight > 0) {
+      const hintHeight = hintEl && hintEl.offsetHeight > 0 ? hintEl.offsetHeight : 0;
+      const toolbarHeight = toolbarEl && toolbarEl.offsetHeight > 0 ? toolbarEl.offsetHeight : 38;
+      const consoleChrome = (windowTarget.innerHeight || 720) <= 440 ? 52 : 92;
+      const hintGap = hintHeight > 0 ? 20 : 0;
+      availableHeight = layoutEl.clientHeight - hintHeight - hintGap - toolbarHeight - consoleChrome;
+    } else {
+      const anchorEl = stageEl || keyboardEl;
+      const rectTop = typeof anchorEl.getBoundingClientRect === 'function'
+        ? anchorEl.getBoundingClientRect().top
+        : 120;
+      const footerEl = typeof document !== 'undefined' ? document.querySelector('.site-footer') : null;
+      const footerTop = footerEl && typeof footerEl.getBoundingClientRect === 'function'
+        ? footerEl.getBoundingClientRect().top
+        : (windowTarget.innerHeight || 720) - 88;
+      availableHeight = footerTop - rectTop - 24;
+    }
+
+    const { mode, height } = computePianoScale(containerWidth, availableHeight);
 
     keyboardEl.setAttribute?.('data-piano-mode', mode);
     if (keyboardEl.style && typeof keyboardEl.style.setProperty === 'function') {

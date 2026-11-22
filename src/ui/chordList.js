@@ -35,9 +35,9 @@ export function renderChordMarkup(chord, { noterefCounter } = {}) {
     }
 
     return `
-      <button type="button" class="note-trigger" data-midi="${n.midi}" data-hz="${freq}" data-symbol="${chord.symbol}" aria-label="${n.phonetic}">
+      <span class="note-unit"><button type="button" class="note-trigger" data-midi="${n.midi}" data-hz="${freq}" data-symbol="${chord.symbol}" aria-label="${n.phonetic}">
         <span aria-hidden="true">${n.pitch}</span>
-      </button>${noterefMarkup}${separator}
+      </button>${noterefMarkup}${separator}</span>
     `.trim();
   }).join('');
 
