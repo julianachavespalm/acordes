@@ -1,63 +1,78 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="./src/style/main.css">
-    <link rel="stylesheet" href="./src/style/chords.css">
-    <link rel="stylesheet" href="./src/style/piano.css">
-    <link rel="shortcut icon" href="./srcimg/favicon.ico" type="image/x-icon">
-    <title>Acordes básicos</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acordes Básicos · Guia Acessível de Formação de Tríades</title>
+  <meta name="description" content="Guia didático acessível de formação de tríades musicais para pessoas cegas e com baixa visão, por Juliana Chaves Palm.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles/tokens.css">
+  <link rel="stylesheet" href="./src/styles/base.css">
+  <link rel="stylesheet" href="./src/styles/layout.css">
+  <link rel="stylesheet" href="./src/styles/components.css">
 </head>
 <body>
-    <header class="banner" >      
-        <div class="banner__content">
-            <h1 class="banner__logo">ACORDES BÁSICOS</h1>
-        </div>
+  <div id="route-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-        <nav class="banner__menu" id="menu">
-            <input type="checkbox" id="menu-toggle" class="banner__menu-toggle">
-                <label for="menu-toggle" class="banner__menu-label" aria-label="Menu principal" title="Menu principal">
-                    <span class="material-symbols-outlined">
-                        menu
-                    </span>
-                </label>
-            <ul class="banner__menu-dropdown">
-                <li class="banner__menu-item"><a href="./src/index.html" class="banner__link">Home</a></li>
-                <li class="banner__menu-item"><a href="./src/pages/acordes-maiores.html" class="banner__link">Acordes Maiores</a></li>
-                <li class="banner__menu-item"><a href="./src/pages/acordes-menores.html" class="banner__link">Acordes Menores</a></li>
-                <li class="banner__menu-item"><a href="./src/pages/acordes-dimutos.html" class="banner__link">Acordes Diminutos</a></li>
-                <li class="banner__menu-item"><a href="./src/pages/acordes-aumentados" class="banner__link">Acordes Aumentados</a></li>
-                <li class="banner__menu-item"><a href="./src/pages/piano-virtual.html" class="banner__link">Piano Virtual</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="content">
-            <h2 class="content__title">Introdução</h2>
-            <p>Bem-vindo ao guia básico de acordes, um recurso para explorar e compreender os acordes de três sons, também conhecidos como tríades. Neste espaço, oferecemos informações sobre a formação dos acordes <a href="./src/pages/acordes-maiores.html" class="content__link">acordes maiores</a>, <a href="./src/pages/acordes-menores.html" class="content__link">acordes menores</a>, <a href="./src/pages/acordes-dimutos.html" class="content__link">acordes diminutos</a> e <a href="./src/pages/acordes-aumentados.html" class="content__link">acordes aumentados</a>.</p>
-        </section>
-    </main>
-    <footer class="social-media" id="foo">
-        <p class="social-media__message">© 2024 Juliana Chaves Palm</p>
-        <ul class="social-media__links">
-            <li class="social-media__item">
-                <a href="mailto:julianachavespalm@gmail.com" class="social-media__link"><i class="fa-regular fa-envelope" aria-label="E-mail de Juliana Chaves Palm" title="E-mail" aria-hidden="true"></i><span class="sr-only">E-mail</span></a>
-            </li>
-            <li class="social-media__item">
-                <a href="https://www.linkedin.com/in/julianachavespalm" class="social-media__link"><i class="fa-brands fa-linkedin" aria-label="Linkedin de Juliana Chaves Palm" title="Linkedin" aria-hidden="true"></i><span class="sr-only">Linkedin</span></a>
-            </li>
-                <li class="social-media__item"><a href="https://www.github.com/julianachavespalm" class="social-media__link">
-                <i class="fa-brands fa-github-alt" aria-label="Link de acesso ao Github de Juliana Chaves Palm" title="Github" aria-hidden="true"></i><span class="sr-only">Github</span></a>
-            </li>
-        </ul>
-        <ul class="shortcuts sr-only" id="shortcuts">
-            <li><a href="#top">Ir para o topo do site</a></li>
-            <li><a href="#menu">Ir para o menu principal</a></li>
-        </ul>
-    </footer>  
-    <script src="https://kit.fontawesome.com/e0954b0c75.js" crossorigin="anonymous"></script>
+  <a href="#conteudo-principal" class="skip-link">Ir para o conteúdo principal</a>
+  <a href="#menu-principal" class="skip-link">Ir para o menu</a>
+
+  <header class="site-header">
+    <button type="button" class="menu-toggle-btn" id="menu-toggle" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu de navegação">
+      <svg class="icon-hamburger" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+      <span class="sr-only">Menu de navegação</span>
+    </button>
+
+    <nav class="main-navigation" id="menu-principal" aria-label="Navegação principal" tabindex="-1">
+      <ul class="nav-list" role="list">
+        <li><a href="#/" class="nav-link" aria-current="page" aria-label="Home, aba atual">Home</a></li>
+        <li><a href="#/maiores" class="nav-link">Acordes Maiores</a></li>
+        <li><a href="#/menores" class="nav-link">Acordes Menores</a></li>
+        <li><a href="#/diminutos" class="nav-link">Acordes Diminutos</a></li>
+        <li><a href="#/aumentados" class="nav-link">Acordes Aumentados</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="site-main" id="app" tabindex="-1">
+    <div class="home-cover" id="conteudo-principal" tabindex="-1">
+      <div class="home-scroll-area">
+        <div class="home-layout">
+          <header class="home-hero-header">
+            <h1 class="home-title" id="titulo-home" tabindex="-1">Acordes Básicos</h1>
+            <p class="home-subtitle-main">ESTUDO DAS TRÍADES</p>
+            <p class="home-subtitle-sub">MAIORES, MENORES, DIMINUTOS E AUMENTADOS</p>
+          </header>
+
+          <div class="home-editorial-text">
+            <p>Este material apresenta os principais tipos de tríades, acordes formados por três notas.</p>
+            <p>O conteúdo aborda os acordes maiores, menores, diminutos e aumentados, destacando sua estrutura, formação e sonoridade.</p>
+            <p>Selecione uma categoria no menu para explorar os acordes, compreender sua construção e ouvir cada tríade individualmente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-separator-bar" aria-hidden="true">
+      <svg class="footer-separator-svg" viewBox="0 0 1000 40" preserveAspectRatio="none">
+        <path id="footer-separator-line" class="footer-separator-line" d="M 0 20 L 1000 20" />
+      </svg>
+    </div>
+    <p class="footer-credit">© 2024 Juliana Chaves Palm</p>
+  </footer>
+
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>
