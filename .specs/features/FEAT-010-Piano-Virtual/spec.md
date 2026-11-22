@@ -4,7 +4,7 @@
 
 | Atributo | Definição |
 | :--- | :--- |
-| **Status** | Approved · In Implementation |
+| **Status** | Implemented · Verified |
 | **Spec Owner** | Juliana Chaves Palm (Software Engineer & Solution Designer) |
 | **Prioridade** | P1 · Expansão Pedagógica e Prática Musical |
 | **Decisões Arquiteturais** | [ADR-001: Arquitetura Modular Enxuta](../../decisions/ADR-001-lean-modular-architecture.md), [ADR-004: Acessibilidade Universal WAI-ARIA](../../decisions/ADR-004-universal-accessibility-wai-aria.md), [ADR-008: Design System Editorial Suíço](../../decisions/ADR-008-design-system-tokens-editorial-swiss.md), [ADR-010: Política de Seleção Aberta](../../decisions/ADR-010-open-text-selection-policy.md), [ADR-011: Audio Pool e Ciclo de Vida de Rotas](../../decisions/ADR-011-audio-pool-and-route-teardown.md), [ADR-012: Piano Virtual Polifônico e Multitouch](../../decisions/ADR-012-virtual-piano-polyphony-multitouch-and-chord-recognition.md) |

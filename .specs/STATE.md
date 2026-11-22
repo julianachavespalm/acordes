@@ -101,10 +101,10 @@
 ## Handoff
 
 - **Feature**: FEAT-010-Piano-Virtual
-- **Phase / Task**: Phase 1-3 (Specify, Design & Tasks) — Aguardando aprovação da autora para iniciar execução
-- **Completed**: FEAT-001 a FEAT-009, refatoração DDD/SOLID, correção do osciloscópio no primeiro toque, AD-001 a AD-012 ativos
-- **In-progress**: FEAT-010-Piano-Virtual (planejamento ADR + SDD)
-- **Next step**: Aprovação da spec e das tasks de FEAT-010 pela usuária para iniciar implementação atômica (T1 a T6)
+- **Phase / Task**: Concluída (T1 a T6 implementadas e verificadas via npm run gate)
+- **Completed**: FEAT-001 a FEAT-010, AD-001 a AD-012 ativos
+- **In-progress**: none
+- **Next step**: Homologação manual no navegador (desktop e celular em landscape/portrait) e git push quando aprovado
 - **Blockers**: none
-- **Uncommitted files**: .specs/decisions/ADR-012-*, .specs/STATE.md, .specs/features/FEAT-010-Piano-Virtual/
+- **Uncommitted files**: none
 - **Branch**: main

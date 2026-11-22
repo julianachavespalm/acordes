@@ -8,7 +8,8 @@ export const NAV_ITEMS = Object.freeze([
   { hash: '#/maiores', label: 'Acordes Maiores' },
   { hash: '#/menores', label: 'Acordes Menores' },
   { hash: '#/diminutos', label: 'Acordes Diminutos' },
-  { hash: '#/aumentados', label: 'Acordes Aumentados' }
+  { hash: '#/aumentados', label: 'Acordes Aumentados' },
+  { hash: '#/piano', label: 'Piano Virtual' }
 ]);
 
 const KNOWN_HASHES = new Set(NAV_ITEMS.map((item) => item.hash));

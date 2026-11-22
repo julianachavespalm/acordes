@@ -95,7 +95,8 @@ describe('FEAT-007: Roteador SPA por Hash e Acessibilidade (WCAG 2.1 AAA)', () =
       new MockElement('a', { class: 'nav-link', href: '#/maiores' }),
       new MockElement('a', { class: 'nav-link', href: '#/menores' }),
       new MockElement('a', { class: 'nav-link', href: '#/diminutos' }),
-      new MockElement('a', { class: 'nav-link', href: '#/aumentados' })
+      new MockElement('a', { class: 'nav-link', href: '#/aumentados' }),
+      new MockElement('a', { class: 'nav-link', href: '#/piano' })
     ];
     for (const l of navLinks) nav.appendChild(l);
     header.appendChild(nav);
@@ -157,5 +158,15 @@ describe('FEAT-007: Roteador SPA por Hash e Acessibilidade (WCAG 2.1 AAA)', () =
 
     handleRouteChange({ root: doc, hash: '#/maiores', soundEngine: mockSoundEngine });
     assert.equal(stopAllCalls, 2);
+  });
+
+  test('handleRouteChange deve renderizar a aba Piano Virtual para rota #/piano e marcar aba ativa (RN-01)', () => {
+    const teardown = handleRouteChange({ root: doc, hash: '#/piano' });
+
+    assert.equal(typeof teardown, 'function');
+    assert.match(appElement.innerHTML, /Piano Virtual/);
+    assert.match(appElement.innerHTML, /piano-keyboard/);
+    assert.equal(announcer.textContent, 'Piano Virtual carregado');
+    assert.equal(navLinks[5].getAttribute('aria-current'), 'page');
   });
 });

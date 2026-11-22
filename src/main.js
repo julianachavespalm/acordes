@@ -10,6 +10,7 @@ import { initOscilloscopeView } from './ui/oscilloscopeView.js';
 import { initShell, syncActiveNavigation } from './ui/shell.js';
 import { renderHomePage } from './ui/homePage.js';
 import { renderChapterPage } from './ui/chapterPage.js';
+import { renderPianoPage } from './ui/pianoPage.js';
 
 export const ROUTES = Object.freeze({
   '#/': {
@@ -41,6 +42,12 @@ export const ROUTES = Object.freeze({
     announcement: 'Capítulo de Acordes Aumentados carregado',
     render: (app, sound) => renderChapterPage('augmented', sound, app),
     headingId: 'titulo-capitulo'
+  },
+  '#/piano': {
+    title: 'Piano Virtual · Acordes Básicos',
+    announcement: 'Piano Virtual carregado',
+    render: (app, sound) => renderPianoPage(sound, app),
+    headingId: 'titulo-piano'
   }
 });
 

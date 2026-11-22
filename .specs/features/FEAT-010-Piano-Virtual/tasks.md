@@ -7,7 +7,7 @@ Implementar e validar a aba **Piano Virtual (`#/piano`)** em tarefas atômicas s
 ---
 
 **Design**: [`.specs/features/FEAT-010-Piano-Virtual/design.md`](design.md)  
-**Status**: Approved · In Implementation  
+**Status**: Completed · Verified  
 **Approved**: 2026-11-22 - user: "aprovado."  
 **Spec Owner**: Juliana Chaves Palm (Software Engineer & Solution Designer)  
 **Build**: `node scripts/gate.mjs`  
@@ -118,7 +118,7 @@ T5 -> T6
 * **Reutiliza**: `syncActiveNavigation`, `handleRouteChange`
 * **Requisito**: RN-01 / CA-10.5
 * **Concluído quando**:
-  - [ ] Testes validam navegação para `#/piano`, `aria-current="page"` e limpeza ao retornar para `#/`
+  - [x] Testes validam navegação para `#/piano`, `aria-current="page"` e limpeza ao retornar para `#/`
 * **Testes**: unit
 * **Gate**: full
 
@@ -131,7 +131,7 @@ T5 -> T6
 * **Reutiliza**: `scripts/gate.mjs`
 * **Requisito**: Todos (RN-01 a RN-08)
 * **Concluído quando**:
-  - [ ] `npm run gate` retorna 3/3 etapas aprovadas
+  - [x] `npm run gate` retorna 3/3 etapas aprovadas
 * **Testes**: full
 * **Gate**: build
 
