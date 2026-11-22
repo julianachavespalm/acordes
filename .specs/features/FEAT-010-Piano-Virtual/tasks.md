@@ -91,7 +91,7 @@ T5 -> T6
 * **Reutiliza**: `identifyTriadFromMidis`, `soundEngine.triggerNote`, `soundEngine.playChord`
 * **Requisito**: RN-02, RN-03, RN-05, RN-06, RN-07 / CA-10.3, CA-10.4, CA-10.5
 * **Concluído quando**:
-  - [ ] Testes validam multitouch simultâneo com 3 `pointerId` distintos, modo `Fixar notas`, atalhos de teclado físico e cancelamento de listeners no `teardown()`
+  - [x] Testes validam multitouch simultâneo com 3 `pointerId` distintos, modo `Fixar notas`, atalhos de teclado físico e cancelamento de listeners no `teardown()`
 * **Testes**: unit
 * **Gate**: quick
 
