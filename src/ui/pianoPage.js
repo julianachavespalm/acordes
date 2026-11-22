@@ -72,13 +72,13 @@ export function renderPianoMarkup() {
         </div>
       </div>
 
-      <div class="piano-readout" id="piano-readout" aria-live="polite" aria-atomic="true">Toque nas teclas para ouvir</div>
-
       <div class="piano-stage">
         <div class="piano-keyboard" id="piano-keyboard" role="group" aria-label="Teclado do piano virtual">
           ${keysHtml}
         </div>
       </div>
+
+      <div class="piano-readout" id="piano-readout" aria-live="polite" aria-atomic="true">Toque nas teclas para ouvir</div>
     </div>
   `.trim();
 }

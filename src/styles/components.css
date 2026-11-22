@@ -391,14 +391,20 @@ footer,
   font-size: 1rem;
   font-weight: var(--ds-font-weight-semibold);
   color: var(--ds-color-ink);
+  text-align: center;
   min-height: 1.6em;
+  width: 100%;
 }
 
+/* Proporções reais de piano acústico em escala:
+   Tecla preta = 58.3% da largura da branca (3.88% em 15 brancas / 7.28% em 8 brancas)
+   Altura da tecla preta = 63.3% da altura da branca */
 .piano-keyboard {
   display: flex;
   align-items: flex-start;
   width: 100%;
-  height: 266px;
+  height: clamp(280px, 35vw, 420px);
+  max-height: 56vh;
   margin: 0;
   position: relative;
   touch-action: none;
@@ -434,9 +440,9 @@ footer,
 }
 
 .piano-key--black {
-  flex: 0 0 4.2%;
-  height: 60%;
-  margin: 0 -2.1%;
+  flex: 0 0 3.88%;
+  height: 63.3%;
+  margin: 0 -1.94%;
   border: none;
   border-radius: 0 0 5px 5px;
   background: var(--ds-piano-black-bg);
@@ -485,7 +491,7 @@ footer,
   line-height: 1;
 }
 
-/* Telas estreitas ou Mobile Portrait: aviso visível + 1ª oitava com altura explícita */
+/* Telas estreitas ou Mobile Portrait: aviso visível + 1ª oitava em proporção real de piano */
 @media (max-width: 649px), (max-width: 960px) and (orientation: portrait) {
   .piano-orientation-hint {
     display: block;
@@ -493,7 +499,8 @@ footer,
   }
 
   .piano-keyboard {
-    height: 210px;
+    height: clamp(220px, 72vw, 300px);
+    max-height: 55vh;
   }
 
   .piano-key[data-octave="2"] {
@@ -501,8 +508,9 @@ footer,
   }
 
   .piano-key--black {
-    flex: 0 0 7.8%;
-    margin: 0 -3.9%;
+    flex: 0 0 7.28%;
+    height: 63.3%;
+    margin: 0 -3.64%;
     font-size: 0.62rem;
   }
 
@@ -511,10 +519,10 @@ footer,
   }
 }
 
-/* Mobile Landscape largo (>= 650px): 2 oitavas completas com altura compacta para multitouch */
+/* Mobile Landscape largo (>= 650px): 2 oitavas completas em escala para multitouch */
 @media (min-width: 650px) and (max-width: 960px) and (orientation: landscape) {
   .piano-keyboard {
-    height: 180px;
+    height: clamp(160px, 48vh, 220px);
   }
 
   .piano-key--white {

@@ -599,16 +599,15 @@
 }
 
 .piano-stage {
-  flex: 1;
-  min-height: 220px;
+  flex: 0 0 auto;
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   box-sizing: border-box;
 }
 
-/* Em telas menores (<= 960px), barra de botões alinhada à altura do menu hambúrguer e legenda abaixo do piano */
+/* Em telas menores (<= 960px), barra de botões alinhada à altura do menu hambúrguer */
 @media (max-width: 960px) {
   .piano-layout {
     padding: var(--ds-space-md) var(--ds-space-sm);
@@ -628,13 +627,10 @@
 
   .piano-stage {
     order: 3;
-    flex: 0 0 auto;
-    min-height: 0;
   }
 
   .piano-readout {
     order: 4;
-    text-align: center;
   }
 }
 
