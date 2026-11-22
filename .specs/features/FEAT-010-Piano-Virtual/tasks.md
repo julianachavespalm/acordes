@@ -65,7 +65,7 @@ T5 -> T6
 * **Reutiliza**: `TRIAD_DEFINITIONS`
 * **Requisito**: RN-07 / CA-10.1
 * **Concluído quando**:
-  - [ ] Testes cobrem reconhecimento de tríade maior, menor, diminuta, aumentada e retorno vazio para menos de 3 classes distintas
+  - [x] Testes cobrem reconhecimento de tríade maior, menor, diminuta, aumentada e retorno vazio para menos de 3 classes distintas
 * **Testes**: unit
 * **Gate**: quick
 
