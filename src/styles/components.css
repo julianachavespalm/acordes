@@ -396,9 +396,14 @@ footer,
 
 .piano-keyboard {
   display: flex;
-  margin: 0 auto;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  margin: 0;
   position: relative;
   touch-action: none;
+  box-sizing: border-box;
 }
 
 .piano-key {
@@ -413,14 +418,13 @@ footer,
 }
 
 .piano-key--white {
+  flex: 1 1 0;
+  height: 100%;
   border: 1px solid var(--ds-color-ink);
   border-radius: 5px;
   background: var(--ds-piano-white-bg);
   color: var(--ds-color-ink);
-  width: 50px;
-  height: 266px;
-  max-height: 36vh;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   z-index: 1;
 }
 
@@ -431,14 +435,13 @@ footer,
 }
 
 .piano-key--black {
+  flex: 0 0 4.2%;
+  height: 60%;
+  margin: 0 -2.1%;
   border: none;
   border-radius: 0 0 5px 5px;
   background: var(--ds-piano-black-bg);
   color: var(--ds-color-surface);
-  width: 28.5px;
-  height: 157px;
-  max-height: 22vh;
-  margin: 0 -15px;
   font-size: 0.72rem;
   z-index: 2;
 }

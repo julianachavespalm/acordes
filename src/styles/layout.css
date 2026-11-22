@@ -564,26 +564,26 @@
 }
 
 /* ==========================================================================
-   Layout da Aba Piano Virtual (FEAT-010 / ADR-012)
+   Layout da Aba Piano Virtual (100% largura da tela — FEAT-010 / ADR-012)
    ========================================================================== */
 .piano-layout {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--ds-space-md) var(--ds-space-xl);
+  max-width: 100%;
+  margin: 0;
+  padding: var(--ds-space-sm) var(--ds-space-md) var(--ds-space-md);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--ds-space-md);
+  align-items: stretch;
+  gap: var(--ds-space-sm);
   flex: 1;
   min-height: 0;
+  height: 100%;
   box-sizing: border-box;
 }
 
 .piano-toolbar {
   width: 100%;
-  max-width: 750px;
+  max-width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -599,34 +599,20 @@
 }
 
 .piano-stage {
+  flex: 1;
+  min-height: 220px;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
   width: 100%;
+  padding-bottom: 10px;
+  box-sizing: border-box;
 }
 
-/* Tablet / Landscape médio (proporções clássicas da main) */
-@media screen and (min-width: 650px) and (max-width: 866px) {
-  .piano-key--white {
-    width: 40px;
-    height: 213px;
-    font-size: 1rem;
-  }
-
-  .piano-key--black {
-    width: 23px;
-    height: 125px;
-    margin: 0 -11.5px;
-    font-size: 0.625rem;
-  }
-}
-
-/* Mobile Portrait: aviso discreto e 1 oitava confortável (WCAG 2.1 Orientation) */
+/* Mobile Portrait: aviso discreto e 1 oitava ocupando 100% da largura (WCAG 2.1 Orientation) */
 @media (max-width: 960px) and (orientation: portrait) {
   .piano-layout {
-    padding: var(--ds-space-md);
+    padding: var(--ds-space-sm) var(--ds-space-sm);
     padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-    justify-content: flex-start;
   }
 
   .piano-orientation-hint {
@@ -638,40 +624,34 @@
     display: none;
   }
 
-  .piano-key--white {
-    width: 38px;
-    height: 190px;
-    font-size: 0.85rem;
-  }
-
   .piano-key--black {
-    width: 24px;
-    height: 112px;
-    margin: 0 -12px;
-    font-size: 0.58rem;
+    flex: 0 0 7.8%;
+    margin: 0 -3.9%;
+    font-size: 0.62rem;
   }
 }
 
-/* Mobile Landscape: 2 oitavas completas com proporções clássicas compactadas */
+/* Mobile Landscape: 2 oitavas ocupando 100% da largura da tela para multitouch */
 @media (max-width: 960px) and (orientation: landscape) {
   .piano-layout {
-    padding: var(--ds-space-xs) var(--ds-space-md);
+    padding: var(--ds-space-xs) var(--ds-space-sm);
     padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
-    gap: var(--ds-space-sm);
+    gap: var(--ds-space-xs);
+  }
+
+  .piano-stage {
+    min-height: 165px;
+  }
+
+  .piano-keyboard {
+    min-height: 165px;
   }
 
   .piano-key--white {
-    width: 40px;
-    height: 175px;
-    max-height: 52vh;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .piano-key--black {
-    width: 23px;
-    height: 104px;
-    max-height: 31vh;
-    margin: 0 -11.5px;
     font-size: 0.58rem;
   }
 }
