@@ -259,7 +259,7 @@
   width: 100%;
   text-align: right;
   margin-top: var(--ds-space-xl);
-  padding: 0 0 8px;
+  padding: 0 0 calc(8px + env(safe-area-inset-bottom, 0px));
   color: var(--ds-color-ink-muted);
   font-size: 0.9rem;
   flex-shrink: 0;
@@ -289,8 +289,10 @@
 @media (max-width: 960px) {
   html,
   body {
-    height: 100dvh;
+    min-height: 0;
     height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
     overflow: hidden;
   }
 
@@ -1032,15 +1034,28 @@ body.force-hamburger .piano-toolbar {
   }
 }
 
-/* Mobile Landscape largo (>= 650px): 4 botões em 1 linha + 2 oitavas sem rolagem */
-@media (min-width: 650px) and (max-width: 960px) and (orientation: landscape) {
+/* Mobile Landscape largo (>= 650px) ou telas baixas em paisagem (navegador com barra de endereco aberta) */
+@media (min-width: 650px) and (max-width: 960px) and (orientation: landscape),
+       (max-height: 460px) and (orientation: landscape) {
+  html,
+  body {
+    min-height: 0;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+  }
+
   .site-header {
-    height: 48px;
-    min-height: 48px;
+    height: 44px;
+    min-height: 44px;
+    padding-left: calc(var(--ds-space-md) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--ds-space-md) + env(safe-area-inset-right, 0px));
   }
 
   .menu-toggle-btn {
-    top: 0 !important;
+    top: -2px !important;
+    right: calc(var(--ds-space-md) + env(safe-area-inset-right, 0px)) !important;
   }
 
   body.menu-open .nav-list,
@@ -1050,7 +1065,7 @@ body.force-hamburger .piano-toolbar {
 
   body.menu-open .nav-list > li:first-child,
   .main-navigation:focus-within .nav-list > li:first-child {
-    height: 48px;
+    height: 44px;
     margin-bottom: 4px;
   }
 
@@ -1063,17 +1078,18 @@ body.force-hamburger .piano-toolbar {
 
   .site-main,
   #app {
-    padding: var(--ds-space-md) var(--ds-space-md) 0;
+    padding: var(--ds-space-sm) var(--ds-space-md) 0;
   }
 
   .site-main:has(.piano-layout),
   #app:has(.piano-layout) {
-    padding: 0 var(--ds-space-md);
+    padding: 0 calc(var(--ds-space-md) + env(safe-area-inset-right, 0px)) 0 calc(var(--ds-space-md) + env(safe-area-inset-left, 0px));
+    overflow: hidden;
   }
 
   .piano-layout {
-    padding: var(--ds-space-md) 0;
-    gap: var(--ds-space-md);
+    padding: 6px 0;
+    gap: 6px;
     justify-content: center;
   }
 
@@ -1083,16 +1099,32 @@ body.force-hamburger .piano-toolbar {
 
   .piano-console {
     border-radius: 10px;
-    padding: 8px 8px 8px;
-    gap: 8px;
+    padding: 6px 8px;
+    gap: 6px;
   }
 
   .piano-toolbar {
-    padding-bottom: 8px;
+    padding-bottom: 6px;
   }
 
   .piano-controls-grid {
-    grid-template-columns: repeat(4, minmax(120px, 148px));
+    grid-template-columns: repeat(4, minmax(112px, 148px));
     grid-template-areas: "pin clear play help";
+  }
+
+  .piano-control-btn {
+    height: 30px;
+    font-size: 0.8rem;
+    padding: 0 10px;
+  }
+
+  .site-footer {
+    padding: 0 0 calc(6px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .footer-separator-row,
+  .footer-credit {
+    padding-left: calc(var(--ds-space-md) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--ds-space-md) + env(safe-area-inset-right, 0px));
   }
 }
