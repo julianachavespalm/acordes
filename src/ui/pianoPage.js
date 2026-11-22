@@ -54,7 +54,7 @@ const MIDI_BY_SHORTCUT = new Map(
  */
 export function computePianoScale(containerWidth, availableHeight) {
   const safeWidth = Math.max(240, Number(containerWidth) || 0);
-  const safeHeight = Math.max(110, Math.min(Number(availableHeight) || 300, 460));
+  const safeHeight = Math.max(84, Math.min(Number(availableHeight) || 300, 460));
 
   const MIN_KEY_WIDTH_2_OCT = 38;
   const MIN_KEY_WIDTH_1_OCT = 46;
@@ -76,7 +76,7 @@ export function computePianoScale(containerWidth, availableHeight) {
 
   const whiteWidth = safeWidth / whiteCount;
   const idealHeight = Math.round(whiteWidth * TARGET_RATIO);
-  const height = Math.min(safeHeight, Math.max(110, idealHeight));
+  const height = Math.min(safeHeight, Math.max(84, idealHeight));
   return { mode, height };
 }
 
@@ -250,7 +250,8 @@ export function renderPianoPage(soundEngine, mountElement, options = {}) {
     if (layoutEl && layoutEl.clientHeight > 0) {
       const hintHeight = hintEl && hintEl.offsetHeight > 0 ? hintEl.offsetHeight : 0;
       const toolbarHeight = toolbarEl && toolbarEl.offsetHeight > 0 ? toolbarEl.offsetHeight : 38;
-      const consoleChrome = (windowTarget.innerHeight || 720) <= 440 ? 52 : 92;
+      const viewportHeight = windowTarget.visualViewport?.height || windowTarget.innerHeight || 720;
+      const consoleChrome = viewportHeight <= 460 ? 38 : 92;
       const hintGap = hintHeight > 0 ? 20 : 0;
       availableHeight = layoutEl.clientHeight - hintHeight - hintGap - toolbarHeight - consoleChrome;
     } else {
@@ -541,6 +542,8 @@ export function renderPianoPage(soundEngine, mountElement, options = {}) {
         syncVisualState();
       }
     }, listenerOptions);
+
+    windowTarget.visualViewport?.addEventListener?.('resize', syncKeyboardScale, listenerOptions);
   }
 
   syncVisualState();

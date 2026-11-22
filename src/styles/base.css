@@ -25,6 +25,7 @@ body {
   background-color: var(--ds-color-paper);
   color: var(--ds-color-ink);
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
