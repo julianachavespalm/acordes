@@ -562,3 +562,96 @@
     border-bottom: none;
   }
 }
+
+/* ==========================================================================
+   Layout da Aba Piano Virtual (FEAT-010 / ADR-012)
+   ========================================================================== */
+.piano-layout {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--ds-space-md) var(--ds-space-xl) var(--ds-space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-md);
+  flex: 1;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.piano-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-xs);
+}
+
+.piano-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-sm);
+}
+
+.piano-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ds-space-sm);
+}
+
+.piano-stage {
+  flex: 1;
+  min-height: 220px;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Mobile Portrait: aviso discreto e 1 oitava confortável (13 teclas, WCAG 2.1 Orientation) */
+@media (max-width: 960px) and (orientation: portrait) {
+  .piano-layout {
+    padding: var(--ds-space-md);
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .piano-orientation-hint {
+    display: block;
+  }
+
+  .piano-key[data-octave="2"] {
+    display: none;
+  }
+
+  .piano-key--black {
+    flex: 0 0 8.5%;
+    margin-left: -4.25%;
+    margin-right: -4.25%;
+  }
+
+  .piano-key-shortcut {
+    display: none;
+  }
+}
+
+/* Mobile Landscape: 2 oitavas completas com compactação vertical para multitouch */
+@media (max-width: 960px) and (orientation: landscape) {
+  .piano-layout {
+    padding: var(--ds-space-sm) var(--ds-space-md);
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    gap: var(--ds-space-sm);
+  }
+
+  .piano-title {
+    font-size: 1.4rem;
+  }
+
+  .piano-keyboard {
+    min-height: 165px;
+    max-height: 220px;
+  }
+
+  .piano-key-shortcut {
+    display: none;
+  }
+}

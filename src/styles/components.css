@@ -345,3 +345,143 @@ footer,
   vector-effect: non-scaling-stroke;
 }
 
+/* ==========================================================================
+   Piano Virtual Interativo (FEAT-010 / ADR-008, ADR-010, ADR-012)
+   ========================================================================== */
+.piano-title {
+  margin: 0;
+  font-size: var(--ds-font-size-h1);
+  font-weight: var(--ds-font-weight-semibold);
+  color: var(--ds-color-ink);
+  line-height: 1.1;
+}
+
+.piano-orientation-hint {
+  display: none;
+  margin: var(--ds-space-xs) 0 0;
+  font-size: 0.9rem;
+  color: var(--ds-color-ink-muted);
+}
+
+.piano-control-btn {
+  background-color: var(--ds-color-surface);
+  color: var(--ds-color-ink);
+  border: 1.5px solid var(--ds-color-line);
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: var(--ds-font-weight-medium);
+  padding: var(--ds-space-xs) var(--ds-space-md);
+  cursor: pointer;
+  transition: background-color 0.12s ease-in-out;
+}
+
+.piano-control-btn:hover:not(:disabled) {
+  background-color: var(--ds-color-accent-amber);
+}
+
+.piano-control-btn:focus-visible {
+  outline: var(--ds-focus-outline);
+  outline-offset: var(--ds-focus-offset);
+}
+
+.piano-control-btn.is-active {
+  background-color: var(--ds-color-accent-amber);
+  font-weight: var(--ds-font-weight-bold);
+}
+
+.piano-control-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.piano-readout {
+  font-size: 1rem;
+  font-weight: var(--ds-font-weight-semibold);
+  color: var(--ds-color-ink);
+  min-height: 1.6em;
+}
+
+.piano-keyboard {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  max-height: 360px;
+  border: 1.5px solid var(--ds-color-line);
+  background-color: var(--ds-color-surface);
+  touch-action: none;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.piano-key {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--ds-space-xs);
+  padding: var(--ds-space-sm) var(--ds-space-xs);
+  border-radius: 0;
+  font-family: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.08s ease-out;
+}
+
+.piano-key--white {
+  flex: 1 1 0;
+  height: 100%;
+  background-color: var(--ds-color-surface);
+  color: var(--ds-color-ink);
+  border: none;
+  border-right: 1px solid var(--ds-color-line);
+  z-index: 1;
+}
+
+.piano-key--white:last-child {
+  border-right: none;
+}
+
+.piano-key--black {
+  flex: 0 0 4.4%;
+  height: 60%;
+  margin-left: -2.2%;
+  margin-right: -2.2%;
+  background-color: var(--ds-color-ink);
+  color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-line);
+  border-top: none;
+  z-index: 2;
+}
+
+.piano-key:focus-visible {
+  outline: var(--ds-focus-outline);
+  outline-offset: -3px;
+  z-index: 3;
+}
+
+.piano-key.is-active {
+  background-color: var(--ds-color-accent-amber);
+  color: var(--ds-color-ink);
+}
+
+.piano-key-label {
+  font-size: 0.85rem;
+  font-weight: var(--ds-font-weight-semibold);
+  line-height: 1.1;
+}
+
+.piano-key--black .piano-key-label {
+  font-size: 0.72rem;
+}
+
+.piano-key-shortcut {
+  font-size: 0.7rem;
+  opacity: 0.65;
+  line-height: 1;
+}
+
+

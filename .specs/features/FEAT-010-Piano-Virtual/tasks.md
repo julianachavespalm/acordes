@@ -104,8 +104,8 @@ T5 -> T6
 * **Reutiliza**: `src/styles/tokens.css`
 * **Requisito**: RN-04, RN-08 / CA-10.6
 * **Concluído quando**:
-  - [ ] `node scripts/validate-tokens.mjs` passa com 0 violações
-  - [ ] Testes confirmam ausência de `border-radius` arredondado, presença de `touch-action: none` no teclado e regras de portrait/landscape
+  - [x] `node scripts/validate-tokens.mjs` passa com 0 violações
+  - [x] Testes confirmam ausência de `border-radius` arredondado, presença de `touch-action: none` no teclado e regras de portrait/landscape
 * **Testes**: unit / tokens
 * **Gate**: quick
 

@@ -1,5 +1,6 @@
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { PIANO_KEYS, renderPianoMarkup, renderPianoPage } from '../../src/ui/pianoPage.js';
 
 class MockElement {
@@ -249,5 +250,16 @@ describe('FEAT-010: Piano Virtual Interativo, Multitouch e Reconhecimento de Tr�
     teardown();
     win.dispatchEvent({ type: 'keydown', key: 'g', repeat: false });
     assert.deepEqual(triggered, [60, 64], 'Após teardown, teclado físico não deve mais disparar áudio');
+  });
+
+  test('deve estilizar piano com tokens suicos, touch-action e adaptacao de orientacao (CA-10.6)', () => {
+    const componentsCss = fs.readFileSync('src/styles/components.css', 'utf8');
+    const layoutCss = fs.readFileSync('src/styles/layout.css', 'utf8');
+
+    assert.match(componentsCss, /\.piano-keyboard\s*{[^}]*touch-action:\s*none/s);
+    assert.match(componentsCss, /\.piano-key\s*{[^}]*border-radius:\s*0/s);
+    assert.match(componentsCss, /\.piano-key\.is-active\s*{[^}]*background-color:\s*var\(--ds-color-accent-amber\)/s);
+    assert.match(layoutCss, /@media\s*\(\s*max-width:\s*960px\s*\)\s*and\s*\(\s*orientation:\s*portrait\s*\)/);
+    assert.match(layoutCss, /@media\s*\(\s*max-width:\s*960px\s*\)\s*and\s*\(\s*orientation:\s*landscape\s*\)/);
   });
 });
