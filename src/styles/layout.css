@@ -608,13 +608,21 @@
   box-sizing: border-box;
 }
 
-/* Em telas menores (<= 960px), a legenda da nota/acorde vai para baixo do piano */
+/* Em telas menores (<= 960px), barra de botões alinhada à altura do menu hambúrguer e legenda abaixo do piano */
 @media (max-width: 960px) {
-  .piano-orientation-hint {
-    order: 1;
+  .piano-layout {
+    padding: var(--ds-space-md) var(--ds-space-sm);
+    gap: var(--ds-space-sm);
   }
 
   .piano-toolbar {
+    order: 1;
+    min-height: 48px;
+    align-items: center;
+    padding-right: 56px;
+  }
+
+  .piano-orientation-hint {
     order: 2;
   }
 
@@ -630,28 +638,17 @@
   }
 }
 
-/* Telas estreitas ou Mobile Portrait: espaçamento seguro para hambúrguer e rodapé fixo */
+/* Telas estreitas ou Mobile Portrait: espaço inferior para rodapé fixo */
 @media (max-width: 649px), (max-width: 960px) and (orientation: portrait) {
   .piano-layout {
-    padding: var(--ds-space-md) var(--ds-space-sm);
     padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-  }
-
-  .piano-toolbar {
-    padding-right: 56px;
   }
 }
 
 /* Mobile Landscape largo (>= 650px): 2 oitavas ocupando 100% da largura da tela para multitouch */
 @media (min-width: 650px) and (max-width: 960px) and (orientation: landscape) {
   .piano-layout {
-    padding: var(--ds-space-xs) var(--ds-space-sm);
     padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
-    gap: var(--ds-space-xs);
-  }
-
-  .piano-toolbar {
-    padding-right: 56px;
   }
 
   .piano-stage {
