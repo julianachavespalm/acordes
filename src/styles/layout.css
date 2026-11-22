@@ -608,30 +608,15 @@
   box-sizing: border-box;
 }
 
-/* Telas estreitas ou Mobile Portrait: aviso discreto e apenas 1ª oitava ocupando 100% da largura */
+/* Telas estreitas ou Mobile Portrait: espaçamento seguro para hambúrguer e rodapé fixo */
 @media (max-width: 649px), (max-width: 960px) and (orientation: portrait) {
   .piano-layout {
-    padding: var(--ds-space-sm) var(--ds-space-sm);
+    padding: var(--ds-space-md) var(--ds-space-sm);
     padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
   }
 
-  .piano-orientation-hint {
-    display: block;
-    text-align: center;
-  }
-
-  .piano-key[data-octave="2"] {
-    display: none;
-  }
-
-  .piano-key--black {
-    flex: 0 0 7.8%;
-    margin: 0 -3.9%;
-    font-size: 0.62rem;
-  }
-
-  .piano-key-shortcut {
-    display: none;
+  .piano-toolbar {
+    padding-right: 56px;
   }
 }
 
@@ -643,23 +628,11 @@
     gap: var(--ds-space-xs);
   }
 
+  .piano-toolbar {
+    padding-right: 56px;
+  }
+
   .piano-stage {
-    min-height: 165px;
-  }
-
-  .piano-keyboard {
-    min-height: 165px;
-  }
-
-  .piano-key--white {
-    font-size: 0.8rem;
-  }
-
-  .piano-key--black {
-    font-size: 0.58rem;
-  }
-
-  .piano-key-shortcut {
-    display: none;
+    min-height: 185px;
   }
 }

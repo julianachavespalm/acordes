@@ -398,8 +398,7 @@ footer,
   display: flex;
   align-items: flex-start;
   width: 100%;
-  height: 100%;
-  min-height: 220px;
+  height: 266px;
   margin: 0;
   position: relative;
   touch-action: none;
@@ -484,6 +483,51 @@ footer,
   font-weight: var(--ds-font-weight-bold);
   opacity: 0.6;
   line-height: 1;
+}
+
+/* Telas estreitas ou Mobile Portrait: aviso visível + 1ª oitava com altura explícita */
+@media (max-width: 649px), (max-width: 960px) and (orientation: portrait) {
+  .piano-orientation-hint {
+    display: block;
+    padding-right: 56px;
+  }
+
+  .piano-keyboard {
+    height: 210px;
+  }
+
+  .piano-key[data-octave="2"] {
+    display: none;
+  }
+
+  .piano-key--black {
+    flex: 0 0 7.8%;
+    margin: 0 -3.9%;
+    font-size: 0.62rem;
+  }
+
+  .piano-key-shortcut {
+    display: none;
+  }
+}
+
+/* Mobile Landscape largo (>= 650px): 2 oitavas completas com altura compacta para multitouch */
+@media (min-width: 650px) and (max-width: 960px) and (orientation: landscape) {
+  .piano-keyboard {
+    height: 180px;
+  }
+
+  .piano-key--white {
+    font-size: 0.8rem;
+  }
+
+  .piano-key--black {
+    font-size: 0.58rem;
+  }
+
+  .piano-key-shortcut {
+    display: none;
+  }
 }
 
 
