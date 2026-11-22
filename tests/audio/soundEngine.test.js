@@ -107,4 +107,17 @@ describe('FEAT-002: Piano Sample Audio Engine (public/tunes/*.mp3)', () => {
     assert.equal(createdAudios.length, 1, 'Deve reutilizar a mesma instância Audio do pool');
     assert.equal(engine.getPoolSize(), 1);
   });
+
+  test('deve tocar notas simultaneas sem corte via triggerNote (CA-10.2)', async () => {
+    await engine.triggerNote(60); // 28.mp3
+    await engine.triggerNote(64); // 32.mp3
+    await engine.triggerNote(67); // 35.mp3
+
+    assert.equal(createdAudios.length, 3);
+    assert.equal(engine.getActiveAudios().length, 3);
+    for (const audio of createdAudios) {
+      assert.equal(audio.played, true);
+      assert.equal(audio.paused, false);
+    }
+  });
 });

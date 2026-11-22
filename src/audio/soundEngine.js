@@ -78,7 +78,9 @@ export function createSoundEngine(options = {}) {
         audio.pause();
       }
       audio.currentTime = 0;
-      activeAudios.push(audio);
+      if (!activeAudios.includes(audio)) {
+        activeAudios.push(audio);
+      }
 
       const playPromise = audio.play();
       if (playPromise && typeof playPromise.catch === 'function') {
@@ -96,6 +98,16 @@ export function createSoundEngine(options = {}) {
     if (sampleId === null) return;
 
     stopAll();
+    for (const fn of playListeners) {
+      try { fn([sampleId]); } catch {}
+    }
+    await playSample(sampleId);
+  }
+
+  async function triggerNote(identifier) {
+    const sampleId = resolveSampleId(identifier);
+    if (sampleId === null) return;
+
     for (const fn of playListeners) {
       try { fn([sampleId]); } catch {}
     }
@@ -150,6 +162,7 @@ export function createSoundEngine(options = {}) {
 
   return {
     playNote,
+    triggerNote,
     playChord,
     stopAll,
     preload,

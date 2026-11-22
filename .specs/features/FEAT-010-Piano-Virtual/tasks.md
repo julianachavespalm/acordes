@@ -78,7 +78,7 @@ T5 -> T6
 * **Reutiliza**: `sampleMapper.js`, `audioPool`
 * **Requisito**: RN-02 / CA-10.2
 * **Concluído quando**:
-  - [ ] Teste unitário prova que chamadas sucessivas a `triggerNote(60)` e `triggerNote(64)` mantêm ambas as amostras tocando simultaneamente
+  - [x] Teste unitário prova que chamadas sucessivas a `triggerNote(60)` e `triggerNote(64)` mantêm ambas as amostras tocando simultaneamente
 * **Testes**: unit
 * **Gate**: quick
 
