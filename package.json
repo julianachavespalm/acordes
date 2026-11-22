@@ -1,0 +1,40 @@
+{
+  "name": "acordes",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Guia acessível de formação de tríades musicais para pessoas cegas e com baixa visão — Spec-Driven Development (SDD), Clean Architecture, TDD e WCAG 2.1 AAA",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "serve": "node scripts/serve.mjs",
+    "test": "node --test",
+    "test:unit": "node --test \"tests/**/*.test.js\"",
+    "validate:specs": "node scripts/validate-sdd.mjs",
+    "validate:tokens": "node scripts/validate-tokens.mjs",
+    "gate": "node scripts/gate.mjs",
+    "verify": "node scripts/gate.mjs"
+  },
+  "keywords": [
+    "acordes",
+    "triades",
+    "musica",
+    "teoria-musical",
+    "spec-driven-development",
+    "sdd",
+    "bdd",
+    "clean-architecture",
+    "wcag-aaa",
+    "accessibility",
+    "a11y"
+  ],
+  "author": "Juliana Chaves Palm",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com"
+  },
+  "homepage": "https://github.io",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
