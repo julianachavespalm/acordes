@@ -172,6 +172,14 @@ describe('FEAT-004: Falsa Tabela Estilo ABNT, Silêncio Auditivo e Interação S
     assert.doesNotMatch(css, /user-select:\s*none/);
   });
 
+  test('deve exibir apenas colunas Acorde e Notas no celular em modo vertical preservando cifra acessivel', async () => {
+    const fs = await import('node:fs');
+    const css = fs.readFileSync('src/styles/components.css', 'utf8');
+    assert.match(css, /@media\s*\(\s*max-width:\s*640px\s*\)\s*and\s*\(\s*orientation:\s*portrait\s*\)/);
+    assert.match(css, /\.abnt-table-header\s*>\s*span:nth-child\(2\)\s*{[^}]*display:\s*none/s);
+    assert.match(css, /\.cifra-col\s*{[^}]*clip:\s*rect\(0,\s*0,\s*0,\s*0\)/s);
+  });
+
   test('initChordList nao deve bloquear selecao ou copia de texto no container da tabela (ADR-010)', () => {
     const container = new MockElement('div');
     initChordList({

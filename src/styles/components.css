@@ -244,6 +244,36 @@ body.menu-open .icon-close {
   }
 }
 
+/* Celular no modo vertical (portrait): exibe visualmente apenas Acorde e Notas, preservando cifra para leitores de tela */
+@media (max-width: 640px) and (orientation: portrait) {
+  .abnt-table-header {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    column-gap: var(--ds-space-md);
+  }
+
+  .abnt-table-header > span:nth-child(2) {
+    display: none;
+  }
+
+  .acorde-row {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    column-gap: var(--ds-space-md);
+    position: relative;
+  }
+
+  .cifra-col {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
 /* Editorial DPUB Footnotes (WAI-ARIA DPUB / ADR-004 / ADR-008) */
 .editorial-noteref {
   font-size: 0.75rem;
