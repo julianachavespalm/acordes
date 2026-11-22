@@ -54,19 +54,19 @@ const MIDI_BY_SHORTCUT = new Map(
  */
 export function computePianoScale(containerWidth, availableHeight) {
   const safeWidth = Math.max(240, Number(containerWidth) || 0);
-  const safeHeight = Math.max(170, Math.min(Number(availableHeight) || 300, 460));
+  const safeHeight = Math.max(110, Math.min(Number(availableHeight) || 300, 460));
 
-  const MIN_KEY_WIDTH_2_OCT = 46;
-  const MIN_KEY_WIDTH_1_OCT = 48;
+  const MIN_KEY_WIDTH_2_OCT = 38;
+  const MIN_KEY_WIDTH_1_OCT = 46;
   const TARGET_RATIO = 5.2;
 
   let mode = 'two-octaves';
   let whiteCount = 15;
 
-  if (safeWidth / 15 >= MIN_KEY_WIDTH_2_OCT && (safeHeight / (safeWidth / 15)) >= 3.2) {
+  if (safeWidth / 15 >= MIN_KEY_WIDTH_2_OCT) {
     mode = 'two-octaves';
     whiteCount = 15;
-  } else if (safeWidth / 8 >= MIN_KEY_WIDTH_1_OCT && (safeHeight / (safeWidth / 8)) >= 3.5) {
+  } else if (safeWidth / 8 >= MIN_KEY_WIDTH_1_OCT) {
     mode = 'one-octave';
     whiteCount = 8;
   } else {
@@ -75,7 +75,8 @@ export function computePianoScale(containerWidth, availableHeight) {
   }
 
   const whiteWidth = safeWidth / whiteCount;
-  const height = Math.round(Math.min(safeHeight, Math.max(170, whiteWidth * TARGET_RATIO)));
+  const idealHeight = Math.round(whiteWidth * TARGET_RATIO);
+  const height = Math.min(safeHeight, Math.max(110, idealHeight));
   return { mode, height };
 }
 
@@ -95,6 +96,13 @@ export function renderPianoMarkup() {
       </button>
     `.trim();
   }).join('\n          ');
+
+  const shortcutsHtml = PIANO_KEYS.filter((k) => k.shortcut).map((k) => `
+    <li class="piano-shortcut-row">
+      <span class="piano-shortcut-note" aria-label="${k.phonetic}">${k.keyLabel}</span>
+      <kbd class="piano-shortcut-kbd">${k.shortcut.toUpperCase()}</kbd>
+    </li>
+  `).join('\n          ');
 
   return `
     <div class="piano-layout" id="conteudo-principal" tabindex="-1">
@@ -136,20 +144,35 @@ export function renderPianoMarkup() {
             <span class="material-symbols-outlined" aria-hidden="true">close</span>
           </button>
         </div>
-        <ul class="piano-help-list">
-          <li>
-            <strong>Toque livre</strong>
-            <span>Clique nas teclas, use A–K e W–U no teclado físico ou toque várias teclas juntas no celular deitado.</span>
-          </li>
-          <li>
-            <strong>Fixar notas</strong>
-            <span>Ative para marcar as teclas de um acorde, pressione Tocar juntas para ouvir e Limpar para recomeçar.</span>
-          </li>
-          <li>
-            <strong>Reconhecimento</strong>
-            <span>Ao formar 3 notas de uma tríade do guia, o nome e a cifra aparecem abaixo do piano.</span>
-          </li>
-        </ul>
+        <div class="piano-help-body">
+          <ul class="piano-help-list">
+            <li>
+              <strong>Toque livre</strong>
+              <span>Clique nas teclas, use o teclado físico no computador ou toque várias teclas juntas no celular deitado.</span>
+            </li>
+            <li>
+              <strong>Fixar notas</strong>
+              <span>Ative para marcar as teclas de um acorde, pressione Tocar juntas para ouvir e Limpar para recomeçar.</span>
+            </li>
+            <li>
+              <strong>Reconhecimento</strong>
+              <span>Ao formar 3 notas de uma tríade do guia, o nome e a cifra aparecem no rodapé ao lado da onda sonora.</span>
+            </li>
+          </ul>
+
+          <section class="piano-shortcuts-section" aria-label="Atalhos de teclado físico">
+            <h3>Atalhos no teclado</h3>
+            <div class="piano-shortcuts-table">
+              <div class="piano-shortcuts-header" aria-hidden="true">
+                <span>Nota</span>
+                <span>Tecla</span>
+              </div>
+              <ul class="piano-shortcuts-list" role="list">
+                ${shortcutsHtml}
+              </ul>
+            </div>
+          </section>
+        </div>
       </div>
 
       <div class="piano-stage">
@@ -158,7 +181,7 @@ export function renderPianoMarkup() {
         </div>
       </div>
 
-      <div class="piano-readout" id="piano-readout" aria-live="polite" aria-atomic="true">Toque nas teclas para ouvir</div>
+      <div class="sr-only" id="piano-readout" aria-live="polite" aria-atomic="true"></div>
     </div>
   `.trim();
 }
@@ -219,12 +242,28 @@ export function renderPianoPage(soundEngine, mountElement, options = {}) {
     const rectTop = typeof keyboardEl.getBoundingClientRect === 'function'
       ? keyboardEl.getBoundingClientRect().top
       : 120;
-    const spaceBelow = (windowTarget.innerHeight || 720) - rectTop - 108;
+    const footerEl = typeof document !== 'undefined' ? document.querySelector('.site-footer') : null;
+    const footerTop = footerEl && typeof footerEl.getBoundingClientRect === 'function'
+      ? footerEl.getBoundingClientRect().top
+      : (windowTarget.innerHeight || 720) - 88;
+    const spaceBelow = footerTop - rectTop - 24;
     const { mode, height } = computePianoScale(containerWidth, spaceBelow);
 
     keyboardEl.setAttribute?.('data-piano-mode', mode);
     if (keyboardEl.style && typeof keyboardEl.style.setProperty === 'function') {
       keyboardEl.style.setProperty('--piano-height', `${height}px`);
+    }
+  }
+
+  function updateFooterIndicator(text) {
+    const footerCifraEl = typeof document !== 'undefined' ? document.getElementById('footer-cifra') : null;
+    if (!footerCifraEl) return;
+    if (text) {
+      footerCifraEl.textContent = text;
+      footerCifraEl.classList?.add('is-visible', 'is-piano-readout');
+    } else {
+      footerCifraEl.classList?.remove('is-visible', 'is-piano-readout');
+      footerCifraEl.textContent = '';
     }
   }
 
@@ -292,33 +331,32 @@ export function renderPianoPage(soundEngine, mountElement, options = {}) {
       }
     }
 
-    if (readoutEl) {
-      const midis = getActiveMidis();
-      if (midis.length === 0) {
-        readoutEl.textContent = isPinMode
-          ? 'Selecione as notas para montar um acorde'
-          : 'Toque nas teclas para ouvir';
-        lastRecognizedChordText = '';
-        return;
-      }
+    const midis = getActiveMidis();
+    if (midis.length === 0) {
+      if (readoutEl) readoutEl.textContent = '';
+      updateFooterIndicator('');
+      lastRecognizedChordText = '';
+      return;
+    }
 
-      const noteNames = midis
-        .map((m) => KEY_BY_MIDI.get(m)?.pitch)
-        .filter(Boolean)
-        .join(' · ');
+    const noteNames = midis
+      .map((m) => KEY_BY_MIDI.get(m)?.pitch)
+      .filter(Boolean)
+      .join(' · ');
 
-      const triads = identifyTriadFromMidis(midis);
-      if (triads.length > 0) {
-        const primary = triads[0];
-        const chordText = `${noteNames} — ${primary.name} (${primary.symbol})`;
-        if (chordText !== lastRecognizedChordText) {
-          readoutEl.textContent = chordText;
-          lastRecognizedChordText = chordText;
-        }
-      } else {
-        readoutEl.textContent = noteNames;
-        lastRecognizedChordText = '';
+    const triads = identifyTriadFromMidis(midis);
+    if (triads.length > 0) {
+      const primary = triads[0];
+      const chordText = `${noteNames} — ${primary.name} (${primary.symbol})`;
+      updateFooterIndicator(chordText);
+      if (readoutEl && chordText !== lastRecognizedChordText) {
+        readoutEl.textContent = chordText;
+        lastRecognizedChordText = chordText;
       }
+    } else {
+      updateFooterIndicator(noteNames);
+      if (readoutEl) readoutEl.textContent = noteNames;
+      lastRecognizedChordText = '';
     }
   }
 
@@ -372,11 +410,19 @@ export function renderPianoPage(soundEngine, mountElement, options = {}) {
         activePointers.delete(pointerId);
         syncVisualState();
       }
+      if (e.pointerType === 'mouse' || e.pointerType === 'touch') {
+        const keyBtn = e.target?.closest?.('.piano-key');
+        keyBtn?.blur?.();
+      }
     };
 
     keyboardEl.addEventListener('pointerup', releasePointer, listenerOptions);
     keyboardEl.addEventListener('pointercancel', releasePointer, listenerOptions);
     keyboardEl.addEventListener('pointerleave', releasePointer, listenerOptions);
+    if (windowTarget && typeof windowTarget.addEventListener === 'function') {
+      windowTarget.addEventListener('pointerup', releasePointer, listenerOptions);
+      windowTarget.addEventListener('pointercancel', releasePointer, listenerOptions);
+    }
 
     // Suporte a ativação por teclado assistivo (Enter/Espaço no botão focado, detail === 0)
     keyboardEl.addEventListener('click', (e) => {
@@ -487,5 +533,6 @@ export function renderPianoPage(soundEngine, mountElement, options = {}) {
     activePointers.clear();
     activePhysicalKeys.clear();
     pinnedNotes.clear();
+    updateFooterIndicator('');
   };
 }

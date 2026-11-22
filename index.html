@@ -21,6 +21,10 @@
   <a href="#menu-principal" class="skip-link">Ir para o menu</a>
 
   <header class="site-header">
+    <div class="mobile-topbar-heading" aria-hidden="true">
+      <span class="mobile-topbar-title" id="mobile-topbar-title">Acordes Básicos</span>
+      <span class="mobile-topbar-subtitle" id="mobile-topbar-subtitle" hidden></span>
+    </div>
     <button type="button" class="menu-toggle-btn" id="menu-toggle" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu de navegação">
       <svg class="icon-hamburger" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -59,6 +63,7 @@
           <div class="home-editorial-text">
             <p>Este material apresenta os principais tipos de tríades, acordes formados por três notas.</p>
             <p>O conteúdo aborda os acordes maiores, menores, diminutos e aumentados, destacando sua estrutura, formação e sonoridade.</p>
+            <p>Este guia é baseado nos estudos do livro <cite>Compêndio de Teoria Elementar da Música</cite>, de Oswaldo Lacerda (1961).</p>
             <p>Selecione uma categoria no menu para explorar os acordes, compreender sua construção e ouvir cada tríade individualmente.</p>
           </div>
         </div>
@@ -67,12 +72,15 @@
   </main>
 
   <footer class="site-footer">
-    <div class="footer-separator-bar" aria-hidden="true">
-      <svg class="footer-separator-svg" viewBox="0 0 1000 40" preserveAspectRatio="none">
-        <path id="footer-separator-line" class="footer-separator-line" d="M 0 20 L 1000 20" />
-      </svg>
+    <div class="footer-separator-row" aria-hidden="true">
+      <span class="footer-cifra-indicator" id="footer-cifra"></span>
+      <div class="footer-separator-bar">
+        <svg class="footer-separator-svg" viewBox="0 0 1000 40" preserveAspectRatio="none">
+          <path id="footer-separator-line" class="footer-separator-line" d="M 0 20.5 L 1000 20.5" />
+        </svg>
+      </div>
     </div>
-    <p class="footer-credit">© 2024 Juliana Chaves Palm</p>
+    <p class="footer-credit">Por <a href="https://github.com/julianachavespalm" class="footer-author-link" target="_blank" rel="noopener noreferrer">Juliana Chaves Palm</a></p>
   </footer>
 
   <script type="module" src="./src/main.js"></script>

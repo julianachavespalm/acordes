@@ -312,18 +312,19 @@ describe('FEAT-003: Shell de Navegação, Design Suíço e Menu Responsivo Acess
     assert.match(css, /\.menu-toggle-btn\s*{[^}]*background-color:\s*transparent/s);
   });
 
-  test('deve configurar menu aberto como gaveta editorial suica sem borda acima do rodape (FEAT-003 / FEAT-010)', () => {
+  test('deve configurar menu aberto como gaveta editorial suica sem borda em altura total (FEAT-003 / FEAT-010)', () => {
     const layoutCss = readCss('layout.css');
     assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*border:\s*none/s);
     assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*min-width:\s*240px/s);
     assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*top:\s*0/s);
-    assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*bottom:\s*48px/s);
+    assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*bottom:\s*0/s);
     assert.match(layoutCss, /body\.menu-open\s+\.main-navigation[^{]*{[^}]*border-radius:\s*0/s);
   });
 
-  test('deve anular ocupacao em bloco do site-header no mobile para o botao hamburguer flutuar lateralmente ao primeiro texto (FEAT-003)', () => {
+  test('deve configurar faixa superior fixa com altura --ds-header-height no mobile com titulo a esquerda e hamburguer a direita (FEAT-003 / FEAT-010)', () => {
     const layoutCss = readCss('layout.css');
-    assert.match(layoutCss, /\.site-header\s*{[^}]*height:\s*0/s);
+    assert.match(layoutCss, /\.site-header\s*{[^}]*height:\s*var\(--ds-header-height\)/s);
+    assert.match(layoutCss, /\.mobile-topbar-title\s*{[^}]*text-align:\s*left/s);
     assert.match(layoutCss, /\.chapter-title-vertical\s*{[^}]*padding-right:\s*56px/s);
   });
 

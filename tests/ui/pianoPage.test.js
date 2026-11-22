@@ -158,15 +158,21 @@ describe('FEAT-010: Piano Virtual Interativo, Multitouch e Reconhecimento de Tr�
     assert.match(html, /data-midi="84" data-octave="2" data-tier="two-octaves"/);
   });
 
-  test('computePianoScale deve reduzir automaticamente de 2 oitavas para 1a oitava e 7a maior mantendo proporcao real', () => {
+  test('computePianoScale deve reduzir automaticamente de 2 oitavas para 1a oitava e 7a maior mantendo proporcao real sem rolagem', () => {
     const desktop = computePianoScale(1100, 460);
     assert.equal(desktop.mode, 'two-octaves');
+    assert.ok(desktop.height <= 460);
 
-    const medium = computePianoScale(560, 420);
+    const iphoneLandscape = computePianoScale(620, 155);
+    assert.equal(iphoneLandscape.mode, 'two-octaves');
+    assert.ok(iphoneLandscape.height <= 155, 'Altura nunca deve exceder espaço disponível em landscape');
+
+    const medium = computePianoScale(480, 420);
     assert.equal(medium.mode, 'one-octave');
 
-    const iphoneSe = computePianoScale(359, 400);
-    assert.equal(iphoneSe.mode, 'major-seventh');
+    const iphoneSePortrait = computePianoScale(343, 360);
+    assert.equal(iphoneSePortrait.mode, 'major-seventh');
+    assert.ok(iphoneSePortrait.height <= 360);
   });
 
   test('deve abrir e fechar o popover Como usar via botao fechar e tecla Escape', () => {

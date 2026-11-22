@@ -79,7 +79,7 @@ describe('Osciloscópio Acústico Desacoplado (SRP / DIP)', () => {
 
     const timeData = new Float32Array(256).fill(0.5);
     const path = buildWaveformPath({ timeData, triggerOffset: 0 });
-    assert.match(path, /^M 0 20 L /);
+    assert.match(path, /^M 0 20\.5 L /);
     assert.notEqual(path, STRAIGHT_PATH);
   });
 

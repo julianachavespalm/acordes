@@ -21,6 +21,10 @@ export function renderHeaderMarkup() {
 
   return `
     <header class="site-header">
+      <div class="mobile-topbar-heading" aria-hidden="true">
+        <span class="mobile-topbar-title" id="mobile-topbar-title">Acordes Básicos</span>
+        <span class="mobile-topbar-subtitle" id="mobile-topbar-subtitle" hidden></span>
+      </div>
       <button type="button" class="menu-toggle-btn" id="menu-toggle" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu de navegação">
         <svg class="icon-hamburger" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -46,12 +50,15 @@ export function renderHeaderMarkup() {
 export function renderFooterMarkup() {
   return `
     <footer class="site-footer">
-      <div class="footer-separator-bar" aria-hidden="true">
-        <svg class="footer-separator-svg" viewBox="0 0 1000 40" preserveAspectRatio="none">
-          <path id="footer-separator-line" class="footer-separator-line" d="M 0 20 L 1000 20" />
-        </svg>
+      <div class="footer-separator-row" aria-hidden="true">
+        <span class="footer-cifra-indicator" id="footer-cifra"></span>
+        <div class="footer-separator-bar">
+          <svg class="footer-separator-svg" viewBox="0 0 1000 40" preserveAspectRatio="none">
+            <path id="footer-separator-line" class="footer-separator-line" d="M 0 20.5 L 1000 20.5" />
+          </svg>
+        </div>
       </div>
-      <p class="footer-credit">© 2024 Juliana Chaves Palm</p>
+      <p class="footer-credit">Por <a href="https://github.com/julianachavespalm" class="footer-author-link" target="_blank" rel="noopener noreferrer">Juliana Chaves Palm</a></p>
     </footer>
   `.trim();
 }
@@ -247,6 +254,18 @@ export function initShell(optionsOrRoot = {}) {
     const onResize = () => syncMenuOverflow(root, window);
     window.addEventListener('resize', onResize);
     onResize();
+
+    const headerEl = root.querySelector?.('.site-header');
+    const mainEl = root.getElementById ? root.getElementById('app') : root.querySelector?.('#app');
+    if (headerEl) {
+      const onScroll = () => {
+        const scrolled = (window.scrollY > 8) || (mainEl && mainEl.scrollTop > 8);
+        headerEl.classList?.toggle('is-scrolled', Boolean(scrolled));
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      mainEl?.addEventListener?.('scroll', onScroll, { passive: true });
+      onScroll();
+    }
   }
 
   return {

@@ -256,22 +256,123 @@
 }
 
 .footer-credit {
-  font-size: 0.9rem;
+  margin: 0;
+  font-size: 0.78rem;
   color: var(--ds-color-ink-muted);
+  line-height: 1.3;
+}
+
+/* Título da faixa superior mobile (oculto no desktop) */
+.mobile-topbar-heading {
+  display: none;
 }
 
 /* Responsive Editorial Layout */
 @media (max-width: 960px) {
-  /* O cabecalho nao ocupa espaco em bloco nem empurra o conteudo no fluxo */
-  .site-header {
-    padding: 0;
-    height: 0;
-    min-height: 0;
-    position: static;
+  html,
+  body {
+    height: 100dvh;
+    height: 100vh;
+    overflow: hidden;
   }
 
-  .site-main {
-    padding: var(--ds-space-md);
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Faixa superior minimalista fixa (mesma altura --ds-header-height = 72px do menu desktop) */
+  .site-header {
+    position: relative;
+    height: var(--ds-header-height);
+    min-height: var(--ds-header-height);
+    flex-shrink: 0;
+    padding: 0 var(--ds-space-md);
+    background-color: var(--ds-color-paper);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--ds-color-line-faint);
+    z-index: 1000;
+  }
+
+  .site-header.is-scrolled {
+    border-bottom-color: var(--ds-color-line-faint);
+  }
+
+  .mobile-topbar-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: 0;
+    padding-right: 56px;
+    gap: 2px;
+  }
+
+  .mobile-topbar-title {
+    display: block;
+    margin: 0;
+    font-size: var(--ds-font-size-base);
+    font-weight: var(--ds-font-weight-semibold);
+    color: var(--ds-color-ink);
+    text-align: left;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mobile-topbar-subtitle {
+    display: block;
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: var(--ds-font-weight-regular);
+    color: var(--ds-color-ink-muted);
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .mobile-topbar-subtitle[hidden] {
+    display: none;
+  }
+
+  /* Conteudo rola estritamente ACIMA do rodape, jamais por tras dele */
+  .site-main,
+  #app {
+    flex: 1 1 0%;
+    min-height: 0;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ds-color-line-subtle) transparent;
+    padding: var(--ds-space-sm) var(--ds-space-md) var(--ds-space-lg);
+  }
+
+  .site-main::-webkit-scrollbar,
+  #app::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .site-main::-webkit-scrollbar-track,
+  #app::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .site-main::-webkit-scrollbar-thumb,
+  #app::-webkit-scrollbar-thumb {
+    background-color: var(--ds-color-line-subtle);
+    border-radius: 0;
+  }
+
+  .home-cover,
+  .home-scroll-area {
+    height: auto;
+    overflow: visible;
+    padding-top: 0;
   }
 
   .home-layout {
@@ -279,17 +380,26 @@
     padding: 0;
   }
 
-  /* Reserva espaco a direita do primeiro titulo para acomodar o botao flutuante lateral sem sobreposicao */
+  /* Evita duplicacao visual do titulo no celular (ja exibido na faixa superior), mantendo h1 acessivel */
   .home-title,
   .chapter-title-vertical {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
     padding-right: 56px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
-  /* Substituicao da navbar desktop por botao hamburguer flutuante lateral */
+  /* Substituicao da navbar desktop por botao hamburguer centralizado na faixa de 72px */
   .menu-toggle-btn {
     display: flex !important;
     position: fixed !important;
-    top: var(--ds-space-md) !important;
+    top: 12px !important;
     right: var(--ds-space-md) !important;
     z-index: 10001 !important;
   }
@@ -305,25 +415,36 @@
     clip: rect(0, 0, 0, 0);
   }
 
-  /* Menu aberto no mobile ou focado por teclado: gaveta editorial suíça acima do rodapé */
+  /* Eleva o stacking context do header quando o menu esta aberto para cobrir o rodape em 100vh */
+  body.menu-open .site-header {
+    z-index: 10000;
+  }
+
+  /* Menu aberto no mobile ou focado por teclado: gaveta editorial suíça 100vh (WCAG 2.1 AAA) */
   body.menu-open .main-navigation,
   .main-navigation:focus-within {
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 48px;
+    bottom: 0;
+    height: 100vh;
+    height: 100dvh;
     width: min(320px, 44vw);
     min-width: 240px;
     max-width: 100vw;
-    background-color: var(--ds-color-surface);
+    background-color: var(--ds-color-paper) !important;
     border: none;
     box-shadow: var(--ds-shadow-drawer);
-    padding: var(--ds-space-md) 0;
+    padding: 0 0 var(--ds-space-md);
     z-index: 10000;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ds-color-line-subtle) transparent;
     border-radius: 0;
   }
 
@@ -347,19 +468,24 @@
 
   body.menu-open .nav-list > li:first-child,
   .main-navigation:focus-within .nav-list > li:first-child {
-    padding-bottom: 12px;
+    height: var(--ds-header-height);
+    display: flex;
+    align-items: center;
+    padding: 0 56px 0 0;
     margin-bottom: 8px;
-    padding-right: 56px;
     border-bottom: 1px solid var(--ds-color-line-faint);
+    box-sizing: border-box;
   }
 
   body.menu-open .nav-link,
-  .main-navigation:focus-within .nav-link {
+  body.menu-open .nav-link[aria-current="page"],
+  .main-navigation:focus-within .nav-link,
+  .main-navigation:focus-within .nav-link[aria-current="page"] {
     display: block;
     width: 100%;
     text-align: left;
     font-size: var(--ds-font-size-base);
-    padding: 12px 14px;
+    padding: 12px 14px !important;
     box-sizing: border-box;
   }
 
@@ -382,23 +508,26 @@
   }
 
   .chapter-sidebar {
-    position: static;
+    position: absolute;
+    width: 1px;
     height: auto;
     min-height: auto;
     border-bottom: none;
     padding: 0;
     padding-bottom: 0.5rem;
     margin-bottom: 0.5rem;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
     display: block;
   }
 
   .site-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
+    flex-shrink: 0;
     width: 100%;
     z-index: 1000;
+    margin-top: 0;
     background-color: var(--ds-color-paper);
     padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px));
   }
@@ -556,9 +685,27 @@
     min-height: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ds-color-line-subtle) transparent;
     padding: var(--ds-space-md) var(--ds-space-xl);
     width: 100%;
     box-sizing: border-box;
+  }
+
+  .chapter-scroll-area::-webkit-scrollbar,
+  .home-scroll-area::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chapter-scroll-area::-webkit-scrollbar-track,
+  .home-scroll-area::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .chapter-scroll-area::-webkit-scrollbar-thumb,
+  .home-scroll-area::-webkit-scrollbar-thumb {
+    background-color: var(--ds-color-line-subtle);
+    border-radius: 0;
   }
 
   .site-footer {
@@ -578,17 +725,60 @@
    Fallback Automático de Menu Hambúrguer contra Rolagem Horizontal
    ========================================================================== */
 body.force-hamburger .site-header {
-  height: 0;
-  min-height: 0;
-  padding: 0;
-  overflow: visible;
-  position: static;
+  height: var(--ds-header-height);
+  min-height: var(--ds-header-height);
+  padding: 0 var(--ds-space-md);
+  background-color: var(--ds-color-paper);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--ds-color-line-faint);
+  position: relative;
+  flex-shrink: 0;
+  z-index: 1000;
+}
+
+body.force-hamburger .site-header.is-scrolled {
+  border-bottom-color: var(--ds-color-line-faint);
+}
+
+body.force-hamburger .mobile-topbar-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 0;
+  padding-right: 56px;
+  gap: 2px;
+}
+
+body.force-hamburger .mobile-topbar-title {
+  display: block;
+  margin: 0;
+  font-size: var(--ds-font-size-base);
+  font-weight: var(--ds-font-weight-semibold);
+  color: var(--ds-color-ink);
+  text-align: left;
+  line-height: 1.25;
+}
+
+body.force-hamburger .mobile-topbar-subtitle {
+  display: block;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: var(--ds-font-weight-regular);
+  color: var(--ds-color-ink-muted);
+  line-height: 1.2;
+}
+
+body.force-hamburger .mobile-topbar-subtitle[hidden] {
+  display: none;
 }
 
 body.force-hamburger .menu-toggle-btn {
   display: flex !important;
   position: fixed !important;
-  top: var(--ds-space-md) !important;
+  top: 12px !important;
   right: var(--ds-space-md) !important;
   z-index: 10001 !important;
 }
@@ -603,21 +793,30 @@ body.force-hamburger:not(.menu-open) .main-navigation:not(:focus-within) {
   clip: rect(0, 0, 0, 0);
 }
 
+body.force-hamburger.menu-open .site-header {
+  z-index: 10000;
+}
+
 body.force-hamburger.menu-open .main-navigation {
   position: fixed;
   top: 0;
   right: 0;
-  bottom: 48px;
+  bottom: 0;
+  height: 100vh;
+  height: 100dvh;
   width: min(320px, 44vw);
   min-width: 240px;
-  background-color: var(--ds-color-surface);
+  background-color: var(--ds-color-paper) !important;
   border: none;
   box-shadow: var(--ds-shadow-drawer);
-  padding: var(--ds-space-md) 0;
+  padding: 0 0 var(--ds-space-md);
   z-index: 10000;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-color-line-subtle) transparent;
 }
 
 body.force-hamburger.menu-open .nav-list {
@@ -630,10 +829,13 @@ body.force-hamburger.menu-open .nav-list {
 }
 
 body.force-hamburger.menu-open .nav-list > li:first-child {
-  padding-bottom: 12px;
+  height: var(--ds-header-height);
+  display: flex;
+  align-items: center;
+  padding: 0 56px 0 0;
   margin-bottom: 8px;
-  padding-right: 56px;
   border-bottom: 1px solid var(--ds-color-line-faint);
+  box-sizing: border-box;
 }
 
 body.force-hamburger.menu-open .nav-link {
@@ -644,12 +846,12 @@ body.force-hamburger.menu-open .nav-link {
 }
 
 body.force-hamburger .piano-layout {
-  padding-top: var(--ds-space-md);
+  padding-top: var(--ds-space-sm);
 }
 
 body.force-hamburger .piano-toolbar {
-  min-height: 48px;
-  padding-right: 56px;
+  min-height: auto;
+  padding-right: 0;
 }
 
 /* ==========================================================================
@@ -703,17 +905,17 @@ body.force-hamburger .piano-toolbar {
   box-sizing: border-box;
 }
 
-/* Em telas menores (<= 960px), alinhamento com hambúrguer */
+/* Em telas menores (<= 960px), conteudo do piano inicia limpo abaixo da faixa de 56px */
 @media (max-width: 960px) {
   .piano-layout {
-    padding: var(--ds-space-md) var(--ds-space-md);
+    padding: var(--ds-space-sm) var(--ds-space-md);
     gap: var(--ds-space-md);
   }
 
   .piano-toolbar {
-    min-height: 48px;
+    min-height: auto;
     align-items: center;
-    padding-right: 56px;
+    padding-right: 0;
   }
 }
 
@@ -723,8 +925,7 @@ body.force-hamburger .piano-toolbar {
    - Gaveta do menu em 100% da largura */
 @media (max-width: 649px), (max-width: 960px) and (orientation: portrait) {
   .piano-layout {
-    padding: var(--ds-space-md) var(--ds-space-sm);
-    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    padding: var(--ds-space-sm) var(--ds-space-sm) var(--ds-space-md);
   }
 
   .piano-toolbar {
@@ -750,10 +951,50 @@ body.force-hamburger .piano-toolbar {
   }
 }
 
-/* Mobile Landscape largo (>= 650px): 4 botões em 1 linha + 2 oitavas */
+/* Mobile Landscape largo (>= 650px): 4 botões em 1 linha + 2 oitavas sem rolagem */
 @media (min-width: 650px) and (max-width: 960px) and (orientation: landscape) {
+  .site-header {
+    height: 48px;
+    min-height: 48px;
+  }
+
+  .menu-toggle-btn {
+    top: 0 !important;
+  }
+
+  body.menu-open .nav-list,
+  .main-navigation:focus-within .nav-list {
+    gap: 2px;
+  }
+
+  body.menu-open .nav-list > li:first-child,
+  .main-navigation:focus-within .nav-list > li:first-child {
+    height: 48px;
+    margin-bottom: 4px;
+  }
+
+  body.menu-open .nav-link,
+  body.menu-open .nav-link[aria-current="page"],
+  .main-navigation:focus-within .nav-link,
+  .main-navigation:focus-within .nav-link[aria-current="page"] {
+    padding: 8px 14px !important;
+  }
+
+  .site-main,
+  #app {
+    padding: var(--ds-space-md) var(--ds-space-md) 0;
+  }
+
   .piano-layout {
-    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+    padding: 0;
+    gap: var(--ds-space-md);
+    justify-content: space-between;
+  }
+
+  .piano-stage {
+    flex: 1;
+    align-items: center;
+    padding-bottom: var(--ds-space-xs);
   }
 
   .piano-controls-grid {
