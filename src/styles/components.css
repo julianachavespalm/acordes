@@ -463,12 +463,27 @@ footer,
   z-index: 3;
 }
 
-.piano-key-label {
+.piano-key-content {
   position: absolute;
-  bottom: 5px;
+  bottom: 6px;
   left: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.piano-key-label {
   line-height: 1.15;
+}
+
+.piano-key-shortcut {
+  font-size: 0.7rem;
+  font-weight: var(--ds-font-weight-bold);
+  opacity: 0.6;
+  line-height: 1;
 }
 
 

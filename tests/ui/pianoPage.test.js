@@ -255,12 +255,14 @@ describe('FEAT-010: Piano Virtual Interativo, Multitouch e Reconhecimento de TrÃ
   test('deve estilizar piano com design classico, tokens, touch-action e adaptacao de orientacao (CA-10.6)', () => {
     const componentsCss = fs.readFileSync('src/styles/components.css', 'utf8');
     const layoutCss = fs.readFileSync('src/styles/layout.css', 'utf8');
+    const html = renderPianoMarkup();
 
+    assert.match(html, /class="piano-key-shortcut"/);
     assert.match(componentsCss, /\.piano-keyboard\s*{[^}]*touch-action:\s*none/s);
     assert.match(componentsCss, /\.piano-key--white\s*{[^}]*background:\s*var\(--ds-piano-white-bg\)/s);
     assert.match(componentsCss, /\.piano-key--black\s*{[^}]*background:\s*var\(--ds-piano-black-bg\)/s);
     assert.match(componentsCss, /\.piano-key\[aria-pressed="true"\]\s*{[^}]*background:\s*var\(--ds-color-accent-amber\)/s);
-    assert.match(layoutCss, /@media\s*\(\s*max-width:\s*960px\s*\)\s*and\s*\(\s*orientation:\s*portrait\s*\)/);
-    assert.match(layoutCss, /@media\s*\(\s*max-width:\s*960px\s*\)\s*and\s*\(\s*orientation:\s*landscape\s*\)/);
+    assert.match(layoutCss, /@media\s*\(\s*max-width:\s*649px\s*\),\s*\(\s*max-width:\s*960px\s*\)\s*and\s*\(\s*orientation:\s*portrait\s*\)/);
+    assert.match(layoutCss, /@media\s*\(\s*min-width:\s*650px\s*\)\s*and\s*\(\s*max-width:\s*960px\s*\)\s*and\s*\(\s*orientation:\s*landscape\s*\)/);
   });
 });

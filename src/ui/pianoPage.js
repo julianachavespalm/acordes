@@ -45,10 +45,16 @@ const MIDI_BY_SHORTCUT = new Map(
 export function renderPianoMarkup() {
   const keysHtml = PIANO_KEYS.map((key) => {
     const typeClass = key.isSharp ? 'piano-key--black' : 'piano-key--white';
+    const shortcutHtml = key.shortcut
+      ? `<span class="piano-key-shortcut" aria-hidden="true">${key.shortcut.toUpperCase()}</span>`
+      : '';
 
     return `
       <button type="button" class="piano-key ${typeClass}" data-midi="${key.midi}" data-octave="${key.octave}" aria-label="${key.phonetic}">
-        <span class="piano-key-label" aria-hidden="true">${key.keyLabel}</span>
+        <span class="piano-key-content" aria-hidden="true">
+          ${shortcutHtml}
+          <span class="piano-key-label">${key.keyLabel}</span>
+        </span>
       </button>
     `.trim();
   }).join('\n          ');

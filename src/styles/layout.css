@@ -608,8 +608,8 @@
   box-sizing: border-box;
 }
 
-/* Mobile Portrait: aviso discreto e 1 oitava ocupando 100% da largura (WCAG 2.1 Orientation) */
-@media (max-width: 960px) and (orientation: portrait) {
+/* Telas estreitas ou Mobile Portrait: aviso discreto e apenas 1ª oitava ocupando 100% da largura */
+@media (max-width: 649px), (max-width: 960px) and (orientation: portrait) {
   .piano-layout {
     padding: var(--ds-space-sm) var(--ds-space-sm);
     padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
@@ -629,10 +629,14 @@
     margin: 0 -3.9%;
     font-size: 0.62rem;
   }
+
+  .piano-key-shortcut {
+    display: none;
+  }
 }
 
-/* Mobile Landscape: 2 oitavas ocupando 100% da largura da tela para multitouch */
-@media (max-width: 960px) and (orientation: landscape) {
+/* Mobile Landscape largo (>= 650px): 2 oitavas ocupando 100% da largura da tela para multitouch */
+@media (min-width: 650px) and (max-width: 960px) and (orientation: landscape) {
   .piano-layout {
     padding: var(--ds-space-xs) var(--ds-space-sm);
     padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
@@ -653,5 +657,9 @@
 
   .piano-key--black {
     font-size: 0.58rem;
+  }
+
+  .piano-key-shortcut {
+    display: none;
   }
 }
