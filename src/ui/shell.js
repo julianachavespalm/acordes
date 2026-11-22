@@ -206,6 +206,28 @@ export function initSkipLinks(container = document) {
   }
 }
 
+export function syncMenuOverflow(root = document, windowTarget = typeof window !== 'undefined' ? window : null) {
+  if (!root || !windowTarget) return false;
+  const body = root.body || root.querySelector?.('body');
+  if (!body || !body.classList) return false;
+
+  if (windowTarget.innerWidth <= 960) {
+    body.classList.remove('force-hamburger');
+    return false;
+  }
+
+  body.classList.remove('force-hamburger');
+  const header = root.querySelector?.('.site-header');
+  const navList = root.querySelector?.('.nav-list');
+  if (!header || !navList) return false;
+
+  const overflows = navList.scrollWidth > (header.clientWidth - 64);
+  if (overflows) {
+    body.classList.add('force-hamburger');
+  }
+  return overflows;
+}
+
 export function initShell(optionsOrRoot = {}) {
   const root = (optionsOrRoot && (optionsOrRoot.querySelector || optionsOrRoot.getElementById))
     ? optionsOrRoot
@@ -220,6 +242,12 @@ export function initShell(optionsOrRoot = {}) {
   const activeHref = syncActiveNavigation(root, effectivePath);
   initSkipLinks(root);
   const menuController = initMenuToggle({ root });
+
+  if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
+    const onResize = () => syncMenuOverflow(root, window);
+    window.addEventListener('resize', onResize);
+    onResize();
+  }
 
   return {
     activeHref,
